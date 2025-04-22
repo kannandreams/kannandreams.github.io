@@ -47,8 +47,8 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
             value={emailContent}
             onChange={onEmailChange}
             placeholder="Type your message here..."
-            className="bg-terminal-background border-terminal-muted text-white w-full h-28 focus:border-terminal-bright-green text-sm resize-none"
-            style={{ minHeight: 80, fontSize: "0.93rem" }}
+            className="bg-terminal-background border-terminal-muted text-white w-full h-44 focus:border-terminal-bright-green text-sm resize-none"
+            style={{ minHeight: 180, fontSize: "0.93rem" }}
             autoFocus
           />
           <div className="flex items-center justify-between mt-2">
@@ -70,3 +70,4 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
 };
 
 export default VimTerminalEmailComposer;
+
