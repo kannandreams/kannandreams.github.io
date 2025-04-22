@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 import TerminalCursor from "./TerminalCursor";
 
@@ -18,16 +17,19 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   const [command, setCommand] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const [cursorPosition, setCursorPosition] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus input on component mount and when mode changes
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, [mode]);
 
-  // Handle command submission
+  useEffect(() => {
+    setCursorPosition(command.length);
+  }, [command]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -37,7 +39,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         : `:${command.trim()}`;
       onExecuteCommand(commandToSend);
 
-      // Add to history if not repeat
       if (
         commandHistory.length === 0 ||
         commandHistory[commandHistory.length - 1] !== commandToSend
@@ -50,9 +51,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
     }
   };
 
-  // Handle keyboard navigation for command history
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // ESC key
     if (e.key === "Escape") {
       if (mode === "insert") {
         setMode("normal");
@@ -62,7 +61,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
       return;
     }
 
-    // History navigation
     if (e.key === "ArrowUp") {
       e.preventDefault();
       if (commandHistory.length > 0) {
@@ -90,23 +88,27 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
     <div className="terminal-footer p-2">
       <form 
         onSubmit={handleSubmit} 
-        className="flex items-center font-mono"
-        style={{ position: "relative" }}
+        className="flex items-center font-mono relative"
       >
-        {/* Command prompt and caret are next to each other, no flex growth */}
         <span
           className="terminal-prompt mr-1 text-white font-bold select-none text-lg"
           style={{
-            fontFamily:
-              "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+            fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
             position: 'relative',
             display: 'inline-flex',
             alignItems: 'center',
           }}
         >
-          :<TerminalCursor style={{ position: 'relative', left: 0, marginLeft: '2px' }} />
+          :
+          <TerminalCursor 
+            position={cursorPosition} 
+            style={{ 
+              position: 'absolute', 
+              left: `${cursorPosition}ch`, 
+              marginLeft: '2px' 
+            }} 
+          />
         </span>
-        {/* The command input grows to fill, cursor is hidden */}
         <input
           ref={inputRef}
           type="text"
@@ -124,8 +126,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           autoComplete="off"
           spellCheck="false"
           style={{
-            fontFamily:
-              "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+            fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
             minWidth: 0,
             marginLeft: "0.25rem",
           }}
@@ -136,4 +137,3 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
 };
 
 export default VimCommandLine;
-
