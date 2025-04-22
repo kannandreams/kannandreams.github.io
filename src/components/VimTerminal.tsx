@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, FileText, Wrench } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -140,19 +139,27 @@ const VimTerminal: React.FC = () => {
       </div>
       {
         recruiterMode ? (
-          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] p-8 bg-white text-gray-900 animate-fade-in">
-            <div className="max-w-2xl w-full rounded shadow border border-gray-200 bg-gray-50/90 mb-4 p-2 flex flex-col items-center">
-              <iframe
-                src={RESUME_PDF_URL}
-                title="Resume"
-                className="w-full h-[62vh] rounded border mb-4 bg-white"
-              />
+          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] p-0 bg-white text-gray-900 animate-fade-in">
+            {/* Download button at the top */}
+            <div className="w-full flex justify-center py-4 bg-white shadow z-10">
               <button
                 onClick={handleDownloadResume}
                 className="bg-primary text-white rounded px-5 py-2 hover:bg-primary/90 transition-colors"
               >
                 Download Resume (PDF)
               </button>
+            </div>
+            {/* PDF full screen below */}
+            <div className="flex-1 w-full flex justify-center items-center bg-gray-50">
+              <iframe
+                src={RESUME_PDF_URL}
+                title="Resume"
+                className="w-full h-[calc(100vh-140px)] rounded-none border-0 bg-white"
+                style={{
+                  minHeight: '600px',
+                  maxHeight: 'calc(100vh - 140px)',
+                }}
+              />
             </div>
             <div className="text-gray-500 text-center mt-3 italic">Switch to Dev Mode to explore the interactive Vim terminal.</div>
           </div>

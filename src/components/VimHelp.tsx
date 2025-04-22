@@ -4,7 +4,7 @@ import React from 'react';
 const VimHelp: React.FC = () => {
   return (
     <div className="vim-help animate-fade-in">
-      <h2 className="text-terminal-accent text-xl mb-4">Welcome to Vim Portfolio Terminal</h2>
+      <h2 className="text-terminal-accent text-xl mb-4">KK</h2>
       {/* About Me section */}
       <div className="bg-terminal-border/30 p-3 rounded mb-5">
         <h3 className="text-terminal-primary mb-2">About Me</h3>
