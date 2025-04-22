@@ -1,0 +1,136 @@
+
+@layer base {
+  .terminal-container {
+    @apply bg-terminal-background text-terminal-foreground rounded-md border border-terminal-border shadow-lg overflow-hidden;
+    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+    font-size: 0.925rem;
+    line-height: 1.5;
+    transition: font-size 0.2s, line-height 0.2s;
+  }
+
+  .recruiter-mode .terminal-container {
+    font-size: 1.12rem !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0.01em;
+  }
+
+  .terminal-header {
+    @apply bg-terminal-border text-terminal-foreground px-4 py-2 flex items-center justify-between;
+  }
+
+  .terminal-body {
+    @apply p-4 overflow-y-auto overflow-x-hidden;
+    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+  }
+
+  .terminal-prompt {
+    color: var(--terminal-bright-green);
+    font-weight: bold;
+    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+    user-select: none;
+  }
+
+  .terminal-caret {
+    display: inline-block;
+    width: 2px;
+    height: 1.35em;
+    background: var(--terminal-bright-green);
+    margin-left: 0.125rem;
+    margin-top: 2px;
+    vertical-align: middle;
+    border-radius: 2px;
+    pointer-events: none;
+  }
+
+  .terminal-command {
+    color: #fff;
+    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+  }
+
+  .terminal-output {
+    @apply text-terminal-foreground mt-1 pb-2;
+    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+  }
+
+  .terminal-success {
+    @apply text-terminal-success;
+  }
+
+  .terminal-error {
+    @apply text-terminal-error;
+  }
+
+  .terminal-warning {
+    @apply text-terminal-warning;
+  }
+
+  .terminal-info {
+    @apply text-terminal-info;
+  }
+
+  .terminal-highlight {
+    @apply text-terminal-secondary;
+  }
+
+  .terminal-accent {
+    @apply text-terminal-accent;
+  }
+
+  .vim-mode {
+    @apply bg-terminal-border text-xs px-2 py-0.5 rounded;
+  }
+
+  .vim-insert-mode {
+    @apply bg-terminal-success text-black text-xs px-2 py-0.5 rounded;
+  }
+
+  .text-terminal-bright-green {
+    color: var(--terminal-bright-green) !important;
+  }
+
+  /* Breathing block caret animation */
+  .block-caret-breath {
+    display: inline;
+    animation: block-caret-breath 1s ease-in-out infinite;
+    font-size: 1.27em;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0.9;
+    transition: font-size 0.2s;
+    will-change: transform, opacity;
+    pointer-events: none;
+    background: none !important;
+    text-shadow: 0 0 3px #fff3;
+  }
+
+  @keyframes block-caret-breath {
+    0%, 100% {
+      transform: scaleY(1) scaleX(1);
+      opacity: 0.9;
+    }
+    40% {
+      transform: scaleY(1.20) scaleX(1.12);
+      opacity: 1;
+    }
+    60% {
+      transform: scaleY(0.95) scaleX(0.96);
+      opacity: 0.7;
+    }
+  }
+
+  /* Email Composer white bg/text, border tweaks */
+  .email-composer {
+    color: #fff;
+    font-size: 0.95rem;
+    background: transparent !important;
+    border-right: 1px solid #555 !important;
+    border-bottom: 1px solid #555 !important;
+    border-radius: 3px 3px 3px 3px;
+    padding-top: 0.3em;
+    box-shadow: none;
+  }
+  .email-composer input, .email-composer textarea {
+    color: #fff !important;
+    background: #1A1F2C !important;
+  }
+}

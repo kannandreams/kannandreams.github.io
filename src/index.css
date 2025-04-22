@@ -1,208 +1,53 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 240 10% 15%;
-    --foreground: 0 0% 95%;
-    --card: 240 10% 20%;
-    --card-foreground: 0 0% 95%;
-    --popover: 240 10% 10%;
-    --popover-foreground: 0 0% 95%;
-    --primary: 198 100% 40%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 267 80% 50%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 240 10% 25%;
-    --muted-foreground: 240 10% 70%;
-    --accent: 195 80% 50%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 70% 50%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 10% 20%;
-    --input: 240 10% 20%;
-    --ring: 240 10% 60%;
-    --radius: 0.25rem;
+/* Import refactored CSS files for clarity */
+@import url('./styles/base.css');
+@import url('./styles/terminal.css');
+@import url('./styles/utilities.css');
 
-    --sidebar-background: 240 10% 15%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 200 90% 50%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 10% 20%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 240 10% 25%;
-    --sidebar-ring: 217 90% 60%;
+/* Only minimal project utility/branding styles below */
 
-    --terminal-bright-green: #4AFF61;  /* Bright green for CLI prompt and caret */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-
-@layer base {
-  * {
-    @apply border-border;
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
   }
-
-  body {
-    @apply bg-terminal-background text-terminal-foreground font-mono;
-    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-    color: #fff;
-  }
-
-  .terminal-container {
-    @apply bg-terminal-background text-terminal-foreground rounded-md border border-terminal-border shadow-lg overflow-hidden;
-    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-    font-size: 0.925rem; /* Reduced further for global font-size */
-    line-height: 1.5;
-    transition: font-size 0.2s, line-height 0.2s;
-  }
-
-  .recruiter-mode .terminal-container {
-    font-size: 1.12rem !important; /* Bump for recruiter mode (for legibility) */
-    line-height: 1.7 !important;
-    letter-spacing: 0.01em;
-  }
-
-  .terminal-header {
-    @apply bg-terminal-border text-terminal-foreground px-4 py-2 flex items-center justify-between;
-  }
-
-  .terminal-body {
-    @apply p-4 overflow-y-auto overflow-x-hidden;
-    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-  }
-
-  .terminal-prompt {
-    color: var(--terminal-bright-green);
-    font-weight: bold;
-    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-    user-select: none;
-  }
-
-  .terminal-caret {
-    display: inline-block;
-    width: 2px;
-    height: 1.35em;
-    background: var(--terminal-bright-green);
-    margin-left: 0.125rem;
-    margin-top: 2px;
-    vertical-align: middle;
-    /* The .animate-cursor-blink brings blinking animation */
-    border-radius: 2px;
-    /* Use pointer-events: none to prevent interfering with typing */
-    pointer-events: none;
-  }
-
-  .terminal-command {
-    color: #fff;
-    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-  }
-
-  .terminal-output {
-    @apply text-terminal-foreground mt-1 pb-2;
-    font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-  }
-
-  .terminal-success {
-    @apply text-terminal-success;
-  }
-
-  .terminal-error {
-    @apply text-terminal-error;
-  }
-
-  .terminal-warning {
-    @apply text-terminal-warning;
-  }
-
-  .terminal-info {
-    @apply text-terminal-info;
-  }
-
-  .terminal-highlight {
-    @apply text-terminal-secondary;
-  }
-
-  .terminal-accent {
-    @apply text-terminal-accent;
-  }
-
-  .vim-mode {
-    @apply bg-terminal-border text-xs px-2 py-0.5 rounded;
-  }
-
-  .vim-insert-mode {
-    @apply bg-terminal-success text-black text-xs px-2 py-0.5 rounded;
-  }
-
-  /* Custom bright green terminal header title class */
-  .text-terminal-bright-green {
-    color: var(--terminal-bright-green) !important;
-  }
-
-  /* Breathing block caret animation */
-  .block-caret-breath {
-    display: inline;
-    animation: block-caret-breath 1s ease-in-out infinite;
-    font-size: 1.27em;
-    font-weight: bold;
-    color: #fff;
-    opacity: 0.9;
-    transition: font-size 0.2s;
-    will-change: transform, opacity;
-    pointer-events: none;
-    background: none !important;
-    text-shadow: 0 0 3px #fff3;
-  }
-
-  @keyframes block-caret-breath {
-    0%, 100% {
-      transform: scaleY(1) scaleX(1);
-      opacity: 0.9;
-    }
-    40% {
-      transform: scaleY(1.20) scaleX(1.12);
-      opacity: 1;
-    }
-    60% {
-      transform: scaleY(0.95) scaleX(0.96);
-      opacity: 0.7;
-    }
-  }
-
-  /* Email Composer white bg/text, border tweaks */
-  .email-composer {
-    color: #fff;
-    font-size: 0.95rem;
-    background: transparent !important;
-    border-right: 1px solid #555 !important;
-    border-bottom: 1px solid #555 !important;
-    border-radius: 3px 3px 3px 3px;
-    padding-top: 0.3em;
-    box-shadow: none;
-  }
-  .email-composer input, .email-composer textarea {
-    color: #fff !important;
-    background: #1A1F2C !important;
-  }
-
-  /* Shared GUI box styles for VimHelp as well */
 }
 
-/* Custom caret blinking animation */
-@layer utilities {
-  @keyframes cursor-blink {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-
-  .animate-cursor-blink {
-    animation: cursor-blink 1s steps(1) infinite;
-  }
+.card {
+  padding: 2em;
+}
+.read-the-docs {
+  color: #888;
 }
