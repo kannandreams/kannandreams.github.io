@@ -1,12 +1,12 @@
 
-import React, { useState, useEffect, useRef, KeyboardEvent, RefObject } from "react";
+import React, { useState, useEffect, KeyboardEvent, RefObject } from "react";
 
 interface VimCommandLineProps {
   onExecuteCommand: (command: string) => void;
   mode: "normal" | "insert";
   setMode: React.Dispatch<React.SetStateAction<"normal" | "insert">>;
   activeSection: string;
-  commandInputRef: RefObject<HTMLInputElement>; // Add ref prop
+  commandInputRef: RefObject<HTMLInputElement>;
 }
 
 const VimCommandLine: React.FC<VimCommandLineProps> = ({
@@ -14,7 +14,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   mode,
   setMode,
   activeSection,
-  commandInputRef, // Destructure ref
+  commandInputRef,
 }) => {
   const [command, setCommand] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
@@ -25,7 +25,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
       commandInputRef.current.focus();
       commandInputRef.current.setSelectionRange(0, 0);
     }
-  }, [mode]);
+  }, [mode, commandInputRef]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

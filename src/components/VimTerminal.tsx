@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -89,6 +90,7 @@ const VimTerminal: React.FC = () => {
     }
   }, [lastOutput]);
 
+  // Fixed the focus effect to avoid duplication between both components
   useEffect(() => {
     if (commandInputRef.current) {
       commandInputRef.current.focus();
