@@ -87,7 +87,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   };
 
   return (
-    <div className="terminal-footer border-t border-terminal-border p-2">
+    <div className="terminal-footer p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
         {/* Prompt */}
         <span
@@ -110,10 +110,10 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
             onKeyDown={handleKeyDown}
             className="bg-transparent flex-1 outline-none terminal-command caret-transparent text-base md:text-base text-white"
             placeholder={
-              activeSection === "email" && mode === "normal"
-                ? "Type i to compose an email"
+              activeSection === "email" && mode === "insert"
+                ? "Composing email... Press ESC to exit and send"
                 : mode === "normal"
-                ? "Type a command (help for options)"
+                ? "Type a command (help for options, email to compose)"
                 : "Type text in insert mode, ESC to exit"
             }
             autoComplete="off"

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -54,10 +53,8 @@ const VimTerminal: React.FC = () => {
       setLastOutput("");
     } else if (cmd === ":email") {
       setActiveSection("email");
-      setLastOutput("Enter insert mode to compose an email...");
-    } else if (cmd === "i" && mode === "normal") {
       setMode("insert");
-      setLastOutput("-- INSERT MODE --");
+      setLastOutput("-- EMAIL COMPOSER ACTIVATED (INSERT MODE) --");
     } else if (cmd === "<esc>" && mode === "insert") {
       if (activeSection === "email" && emailContent.trim()) {
         const mailtoLink = `mailto:${EMAIL_ADDRESS}?subject=Message from Portfolio Website&body=${encodeURIComponent(emailContent)}`;
@@ -67,6 +64,9 @@ const VimTerminal: React.FC = () => {
       }
       setMode("normal");
       setLastOutput("-- NORMAL MODE --");
+    } else if (cmd === "i" && mode === "normal") {
+      setMode("insert");
+      setLastOutput("-- INSERT MODE --");
     } else {
       setLastOutput(`Command not found: ${command}`);
     }
