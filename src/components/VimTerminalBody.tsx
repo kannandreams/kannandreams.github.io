@@ -34,9 +34,9 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
 }) => {
   if (!devMode) return <RecruiterResume />;
   return (
-    <>
-      <div className="terminal-body h-full overflow-y-auto flex flex-col" ref={terminalBodyRef}>
-        <div className="mb-4 flex-shrink-0 flex-1">
+    <div className="terminal-body flex-1 overflow-y-auto" ref={terminalBodyRef}>
+      <div className="min-h-full pb-4">
+        <div className="mb-4">
           {activeSection === "skills" && <VimSkills />}
           {activeSection === "projects" && <VimProjects />}
           {activeSection === "github" && <VimGithub />}
@@ -62,7 +62,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

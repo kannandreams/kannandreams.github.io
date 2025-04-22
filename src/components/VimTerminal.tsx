@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -127,7 +128,7 @@ const VimTerminal: React.FC = () => {
         mode={mode}
       />
       <div className={cn(
-        devMode ? "h-[calc(100vh-170px)]" : "recruiter-mode-container",
+        devMode ? "h-[calc(100vh-170px)] flex flex-col" : "recruiter-mode-container",
         "overflow-hidden"
       )}>
         <VimTerminalBody

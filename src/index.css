@@ -67,12 +67,15 @@
 
   .terminal-header {
     @apply bg-terminal-border text-terminal-foreground px-4 py-2 flex items-center justify-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
 
   .terminal-body {
-    @apply p-4 pt-12 pb-8 overflow-y-auto overflow-x-hidden;
+    @apply p-4 pt-16 pb-8 overflow-y-auto overflow-x-hidden;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-    scroll-padding-top: 4rem; /* Add extra scrolling padding at the top */
+    scroll-padding-top: 5rem; /* Increase padding to ensure content is visible */
   }
 
   .terminal-prompt {
