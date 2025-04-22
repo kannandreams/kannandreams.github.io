@@ -3,36 +3,29 @@ import React from "react";
 
 /**
  * TerminalCursor
- * Renders a bright green block caret with breathing animation,
- * positioned absolutely for terminal-style CLI use.
- * Customizable via className/position props if needed in the future.
+ * Renders a thin, blinking vertical line cursor with positioning next to the prompt
  */
 interface TerminalCursorProps {
-  // Optional style/position overrides for flexibility
   className?: string;
   style?: React.CSSProperties;
 }
 
-/**
- * Usage: Place next to CLI prompt or inside an input wrapper div.
- */
 const TerminalCursor: React.FC<TerminalCursorProps> = ({ className = "", style = {} }) => (
   <span
-    className={`terminal-caret block-caret-breath ${className}`}
+    className={`terminal-caret animate-cursor-blink ${className}`}
     style={{
-      color: "var(--terminal-bright-green)",
-      background: "none",
+      width: "2px", // Make cursor thin
+      height: "1.35em", // Standard text height
+      background: "var(--terminal-bright-green)", // Keep bright green
       position: "absolute",
-      left: "calc(-1ch)", // Position next to colon, before input
-      pointerEvents: "none",
+      left: "calc(-0.25ch)", // Bring closer to colon
       top: "50%",
       transform: "translateY(-55%)",
+      pointerEvents: "none",
       ...style,
     }}
     aria-hidden="true"
-  >
-    █
-  </span>
+  />
 );
 
 export default TerminalCursor;
