@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, FileText, Wrench } from 'lucide-react';
+import { Terminal, FileText, Wrench, ToggleLeft, ToggleRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import VimCommandLine from './VimCommandLine';
 import VimSkills from './VimSkills';
@@ -89,9 +89,15 @@ const VimTerminal: React.FC = () => {
     console.log("Dev mode toggled:", checked);
   };
 
+  // Add a class to the container based on the mode
+  const containerClasses = cn(
+    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]", 
+    !devMode && "glass-morphism recruiter-mode"
+  );
+
   // Top menu: icons (left), title (center), toggle + vim mode status (right)
   return (
-    <div className={cn("terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]", !devMode && "glass-morphism")}>
+    <div className={containerClasses}>
       {/* Unified Menu Bar */}
       <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
         {/* Social Icons (left) */}
@@ -117,14 +123,18 @@ const VimTerminal: React.FC = () => {
         <div className="flex items-center gap-3">
           {/* Dev/Recruiter toggle switch */}
           <div className="flex items-center gap-2">
-            <Switch
-              checked={devMode}
-              onCheckedChange={handleDevModeToggle}
-              id="devmode-toggle"
-              aria-label="Dev Mode Toggle"
-              className="data-[state=checked]:bg-terminal-bright-green data-[state=unchecked]:bg-terminal-border"
-            />
-            <span className="ml-2 text-terminal-muted select-none text-sm">
+            <div className="flex items-center space-x-2">
+              {!devMode && <ToggleLeft size={18} className="text-terminal-muted" />}
+              <Switch
+                checked={devMode}
+                onCheckedChange={handleDevModeToggle}
+                id="devmode-toggle"
+                aria-label="Dev Mode Toggle"
+                className="data-[state=checked]:bg-terminal-bright-green data-[state=unchecked]:bg-terminal-border"
+              />
+              {devMode && <ToggleRight size={18} className="text-terminal-bright-green" />}
+            </div>
+            <span className="ml-1 text-terminal-muted select-none text-sm">
               {devMode ? "Dev Mode" : "Recruiter Mode"}
             </span>
           </div>
@@ -148,32 +158,34 @@ const VimTerminal: React.FC = () => {
         </div>
       </div>
       {/* Main Body */}
-      {devMode ? (
-        <>
-          <div ref={terminalBodyRef} className="terminal-body h-[calc(100vh-170px)] overflow-y-auto flex flex-col">
-            {/* Active section first */}
-            <div className="mb-4 flex-shrink-0">
-              {activeSection === 'skills' && <VimSkills />}
-              {activeSection === 'projects' && <VimProjects />}
-              {activeSection === 'github' && <VimGithub />}
-              {activeSection === 'metrics' && <VimMetrics />}
-              {activeSection === 'help' && <VimHelp />}
-              {activeSection === 'blog' && <VimBlog />}
+      <div className={devMode ? "" : "recruiter-mode-container"}>
+        {devMode ? (
+          <>
+            <div ref={terminalBodyRef} className="terminal-body h-[calc(100vh-170px)] overflow-y-auto flex flex-col">
+              {/* Active section first */}
+              <div className="mb-4 flex-shrink-0">
+                {activeSection === 'skills' && <VimSkills />}
+                {activeSection === 'projects' && <VimProjects />}
+                {activeSection === 'github' && <VimGithub />}
+                {activeSection === 'metrics' && <VimMetrics />}
+                {activeSection === 'help' && <VimHelp />}
+                {activeSection === 'blog' && <VimBlog />}
+              </div>
+              {/* Move history to bottom */}
+              <div className="mt-auto">
+                {history.map((line, index) => (
+                  <div key={index} className="mb-1">
+                    {line}
+                  </div>
+                ))}
+              </div>
             </div>
-            {/* Move history to bottom */}
-            <div className="mt-auto">
-              {history.map((line, index) => (
-                <div key={index} className="mb-1">
-                  {line}
-                </div>
-              ))}
-            </div>
-          </div>
-          <VimCommandLine onExecuteCommand={executeCommand} mode={mode} setMode={setMode} />
-        </>
-      ) : (
-        <RecruiterResume />
-      )}
+            <VimCommandLine onExecuteCommand={executeCommand} mode={mode} setMode={setMode} />
+          </>
+        ) : (
+          <RecruiterResume />
+        )}
+      </div>
     </div>
   );
 };
