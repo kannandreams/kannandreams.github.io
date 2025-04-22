@@ -113,21 +113,19 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
             }}
           />
           <span
-            className="terminal-caret block-caret-breath"
+            className="terminal-caret animate-cursor-blink"
             style={{
-              color: "var(--terminal-bright-green)",
+              backgroundColor: "white",
+              width: "2px",
               display: "inline-block",
-              position: "absolute",
-              left: "calc(-1ch)",
-              opacity: 0.9,
-              fontSize: "1.27em",
-              fontWeight: "bold",
-              pointerEvents: "none",
-              background: "none",
-              animation: "block-caret-breath 1s ease-in-out infinite"
+              height: "1.35em",
+              marginLeft: "0.125rem",
+              marginTop: "2px",
+              verticalAlign: "middle",
+              borderRadius: "2px",
+              pointerEvents: "none"
             }}
           >
-            █
           </span>
         </div>
       </form>
