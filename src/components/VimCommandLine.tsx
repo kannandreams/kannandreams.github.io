@@ -88,45 +88,52 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
 
   return (
     <div className="terminal-footer p-2">
-      <form onSubmit={handleSubmit} className="flex items-center font-mono">
-        {/* Prompt */}
+      <form 
+        onSubmit={handleSubmit} 
+        className="flex items-center font-mono"
+        style={{ position: "relative" }}
+      >
+        {/* Command prompt and caret are next to each other, no flex growth */}
         <span
-          className="terminal-prompt mr-2 text-white font-bold select-none text-lg"
+          className="terminal-prompt mr-1 text-white font-bold select-none text-lg"
           style={{
             fontFamily:
               "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+            position: 'relative',
+            display: 'inline-flex',
+            alignItems: 'center',
           }}
         >
-          :
+          :<TerminalCursor style={{ position: 'relative', left: 0, marginLeft: '2px' }} />
         </span>
-        <div className="relative flex-1 flex items-center">
-          {/* Custom Terminal Cursor */}
-          <TerminalCursor />
-          <input
-            ref={inputRef}
-            type="text"
-            value={command}
-            onChange={(e) => setCommand(e.target.value)}
-            onKeyDown={handleKeyDown}
-            className="bg-transparent flex-1 outline-none terminal-command caret-transparent text-base md:text-base text-white"
-            placeholder={
-              activeSection === "email" && mode === "insert"
-                ? "Composing email... Press ESC to exit and send"
-                : mode === "normal"
-                ? "Type a command (help for options, email to compose)"
-                : "Type text in insert mode, ESC to exit"
-            }
-            autoComplete="off"
-            spellCheck="false"
-            style={{
-              fontFamily:
-                "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
-            }}
-          />
-        </div>
+        {/* The command input grows to fill, cursor is hidden */}
+        <input
+          ref={inputRef}
+          type="text"
+          value={command}
+          onChange={(e) => setCommand(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className="bg-transparent flex-1 outline-none terminal-command caret-transparent text-base md:text-base text-white"
+          placeholder={
+            activeSection === "email" && mode === "insert"
+              ? "Composing email... Press ESC to exit and send"
+              : mode === "normal"
+              ? "Type a command (help for options, email to compose)"
+              : "Type text in insert mode, ESC to exit"
+          }
+          autoComplete="off"
+          spellCheck="false"
+          style={{
+            fontFamily:
+              "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
+            minWidth: 0,
+            marginLeft: "0.25rem",
+          }}
+        />
       </form>
     </div>
   );
 };
 
 export default VimCommandLine;
+
