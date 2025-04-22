@@ -55,10 +55,10 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           )}
         </div>
         
-        <div className="mt-1">
-          {lastOutput && <div className="mb-1 text-white">{lastOutput}</div>}
+        <div className="mt-4 space-y-1">
+          {lastOutput && <div className="text-white">{lastOutput}</div>}
           {lastCommand && (
-            <div className="mb-1 text-terminal-bright-green font-semibold">{lastCommand}</div>
+            <div className="text-terminal-bright-green font-semibold">{lastCommand}</div>
           )}
         </div>
       </div>
@@ -67,3 +67,4 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
 };
 
 export default VimTerminalBody;
+

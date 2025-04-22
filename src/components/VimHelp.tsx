@@ -23,12 +23,12 @@ const secondCol = navCommands.slice(midpoint);
 const VimHelp: React.FC = () => {
   return (
     <div className="vim-help animate-fade-in text-white">
-      <h2 className="text-terminal-accent text-xl mb-4">KK</h2>
+      <h2 className="text-terminal-accent text-xl mb-2">KK</h2>
       {/* About Me section (no border, just space) */}
       <div className="bg-transparent p-3 rounded mb-3">
         <h3 className="text-terminal-primary mb-2">About Me</h3>
         <p className="text-terminal-muted text-base">
-          Hello! I’m a passionate software engineer with expertise in frontend and backend technologies. I love building user-centric web apps, learning new tools, and automating workflows. Type a command below to explore my portfolio and see how I work!
+          Hello! I'm a passionate software engineer with expertise in frontend and backend technologies. I love building user-centric web apps, learning new tools, and automating workflows. Type a command below to explore my portfolio and see how I work!
         </p>
       </div>
       {/* Navigation commands with GUI border box style */}
@@ -91,3 +91,4 @@ const VimHelp: React.FC = () => {
 };
 
 export default VimHelp;
+
