@@ -18,13 +18,14 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
   onSendEmail,
   alwaysVisible = false,
 }) => {
-  // Show the email composer with active state if in insert mode
+  // Always show, but dim and disable text area if not in email section or not in insert mode
   const isActive = mode === "insert";
-  
   return (
     <div
       className="email-composer bg-transparent border border-[#555] rounded-sm mb-2"
       style={{
+        borderTop: "none",
+        borderLeft: "none",
         color: "#fff",
         fontFamily: "'JetBrains Mono', monospace",
       }}
@@ -34,7 +35,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
           className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm"
           style={{ fontWeight: 600, letterSpacing: 0.5 }}
         >
-          {isActive ? "Email Composer (Insert Mode):" : "Email Composer:"}
+          {isActive ? "Email Composer:" : "Email Composer:"}
         </span>
         <div className="flex-1 h-px bg-[#555] ml-3" />
       </div>
@@ -48,7 +49,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
             style={{ minHeight: 80, fontSize: "0.93rem" }}
             autoFocus
           />
-          <div className="flex items-center justify-between p-2">
+          <div className="flex items-center justify-between mt-2">
             <p className="text-terminal-muted text-xs">Press ESC to exit insert mode and send</p>
             <button
               onClick={onSendEmail}
@@ -60,7 +61,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
           </div>
         </>
       ) : (
-        <p className="text-terminal-muted text-[0.91rem] p-2">Type 'i' to enter insert mode and compose your email.</p>
+        <p className="text-terminal-muted text-[0.91rem] pb-2 px-2">Type 'i' to enter insert mode and compose your email.</p>
       )}
     </div>
   );

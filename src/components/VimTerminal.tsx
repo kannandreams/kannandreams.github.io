@@ -8,62 +8,56 @@ import { cn } from "@/lib/utils";
 // URLs for tools, resume, and email
 const TOOLS_URL = "https://your-tools-list-url.com";
 const RESUME_TEX_STATIC = "/resume.tex";
-const EMAIL_ADDRESS = "your-email@example.com";
+const EMAIL_ADDRESS = "your-email@example.com"; // Replace with your actual email
 
 type Section = "skills" | "projects" | "github" | "metrics" | "help" | "blog" | "tools" | "email";
 
 const VimTerminal: React.FC = () => {
   const [devMode, setDevMode] = useState<boolean>(true);
-  const [activeSection, setActiveSection] = useState<Section>("email");
+  const [activeSection, setActiveSection] = useState<Section>("help");
   const [mode, setMode] = useState<"normal" | "insert">("normal");
   const [lastCommand, setLastCommand] = useState<string>("");
   const [lastOutput, setLastOutput] = useState<string>("");
   const [emailContent, setEmailContent] = useState<string>("");
   const terminalBodyRef = useRef<HTMLDivElement>(null);
-  const commandInputRef = useRef<HTMLInputElement>(null);
 
   const executeCommand = (command: string) => {
-    const origCommand = command;
+    setLastCommand(`$ ${command}`);
     const cmd = command.trim().toLowerCase();
-    
-    setLastCommand(`$ ${origCommand}`);
 
-    if (cmd === "i" && mode === "normal") {
-      setMode("insert");
-      setLastOutput("-- INSERT MODE --");
-      return;
-    }
-    
-    if (cmd === "q" || cmd === "quit") {
+    if (cmd === ":q" || cmd === ":quit") {
       setLastOutput("Use browser navigation to exit. This is a web app!");
     } 
     else if (
-      cmd === "skills" ||
-      cmd === "projects" ||
-      cmd === "github" ||
-      cmd === "metrics" ||
-      cmd === "help" ||
-      cmd === "blog"
+      cmd === ":skills" ||
+      cmd === ":projects" ||
+      cmd === ":github" ||
+      cmd === ":metrics" ||
+      cmd === ":help" ||
+      cmd === ":blog"
     ) {
-      const sectionMapping: Record<string, Section> = {
-        "skills": "skills",
-        "projects": "projects",
-        "github": "github",
-        "metrics": "metrics",
-        "help": "help",
-        "blog": "blog",
+      const commands: Record<string, Section> = {
+        ":skills": "skills",
+        ":projects": "projects",
+        ":github": "github",
+        ":metrics": "metrics",
+        ":help": "help",
+        ":blog": "blog",
       };
-      setActiveSection(sectionMapping[cmd]);
-      setLastOutput(`Opening ${sectionMapping[cmd]} panel...`);
-    } else if (cmd === "tools") {
+      setActiveSection(commands[cmd]);
+      setLastOutput(`Opening ${commands[cmd]} panel...`);
+    } else if (cmd === ":tools") {
       setLastOutput("Opening tools page in new window...");
       window.open(TOOLS_URL, "_blank", "noopener,noreferrer");
-    } else if (cmd === "clear") {
+    } else if (cmd === ":clear") {
       setLastCommand("");
       setLastOutput("");
-    } else if (cmd === "email") {
+    } else if (cmd === ":email") {
       setActiveSection("email");
       setLastOutput("Enter insert mode to compose an email...");
+    } else if (cmd === "i" && mode === "normal") {
+      setMode("insert");
+      setLastOutput("-- INSERT MODE --");
     } else if (cmd === "<esc>" && mode === "insert") {
       if (activeSection === "email" && emailContent.trim()) {
         const mailtoLink = `mailto:${EMAIL_ADDRESS}?subject=Message from Portfolio Website&body=${encodeURIComponent(emailContent)}`;
@@ -74,7 +68,7 @@ const VimTerminal: React.FC = () => {
       setMode("normal");
       setLastOutput("-- NORMAL MODE --");
     } else {
-      setLastOutput(`Command not found: ${origCommand}`);
+      setLastOutput(`Command not found: ${command}`);
     }
 
     setTimeout(() => {
@@ -89,14 +83,6 @@ const VimTerminal: React.FC = () => {
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
     }
   }, [lastOutput]);
-
-  // Fixed the focus effect to avoid duplication between both components
-  useEffect(() => {
-    if (commandInputRef.current) {
-      commandInputRef.current.focus();
-      commandInputRef.current.setSelectionRange(0, 0);
-    }
-  }, [mode]);
 
   const handleDevModeToggle = () => {
     setDevMode((prev) => !prev);
@@ -127,7 +113,7 @@ const VimTerminal: React.FC = () => {
   };
 
   const containerClasses = cn(
-    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem] border border-terminal-border",
+    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
     !devMode && "glass-morphism recruiter-mode"
   );
 
@@ -161,7 +147,6 @@ const VimTerminal: React.FC = () => {
             mode={mode}
             setMode={setMode}
             activeSection={activeSection}
-            commandInputRef={commandInputRef}
           />
         )}
       </div>

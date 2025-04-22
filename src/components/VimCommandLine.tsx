@@ -1,12 +1,11 @@
 
-import React, { useState, useEffect, KeyboardEvent, RefObject } from "react";
+import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 
 interface VimCommandLineProps {
   onExecuteCommand: (command: string) => void;
   mode: "normal" | "insert";
   setMode: React.Dispatch<React.SetStateAction<"normal" | "insert">>;
   activeSection: string;
-  commandInputRef: RefObject<HTMLInputElement>;
 }
 
 const VimCommandLine: React.FC<VimCommandLineProps> = ({
@@ -14,30 +13,35 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   mode,
   setMode,
   activeSection,
-  commandInputRef,
 }) => {
   const [command, setCommand] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
+  const inputRef = useRef<HTMLInputElement>(null);
 
+  // Focus input on component mount and when mode changes
   useEffect(() => {
-    if (commandInputRef.current) {
-      commandInputRef.current.focus();
-      commandInputRef.current.setSelectionRange(0, 0);
+    if (inputRef.current) {
+      inputRef.current.focus();
     }
-  }, [mode, commandInputRef]);
+  }, [mode]);
 
+  // Handle command submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (command.trim()) {
-      onExecuteCommand(command.trim());
+      const commandToSend = command.trim().startsWith(":")
+        ? command.trim()
+        : `:${command.trim()}`;
+      onExecuteCommand(commandToSend);
 
+      // Add to history if not repeat
       if (
         commandHistory.length === 0 ||
-        commandHistory[commandHistory.length - 1] !== command.trim()
+        commandHistory[commandHistory.length - 1] !== commandToSend
       ) {
-        setCommandHistory((prev) => [...prev, command.trim()]);
+        setCommandHistory((prev) => [...prev, commandToSend]);
       }
 
       setCommand("");
@@ -45,7 +49,9 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
     }
   };
 
+  // Handle keyboard navigation for command history
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    // ESC key
     if (e.key === "Escape") {
       if (mode === "insert") {
         setMode("normal");
@@ -55,6 +61,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
       return;
     }
 
+    // History navigation
     if (e.key === "ArrowUp") {
       e.preventDefault();
       if (commandHistory.length > 0) {
@@ -79,10 +86,11 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   };
 
   return (
-    <div className="terminal-footer p-2">
+    <div className="terminal-footer border-t border-terminal-border p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
+        {/* Updated: Replace $ with : prompt, color white */}
         <span
-          className="terminal-prompt mr-1 text-terminal-bright-green font-bold select-none text-lg"
+          className="terminal-prompt mr-2 text-white font-bold select-none text-lg"
           style={{
             fontFamily:
               "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
@@ -92,7 +100,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         </span>
         <div className="relative flex-1 flex items-center">
           <input
-            ref={commandInputRef}
+            ref={inputRef}
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
@@ -112,20 +120,20 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
                 "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
             }}
           />
+          {/* Custom block caret with breathing animation */}
           <span
-            className="terminal-caret animate-cursor-blink"
+            className="terminal-caret block-caret-breath"
             style={{
-              backgroundColor: "var(--terminal-bright-green)",
-              width: "2px",
-              display: "inline-block",
-              height: "1.35em",
-              marginLeft: "0px",
-              marginTop: "2px",
-              verticalAlign: "middle",
-              borderRadius: "1px",
-              pointerEvents: "none"
+              color: "#fff",
+              background: "none",
+              position: "absolute",
+              left: `calc(${command.length}ch + 8px)`,
+              pointerEvents: "none",
+              top: "50%",
+              transform: "translateY(-55%)"
             }}
           >
+            █
           </span>
         </div>
       </form>
