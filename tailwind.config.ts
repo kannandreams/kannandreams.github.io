@@ -61,6 +61,19 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				terminal: {
+					background: '#1A1F2C',
+					foreground: '#F1F1F1',
+					primary: '#1EAEDB',
+					secondary: '#8B5CF6',
+					accent: '#33C3F0',
+					muted: '#8E9196',
+					border: '#333333',
+					success: '#4CAF50',
+					warning: '#FFC107',
+					error: '#ea384c',
+					info: '#2196F3',
 				}
 			},
 			borderRadius: {
@@ -84,11 +97,34 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'cursor-blink': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' }
+				},
+				'typing': {
+					from: { width: '0' },
+					to: { width: '100%' }
+				},
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' }
+				},
+				'slide-up': {
+					from: { transform: 'translateY(10px)', opacity: '0' },
+					to: { transform: 'translateY(0)', opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'cursor-blink': 'cursor-blink 1s step-end infinite',
+				'typing': 'typing 3.5s steps(30, end)',
+				'fade-in': 'fade-in 0.5s ease-out',
+				'slide-up': 'slide-up 0.5s ease-out'
+			},
+			fontFamily: {
+				'mono': ['JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', 'monospace']
 			}
 		}
 	},
