@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, FileText, Wrench } from 'lucide-react';
+import { Terminal, FileText, Wrench, Github, Linkedin, Rss } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import VimCommandLine from './VimCommandLine';
 import VimSkills from './VimSkills';
@@ -15,6 +16,10 @@ const TOOLS_URL = "https://your-tools-list-url.com";
 const RESUME_PDF_URL = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"; // Replace with real resume PDF
 
 type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools';
+
+const GITHUB_URL = "https://github.com/";
+const LINKEDIN_URL = "https://linkedin.com/";
+const SUBSTACK_URL = "https://substack.com/profile/";
 
 const VimTerminal: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>('help');
@@ -98,12 +103,24 @@ const VimTerminal: React.FC = () => {
   };
 
   return (
-    <div className={cn("terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono", recruiterMode && "glass-morphism")}>
+    <div className={cn("terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]", recruiterMode && "glass-morphism")}>
+      {/* Social media icons row */}
+      <div className="flex items-center justify-end gap-3 px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
+        <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <Github size={22} className="hover:text-terminal-accent text-terminal-muted transition-colors" />
+        </a>
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <Linkedin size={22} className="hover:text-terminal-accent text-terminal-muted transition-colors" />
+        </a>
+        <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" aria-label="Substack">
+          <Rss size={22} className="hover:text-terminal-accent text-terminal-muted transition-colors" />
+        </a>
+      </div>
       <div className="terminal-header">
         <div className="flex items-center space-x-2">
           <Terminal size={16} />
           <span className="font-bold text-xl text-terminal-bright-green select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
-            Vim Portfolio Terminal
+            ~/.profile
           </span>
         </div>
         {/* Toggle for Dev / Recruiter Mode */}
@@ -193,3 +210,4 @@ const VimTerminal: React.FC = () => {
 };
 
 export default VimTerminal;
+

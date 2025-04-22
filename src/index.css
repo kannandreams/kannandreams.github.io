@@ -53,7 +53,7 @@
   .terminal-container {
     @apply bg-terminal-background text-terminal-foreground rounded-md border border-terminal-border shadow-lg overflow-hidden;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-    font-size: 0.97rem; /* Reduced from 1rem (16px) to ~15.5px */
+    font-size: 0.925rem; /* Reduced further for global font-size */
     line-height: 1.5;
     transition: font-size 0.2s, line-height 0.2s;
   }

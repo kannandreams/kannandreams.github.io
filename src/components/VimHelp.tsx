@@ -1,9 +1,26 @@
-
 import React from 'react';
 
 const VimHelp: React.FC = () => {
+  // Navigation commands split into two columns
+  const navCommands = [
+    { label: ":skills", desc: "View my skills" },
+    { label: ":projects", desc: "View my projects" },
+    { label: ":github", desc: "GitHub activity" },
+    { label: ":metrics", desc: "Performance metrics" },
+    { label: ":blog", desc: "Latest blog posts" },
+    { label: ":tools", desc: "Open AI tools page" },
+    { label: ":help", desc: "Show this help" },
+    { label: ":clear", desc: "Clear terminal" },
+    { label: ":q", desc: "Attempt to quit" },
+  ];
+
+  // Divide command list into two columns
+  const midpoint = Math.ceil(navCommands.length / 2);
+  const firstCol = navCommands.slice(0, midpoint);
+  const secondCol = navCommands.slice(midpoint);
+
   return (
-    <div className="vim-help animate-fade-in">
+    <div className="vim-help animate-fade-in text-[0.96rem] md:text-[1rem]">
       <h2 className="text-terminal-accent text-xl mb-4">KK</h2>
       {/* About Me section */}
       <div className="bg-terminal-border/30 p-3 rounded mb-5">
@@ -14,21 +31,27 @@ const VimHelp: React.FC = () => {
       </div>
 
       <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="bg-terminal-border/30 p-3 rounded">
+        {/* Navigation Commands - 2 columns */}
+        <div className="bg-terminal-border/30 p-3 rounded col-span-1">
           <h3 className="text-terminal-primary mb-2">Navigation Commands</h3>
-          <ul className="space-y-1">
-            <li><span className="text-terminal-accent">:skills</span> - View my skills</li>
-            <li><span className="text-terminal-accent">:projects</span> - View my projects</li>
-            <li><span className="text-terminal-accent">:github</span> - GitHub activity</li>
-            <li><span className="text-terminal-accent">:metrics</span> - Performance metrics</li>
-            <li><span className="text-terminal-accent">:blog</span> - Latest blog posts</li>
-            <li><span className="text-terminal-accent">:tools</span> - Open AI tools page</li>
-            <li><span className="text-terminal-accent">:help</span> - Show this help</li>
-            <li><span className="text-terminal-accent">:clear</span> - Clear terminal</li>
-            <li><span className="text-terminal-accent">:q</span> - Attempt to quit</li>
-          </ul>
+          <div className="grid grid-cols-2 gap-y-1 gap-x-6">
+            {firstCol.map(({ label, desc }) => (
+              <div key={label} className="flex items-baseline space-x-2">
+                <span className="text-terminal-accent min-w-[62px]">{label}</span>
+                <span className="text-terminal-muted text-xs">{desc}</span>
+              </div>
+            ))}
+            {/* Fill up to keep columns equal height */}
+            {firstCol.length < secondCol.length && <div></div>}
+            {secondCol.map(({ label, desc }) => (
+              <div key={label} className="flex items-baseline space-x-2">
+                <span className="text-terminal-accent min-w-[62px]">{label}</span>
+                <span className="text-terminal-muted text-xs">{desc}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="bg-terminal-border/30 p-3 rounded">
+        <div className="bg-terminal-border/30 p-3 rounded col-span-1">
           <h3 className="text-terminal-primary mb-2">Command Tips</h3>
           <ul className="space-y-1">
             <li>Commands are case-insensitive.</li>
