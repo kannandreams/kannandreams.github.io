@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Terminal, FileText, Wrench, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -12,9 +11,8 @@ import VimBlog from './VimBlog';
 import RecruiterResume from './RecruiterResume';
 import { Github, Linkedin, Rss } from "lucide-react";
 
-// Change this to your AI tools URL:
 const TOOLS_URL = "https://your-tools-list-url.com";
-const RESUME_TEX_STATIC = "/resume.tex"; // Direct public file for downloading
+const RESUME_TEX_STATIC = "/resume.tex";
 
 type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools';
 
@@ -23,13 +21,12 @@ const LINKEDIN_URL = "https://linkedin.com/";
 const SUBSTACK_URL = "https://substack.com/profile/";
 
 const VimTerminal: React.FC = () => {
-  const [devMode, setDevMode] = useState<boolean>(true); // true=Dev(Vim), false=Recruiter
+  const [devMode, setDevMode] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<Section>('help');
   const [mode, setMode] = useState<'normal' | 'insert'>('normal');
   const [history, setHistory] = useState<string[]>([]);
   const terminalBodyRef = useRef<HTMLDivElement>(null);
 
-  // Handle commands entered in the command line
   const executeCommand = (command: string) => {
     setHistory(prev => [...prev, `$ ${command}`]);
     const cmd = command.trim().toLowerCase();
@@ -68,7 +65,6 @@ const VimTerminal: React.FC = () => {
       setHistory(prev => [...prev, `Command not found: ${command}`]);
     }
     
-    // Scroll to bottom after command execution
     setTimeout(() => {
       if (terminalBodyRef.current) {
         terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
@@ -76,7 +72,6 @@ const VimTerminal: React.FC = () => {
     }, 0);
   };
 
-  // Auto-scroll on history changes
   useEffect(() => {
     if (terminalBodyRef.current) {
       terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
@@ -88,7 +83,6 @@ const VimTerminal: React.FC = () => {
     console.log("Dev mode toggled:", !devMode);
   };
 
-  // Handle file download in recruiter mode
   const handleDownloadResume = () => {
     const link = document.createElement('a');
     link.href = RESUME_TEX_STATIC;
@@ -98,61 +92,36 @@ const VimTerminal: React.FC = () => {
     document.body.removeChild(link);
   };
 
-  // Add a class to the container based on the mode
   const containerClasses = cn(
     "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]", 
     !devMode && "glass-morphism recruiter-mode"
   );
 
-  // Custom toggle button styles based on state (matches screenshot)
   const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
     <button
       onClick={onClick}
       aria-label={checked ? "Switch to Recruiter Mode" : "Switch to Dev Mode"}
       className={cn(
-        "relative inline-flex items-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent",
-        "h-6 w-10 rounded-full mr-1",
-        checked
-          ? "border-2 border-[--terminal-bright-green] bg-transparent"
-          : "border-2 border-terminal-muted bg-transparent"
+        "inline-flex items-center w-10 h-5 rounded-full relative transition-colors duration-300",
+        checked 
+          ? "bg-[--terminal-bright-green]" 
+          : "bg-terminal-muted"
       )}
-      type="button"
-      tabIndex={0}
     >
-      {/* Icon center in track */}
-      <span className={cn(
-        "absolute left-1.5 top-[55%] -translate-y-1/2 pointer-events-none",
-        "transition-colors",
-        checked ? "text-[--terminal-bright-green]" : "text-terminal-muted"
-      )}>
-        {/* Small Lucide toggle icon */}
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" style={{ display: 'block' }}>
-          <rect x="3" y="7" width="14" height="6" rx="3" fill="none"/>
-          <circle cx={checked ? 15 : 5} cy="10" r="2.1" fill="none" />
-        </svg>
-      </span>
-      {/* Circle for knob, smoothly moving L/R */}
       <span
         className={cn(
-          "block transition-transform duration-300",
-          "h-4 w-4 rounded-full",
-          checked
-            ? "bg-[--terminal-bright-green] border-2 border-[--terminal-bright-green]"
-            : "bg-terminal-muted border-2 border-terminal-muted",
-          checked
-            ? "translate-x-[28px]"
-            : "translate-x-0"
+          "absolute w-4 h-4 bg-white rounded-full transition-transform duration-300",
+          checked 
+            ? "translate-x-[22px]" 
+            : "translate-x-0.5"
         )}
       />
     </button>
   );
 
-  // Top menu: icons (left), title (center), toggle + vim mode status or download button (right)
   return (
     <div className={containerClasses}>
-      {/* Unified Menu Bar */}
       <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
-        {/* Social Icons (left) */}
         <div className="flex items-center gap-3">
           <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
             <Github size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
@@ -164,17 +133,14 @@ const VimTerminal: React.FC = () => {
             <Rss size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
           </a>
         </div>
-        {/* Header Title center */}
         <div className="flex items-center space-x-2">
           <Terminal size={16} />
           <span className="font-bold text-xl text-terminal-bright-green select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
             ~/.profile
           </span>
         </div>
-        {/* Right side: Toggle or Download in recruiter mode */}
         <div className="flex items-center gap-3">
           {!devMode ? (
-            // Recruiter mode: show toggle + download button
             <>
               <div className="flex items-center">
                 <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
@@ -195,7 +161,6 @@ const VimTerminal: React.FC = () => {
               </button>
             </>
           ) : (
-            // Dev mode: show toggle + mode indicator
             <>
               <div className="flex items-center">
                 <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
@@ -222,12 +187,10 @@ const VimTerminal: React.FC = () => {
           )}
         </div>
       </div>
-      {/* Main Body */}
       <div className={devMode ? "" : "recruiter-mode-container"}>
         {devMode ? (
           <>
             <div ref={terminalBodyRef} className="terminal-body h-[calc(100vh-170px)] overflow-y-auto flex flex-col">
-              {/* Active section first */}
               <div className="mb-4 flex-shrink-0">
                 {activeSection === 'skills' && <VimSkills />}
                 {activeSection === 'projects' && <VimProjects />}
@@ -236,7 +199,6 @@ const VimTerminal: React.FC = () => {
                 {activeSection === 'help' && <VimHelp />}
                 {activeSection === 'blog' && <VimBlog />}
               </div>
-              {/* Move history to bottom */}
               <div className="mt-auto">
                 {history.map((line, index) => (
                   <div key={index} className="mb-1">
