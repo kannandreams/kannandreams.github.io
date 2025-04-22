@@ -99,6 +99,21 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           :
         </span>
         <div className="relative flex-1 flex items-center">
+          {/* Cursor: bright green block, breathing animation, positioned next to colon */}
+          <span
+            className="terminal-caret block-caret-breath"
+            style={{
+              color: "var(--terminal-bright-green)",
+              background: "none",
+              position: "absolute",
+              left: "calc(-1ch)", // Position next to colon, before input
+              pointerEvents: "none",
+              top: "50%",
+              transform: "translateY(-55%)"
+            }}
+          >
+            █
+          </span>
           <input
             ref={inputRef}
             type="text"
@@ -120,21 +135,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
                 "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
             }}
           />
-          {/* Custom block caret with breathing animation */}
-          <span
-            className="terminal-caret block-caret-breath"
-            style={{
-              color: "#fff",
-              background: "none",
-              position: "absolute",
-              left: `calc(${command.length}ch + 8px)`,
-              pointerEvents: "none",
-              top: "50%",
-              transform: "translateY(-55%)"
-            }}
-          >
-            █
-          </span>
         </div>
       </form>
     </div>
@@ -142,3 +142,4 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
 };
 
 export default VimCommandLine;
+
