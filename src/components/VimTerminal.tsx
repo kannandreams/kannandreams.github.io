@@ -77,11 +77,13 @@ const VimTerminal: React.FC = () => {
   }, [history]);
 
   return (
-    <div className="terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden">
+    <div className="terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono">
       <div className="terminal-header">
         <div className="flex items-center space-x-2">
           <Terminal size={16} />
-          <span className="font-medium">Vim Portfolio Terminal</span>
+          <span className="font-bold text-xl text-terminal-bright-green select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
+            Vim Portfolio Terminal
+          </span>
         </div>
         <div className={cn(
           "vim-mode",

@@ -17,12 +17,12 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus input on component mount
+  // Focus input on component mount and when mode changes
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  }, []);
+  }, [mode]);
 
   // Handle command submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -78,20 +78,40 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
 
   return (
     <div className="terminal-footer border-t border-terminal-border p-2">
-      <form onSubmit={handleSubmit} className="flex items-center">
-        <span className="terminal-prompt mr-2">{mode === 'normal' ? ':' : '> '}</span>
-        <input
-          ref={inputRef}
-          type="text"
-          value={command}
-          onChange={e => setCommand(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="bg-transparent flex-1 outline-none terminal-command"
-          placeholder={mode === 'normal' ? "Type a command (:help for options)" : "Type text in insert mode, <ESC> to exit"}
-          autoComplete="off"
-          spellCheck="false"
-        />
-        <div className="terminal-caret"></div>
+      <form onSubmit={handleSubmit} className="flex items-center font-mono">
+        <span className="terminal-prompt mr-2 text-terminal-bright-green font-bold select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
+          $
+        </span>
+        <div className="relative flex-1 flex items-center">
+          <input
+            ref={inputRef}
+            type="text"
+            value={command}
+            onChange={e => setCommand(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="bg-transparent flex-1 outline-none terminal-command caret-terminal-bright-green text-base md:text-base"
+            placeholder={mode === 'normal' ? "Type a command (:help for options)" : "Type text in insert mode, <ESC> to exit"}
+            autoComplete="off"
+            spellCheck="false"
+            style={{
+              fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"
+            }}
+          />
+          {/* Blinking caret styled and positioned next to actual caret */}
+          {/* The blinking caret (custom, green) overlays the real input caret for visibility */}
+          <span
+            className="terminal-caret animate-cursor-blink"
+            style={{
+              background: "#4AFF61",
+              marginLeft: "-2px",
+              width: "2px",
+              height: "1.35em",
+              position: "absolute",
+              left: `calc(${command.length}ch + 8px)`,
+              pointerEvents: "none"
+            }}
+          ></span>
+        </div>
       </form>
     </div>
   );
