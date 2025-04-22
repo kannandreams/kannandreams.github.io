@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Blog, Tools } from 'lucide-react';
+import { Terminal, FileText, Wrench } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import VimCommandLine from './VimCommandLine';
 import VimSkills from './VimSkills';
@@ -14,7 +14,7 @@ import { Toggle } from "@/components/ui/toggle";
 // Change this to your AI tools URL:
 const TOOLS_URL = "https://your-tools-list-url.com";
 
-type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog';
+type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools';
 
 const VimTerminal: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>('help');
@@ -127,10 +127,10 @@ const VimTerminal: React.FC = () => {
             </span>
           </Toggle>
           {activeSection === 'blog' && (
-            <Blog size={18} className="text-terminal-accent ml-1" />
+            <FileText size={18} className="text-terminal-accent ml-1" />
           )}
           {activeSection === 'tools' && (
-            <Tools size={18} className="text-terminal-accent ml-1" />
+            <Wrench size={18} className="text-terminal-accent ml-1" />
           )}
           <div className={cn(
             "vim-mode",
