@@ -89,6 +89,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   return (
     <div className="terminal-footer p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
+        {/* Prompt */}
         <span
           className="terminal-prompt mr-2 text-white font-bold select-none text-lg"
           style={{
@@ -99,6 +100,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           :
         </span>
         <div className="relative flex-1 flex items-center">
+          {/* Custom Terminal Cursor */}
           <TerminalCursor />
           <input
             ref={inputRef}

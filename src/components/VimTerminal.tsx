@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -113,8 +112,13 @@ const VimTerminal: React.FC = () => {
     }
   };
 
+  const containerClasses = cn(
+    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
+    !devMode && "glass-morphism recruiter-mode"
+  );
+
   return (
-    <div className="terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]">
+    <div className={containerClasses}>
       <VimTerminalHeader
         devMode={devMode}
         onDevModeToggle={handleDevModeToggle}
@@ -122,7 +126,10 @@ const VimTerminal: React.FC = () => {
         activeSection={activeSection}
         mode={mode}
       />
-      <div className="h-[calc(100vh-170px)] overflow-hidden">
+      <div className={cn(
+        devMode ? "h-[calc(100vh-170px)]" : "recruiter-mode-container",
+        "overflow-hidden"
+      )}>
         <VimTerminalBody
           devMode={devMode}
           activeSection={activeSection}
