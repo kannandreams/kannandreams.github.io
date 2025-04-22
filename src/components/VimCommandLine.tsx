@@ -1,11 +1,12 @@
 
-import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
+import React, { useState, useEffect, useRef, KeyboardEvent, RefObject } from "react";
 
 interface VimCommandLineProps {
   onExecuteCommand: (command: string) => void;
   mode: "normal" | "insert";
   setMode: React.Dispatch<React.SetStateAction<"normal" | "insert">>;
   activeSection: string;
+  commandInputRef: RefObject<HTMLInputElement>; // Add ref prop
 }
 
 const VimCommandLine: React.FC<VimCommandLineProps> = ({
@@ -13,15 +14,16 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   mode,
   setMode,
   activeSection,
+  commandInputRef, // Destructure ref
 }) => {
   const [command, setCommand] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+    if (commandInputRef.current) {
+      commandInputRef.current.focus();
+      commandInputRef.current.setSelectionRange(0, 0);
     }
   }, [mode]);
 
@@ -29,7 +31,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
     e.preventDefault();
 
     if (command.trim()) {
-      // Don't add : prefix automatically anymore - handle bare commands directly
       onExecuteCommand(command.trim());
 
       if (
@@ -78,7 +79,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   };
 
   return (
-    <div className="terminal-footer border border-terminal-border p-2">
+    <div className="terminal-footer p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
         <span
           className="terminal-prompt mr-1 text-terminal-bright-green font-bold select-none text-lg"
@@ -91,7 +92,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         </span>
         <div className="relative flex-1 flex items-center">
           <input
-            ref={inputRef}
+            ref={commandInputRef}
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}

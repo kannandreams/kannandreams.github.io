@@ -7,18 +7,19 @@ import { cn } from "@/lib/utils";
 // URLs for tools, resume, and email
 const TOOLS_URL = "https://your-tools-list-url.com";
 const RESUME_TEX_STATIC = "/resume.tex";
-const EMAIL_ADDRESS = "your-email@example.com"; // Replace with your actual email
+const EMAIL_ADDRESS = "your-email@example.com";
 
 type Section = "skills" | "projects" | "github" | "metrics" | "help" | "blog" | "tools" | "email";
 
 const VimTerminal: React.FC = () => {
   const [devMode, setDevMode] = useState<boolean>(true);
-  const [activeSection, setActiveSection] = useState<Section>("help");
+  const [activeSection, setActiveSection] = useState<Section>("email");
   const [mode, setMode] = useState<"normal" | "insert">("normal");
   const [lastCommand, setLastCommand] = useState<string>("");
   const [lastOutput, setLastOutput] = useState<string>("");
   const [emailContent, setEmailContent] = useState<string>("");
   const terminalBodyRef = useRef<HTMLDivElement>(null);
+  const commandInputRef = useRef<HTMLInputElement>(null);
 
   const executeCommand = (command: string) => {
     const origCommand = command;
@@ -88,6 +89,13 @@ const VimTerminal: React.FC = () => {
     }
   }, [lastOutput]);
 
+  useEffect(() => {
+    if (commandInputRef.current) {
+      commandInputRef.current.focus();
+      commandInputRef.current.setSelectionRange(0, 0);
+    }
+  }, [mode]);
+
   const handleDevModeToggle = () => {
     setDevMode((prev) => !prev);
     console.log("Dev mode toggled:", !devMode);
@@ -151,6 +159,7 @@ const VimTerminal: React.FC = () => {
             mode={mode}
             setMode={setMode}
             activeSection={activeSection}
+            commandInputRef={commandInputRef}
           />
         )}
       </div>
