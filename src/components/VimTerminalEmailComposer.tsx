@@ -28,6 +28,8 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
         borderLeft: "none",
         color: "#fff",
         fontFamily: "'JetBrains Mono', monospace",
+        marginTop: "2.25rem", // Brought down for visibility
+        // You can adjust further if you'd like it even lower
       }}
     >
       <div className="flex items-center">

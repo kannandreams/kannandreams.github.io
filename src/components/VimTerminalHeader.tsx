@@ -1,7 +1,8 @@
 
 import React from "react";
-import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss } from "lucide-react";
+import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 
 const GITHUB_URL = "https://github.com/";
 const LINKEDIN_URL = "https://linkedin.com/";
@@ -37,6 +38,14 @@ const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => v
   </button>
 );
 
+const showAppreciationToast = () => {
+  toast({
+    title: "❤️ Thank you!",
+    description: "Glad you enjoyed my portfolio and design! Your appreciation means a lot.",
+    duration: 3500,
+  });
+};
+
 const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
   devMode,
   onDevModeToggle,
@@ -55,6 +64,16 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" aria-label="Substack">
         <Rss size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
       </a>
+      {/* Heart button for appreciation */}
+      <button
+        onClick={showAppreciationToast}
+        className="ml-2 p-1 rounded hover:bg-terminal-border/70 transition focus-visible:outline-none focus:ring-2 focus:ring-terminal-accent"
+        title="Show appreciation"
+        aria-label="Love this portfolio"
+        type="button"
+      >
+        <Heart size={21} className="text-terminal-bright-green hover:scale-105 transition-transform" />
+      </button>
     </div>
     <div className="flex items-center space-x-2">
       <Terminal size={16} />
