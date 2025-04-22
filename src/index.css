@@ -70,7 +70,7 @@
   }
 
   .terminal-body {
-    @apply p-4 overflow-y-auto overflow-x-hidden;
+    @apply p-4 pt-8 overflow-y-auto overflow-x-hidden;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
   }
 
