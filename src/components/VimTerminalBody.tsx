@@ -35,33 +35,30 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   if (!devMode) return <RecruiterResume />;
   return (
     <>
-      <div ref={terminalBodyRef} className="terminal-body h-full overflow-y-auto flex flex-col">
-        <div className="mb-4 flex-shrink-0">
+      <div className="terminal-body h-full overflow-y-auto flex flex-col" ref={terminalBodyRef}>
+        <div className="mb-4 flex-shrink-0 flex-1">
+          {/* Always force email composer visible at bottom */}
           {activeSection === "skills" && <VimSkills />}
           {activeSection === "projects" && <VimProjects />}
           {activeSection === "github" && <VimGithub />}
           {activeSection === "metrics" && <VimMetrics />}
           {activeSection === "help" && <VimHelp />}
           {activeSection === "blog" && <VimBlog />}
-          {activeSection === "email" && (
-            <VimTerminalEmailComposer
-              mode={mode}
-              emailContent={emailContent}
-              onEmailChange={onEmailChange}
-              onSendEmail={onSendEmail}
-            />
-          )}
         </div>
-        <div className="mt-auto">
-          {lastOutput && (
-            <div className="mb-1">
-              {lastOutput}
-            </div>
-          )}
+        {/* Email composer is always at the bottom and visible */}
+        <div className="mt-2">
+          <VimTerminalEmailComposer
+            mode={activeSection === "email" ? mode : "normal"}
+            emailContent={emailContent}
+            onEmailChange={onEmailChange}
+            onSendEmail={onSendEmail}
+            alwaysVisible={true}
+          />
+        </div>
+        <div className="mt-1">
+          {lastOutput && <div className="mb-1 text-white">{lastOutput}</div>}
           {lastCommand && (
-            <div className="mb-1 text-terminal-bright-green font-semibold">
-              {lastCommand}
-            </div>
+            <div className="mb-1 text-terminal-bright-green font-semibold">{lastCommand}</div>
           )}
         </div>
       </div>
