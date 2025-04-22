@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
+import TerminalCursor from "./TerminalCursor";
 
 interface VimCommandLineProps {
   onExecuteCommand: (command: string) => void;
@@ -88,7 +89,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   return (
     <div className="terminal-footer border-t border-terminal-border p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
-        {/* Updated: Replace $ with : prompt, color white */}
+        {/* Prompt */}
         <span
           className="terminal-prompt mr-2 text-white font-bold select-none text-lg"
           style={{
@@ -99,21 +100,8 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           :
         </span>
         <div className="relative flex-1 flex items-center">
-          {/* Cursor: bright green block, breathing animation, positioned next to colon */}
-          <span
-            className="terminal-caret block-caret-breath"
-            style={{
-              color: "var(--terminal-bright-green)",
-              background: "none",
-              position: "absolute",
-              left: "calc(-1ch)", // Position next to colon, before input
-              pointerEvents: "none",
-              top: "50%",
-              transform: "translateY(-55%)"
-            }}
-          >
-            █
-          </span>
+          {/* Custom Terminal Cursor */}
+          <TerminalCursor />
           <input
             ref={inputRef}
             type="text"
@@ -142,4 +130,3 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
 };
 
 export default VimCommandLine;
-
