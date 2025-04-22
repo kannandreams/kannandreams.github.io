@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 
 interface VimCommandLineProps {
@@ -19,14 +18,12 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   const [historyIndex, setHistoryIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Focus input on component mount and when mode changes
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, [mode]);
 
-  // Handle command submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -36,7 +33,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         : `:${command.trim()}`;
       onExecuteCommand(commandToSend);
 
-      // Add to history if not repeat
       if (
         commandHistory.length === 0 ||
         commandHistory[commandHistory.length - 1] !== commandToSend
@@ -49,9 +45,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
     }
   };
 
-  // Handle keyboard navigation for command history
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    // ESC key
     if (e.key === "Escape") {
       if (mode === "insert") {
         setMode("normal");
@@ -61,7 +55,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
       return;
     }
 
-    // History navigation
     if (e.key === "ArrowUp") {
       e.preventDefault();
       if (commandHistory.length > 0) {
@@ -88,9 +81,8 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   return (
     <div className="terminal-footer border-t border-terminal-border p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
-        {/* Updated: Replace $ with : prompt, color white */}
         <span
-          className="terminal-prompt mr-2 text-white font-bold select-none text-lg"
+          className="terminal-prompt mr-2 text-terminal-bright-green font-bold select-none text-lg"
           style={{
             fontFamily:
               "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
@@ -120,17 +112,19 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
                 "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
             }}
           />
-          {/* Custom block caret with breathing animation */}
           <span
             className="terminal-caret block-caret-breath"
             style={{
-              color: "#fff",
-              background: "none",
+              color: "var(--terminal-bright-green)",
+              display: "inline-block",
               position: "absolute",
-              left: `calc(${command.length}ch + 8px)`,
+              left: "calc(-1ch)",
+              opacity: 0.9,
+              fontSize: "1.27em",
+              fontWeight: "bold",
               pointerEvents: "none",
-              top: "50%",
-              transform: "translateY(-55%)"
+              background: "none",
+              animation: "block-caret-breath 1s ease-in-out infinite"
             }}
           >
             █
