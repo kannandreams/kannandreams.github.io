@@ -89,7 +89,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
             value={command}
             onChange={e => setCommand(e.target.value)}
             onKeyDown={handleKeyDown}
-            className="bg-transparent flex-1 outline-none terminal-command caret-terminal-bright-green text-base md:text-base"
+            className="bg-transparent flex-1 outline-none terminal-command caret-transparent text-base md:text-base"
             placeholder={mode === 'normal' ? "Type a command (:help for options)" : "Type text in insert mode, <ESC> to exit"}
             autoComplete="off"
             spellCheck="false"
@@ -97,8 +97,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
               fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"
             }}
           />
-          {/* Blinking caret styled and positioned next to actual caret */}
-          {/* The blinking caret (custom, green) overlays the real input caret for visibility */}
+          {/* Custom green blinking caret */}
           <span
             className="terminal-caret animate-cursor-blink"
             style={{

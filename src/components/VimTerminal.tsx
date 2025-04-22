@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, FileText, Wrench, Download } from 'lucide-react';
+import { Terminal, FileText, Wrench, Download, Send } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import VimCommandLine from './VimCommandLine';
 import VimSkills from './VimSkills';
@@ -9,12 +10,14 @@ import VimMetrics from './VimMetrics';
 import VimHelp from './VimHelp';
 import VimBlog from './VimBlog';
 import RecruiterResume from './RecruiterResume';
+import { Textarea } from '@/components/ui/textarea';
 import { Github, Linkedin, Rss } from "lucide-react";
 
 const TOOLS_URL = "https://your-tools-list-url.com";
 const RESUME_TEX_STATIC = "/resume.tex";
+const EMAIL_ADDRESS = "your-email@example.com"; // Replace with your actual email
 
-type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools';
+type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools' | 'email';
 
 const GITHUB_URL = "https://github.com/";
 const LINKEDIN_URL = "https://linkedin.com/";
@@ -25,10 +28,12 @@ const VimTerminal: React.FC = () => {
   const [activeSection, setActiveSection] = useState<Section>('help');
   const [mode, setMode] = useState<'normal' | 'insert'>('normal');
   const [history, setHistory] = useState<string[]>([]);
+  const [lastCommand, setLastCommand] = useState<string>('');
+  const [emailContent, setEmailContent] = useState<string>('');
   const terminalBodyRef = useRef<HTMLDivElement>(null);
 
   const executeCommand = (command: string) => {
-    setHistory(prev => [...prev, `$ ${command}`]);
+    setLastCommand(`$ ${command}`);
     const cmd = command.trim().toLowerCase();
 
     if (cmd === ':q' || cmd === ':quit') {
@@ -52,12 +57,25 @@ const VimTerminal: React.FC = () => {
     }
     else if (cmd === ':clear') {
       setHistory([]);
+      setLastCommand('');
+    }
+    else if (cmd === ':email') {
+      setActiveSection('email');
+      setHistory(prev => [...prev, "Enter insert mode to compose an email..."]);
     }
     else if (cmd === 'i' && mode === 'normal') {
       setMode('insert');
       setHistory(prev => [...prev, "-- INSERT MODE --"]);
     }
     else if (cmd === '<esc>' && mode === 'insert') {
+      if (activeSection === 'email' && emailContent.trim()) {
+        // Send email logic
+        const mailtoLink = `mailto:${EMAIL_ADDRESS}?subject=Message from Portfolio Website&body=${encodeURIComponent(emailContent)}`;
+        window.open(mailtoLink);
+        setHistory(prev => [...prev, "Email client opened. Thank you for your message!"]);
+        setEmailContent('');
+      }
+      
       setMode('normal');
       setHistory(prev => [...prev, "-- NORMAL MODE --"]);
     }
@@ -90,6 +108,10 @@ const VimTerminal: React.FC = () => {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setEmailContent(e.target.value);
   };
 
   const containerClasses = cn(
@@ -143,13 +165,13 @@ const VimTerminal: React.FC = () => {
           {!devMode ? (
             <>
               <div className="flex items-center">
-                <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
                 <span
-                  className="ml-0.5 text-terminal-muted select-none text-base tracking-wide"
+                  className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
                   style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}
                 >
                   Recruiter Mode
                 </span>
+                <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
               </div>
               <button
                 onClick={handleDownloadResume}
@@ -163,19 +185,22 @@ const VimTerminal: React.FC = () => {
           ) : (
             <>
               <div className="flex items-center">
-                <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
                 <span
-                  className="ml-0.5 text-terminal-muted select-none text-base tracking-wide"
+                  className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
                   style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}
                 >
                   Dev Mode
                 </span>
+                <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
               </div>
               {activeSection === 'blog' && (
                 <FileText size={18} className="text-terminal-accent ml-1" />
               )}
               {activeSection === 'tools' && (
                 <Wrench size={18} className="text-terminal-accent ml-1" />
+              )}
+              {activeSection === 'email' && (
+                <Send size={18} className="text-terminal-accent ml-1" />
               )}
               <div className={cn(
                 "vim-mode",
@@ -187,10 +212,13 @@ const VimTerminal: React.FC = () => {
           )}
         </div>
       </div>
-      <div className={devMode ? "" : "recruiter-mode-container"}>
+      <div className={cn(
+        devMode ? "h-[calc(100vh-170px)]" : "recruiter-mode-container",
+        "overflow-hidden"
+      )}>
         {devMode ? (
           <>
-            <div ref={terminalBodyRef} className="terminal-body h-[calc(100vh-170px)] overflow-y-auto flex flex-col">
+            <div ref={terminalBodyRef} className="terminal-body h-full overflow-y-auto flex flex-col">
               <div className="mb-4 flex-shrink-0">
                 {activeSection === 'skills' && <VimSkills />}
                 {activeSection === 'projects' && <VimProjects />}
@@ -198,6 +226,18 @@ const VimTerminal: React.FC = () => {
                 {activeSection === 'metrics' && <VimMetrics />}
                 {activeSection === 'help' && <VimHelp />}
                 {activeSection === 'blog' && <VimBlog />}
+                {activeSection === 'email' && mode === 'insert' && (
+                  <div className="email-composer p-2 border border-terminal-muted rounded-md mb-4">
+                    <h3 className="text-terminal-bright-green mb-2">Compose Message:</h3>
+                    <Textarea 
+                      value={emailContent}
+                      onChange={handleEmailChange}
+                      placeholder="Type your message here..."
+                      className="bg-terminal-background border-terminal-muted text-terminal-foreground w-full h-32 focus:border-terminal-bright-green"
+                    />
+                    <p className="text-terminal-muted text-xs mt-1">Press ESC to exit insert mode and send</p>
+                  </div>
+                )}
               </div>
               <div className="mt-auto">
                 {history.map((line, index) => (
@@ -205,6 +245,11 @@ const VimTerminal: React.FC = () => {
                     {line}
                   </div>
                 ))}
+                {lastCommand && (
+                  <div className="mb-1 text-terminal-bright-green font-semibold">
+                    {lastCommand}
+                  </div>
+                )}
               </div>
             </div>
             <VimCommandLine onExecuteCommand={executeCommand} mode={mode} setMode={setMode} />
