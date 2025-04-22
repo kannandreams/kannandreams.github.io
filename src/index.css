@@ -70,8 +70,9 @@
   }
 
   .terminal-body {
-    @apply p-4 pt-8 overflow-y-auto overflow-x-hidden;
+    @apply p-4 pt-12 pb-8 overflow-y-auto overflow-x-hidden;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+    scroll-padding-top: 4rem; /* Add extra scrolling padding at the top */
   }
 
   .terminal-prompt {
