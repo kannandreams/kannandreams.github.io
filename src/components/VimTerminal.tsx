@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -22,42 +21,47 @@ const VimTerminal: React.FC = () => {
   const terminalBodyRef = useRef<HTMLDivElement>(null);
 
   const executeCommand = (command: string) => {
-    setLastCommand(`$ ${command}`);
+    const origCommand = command;
     const cmd = command.trim().toLowerCase();
+    
+    setLastCommand(`$ ${origCommand}`);
 
-    if (cmd === ":q" || cmd === ":quit") {
+    if (cmd === "i" && mode === "normal") {
+      setMode("insert");
+      setLastOutput("-- INSERT MODE --");
+      return;
+    }
+    
+    if (cmd === "q" || cmd === "quit") {
       setLastOutput("Use browser navigation to exit. This is a web app!");
     } 
     else if (
-      cmd === ":skills" ||
-      cmd === ":projects" ||
-      cmd === ":github" ||
-      cmd === ":metrics" ||
-      cmd === ":help" ||
-      cmd === ":blog"
+      cmd === "skills" ||
+      cmd === "projects" ||
+      cmd === "github" ||
+      cmd === "metrics" ||
+      cmd === "help" ||
+      cmd === "blog"
     ) {
-      const commands: Record<string, Section> = {
-        ":skills": "skills",
-        ":projects": "projects",
-        ":github": "github",
-        ":metrics": "metrics",
-        ":help": "help",
-        ":blog": "blog",
+      const sectionMapping: Record<string, Section> = {
+        "skills": "skills",
+        "projects": "projects",
+        "github": "github",
+        "metrics": "metrics",
+        "help": "help",
+        "blog": "blog",
       };
-      setActiveSection(commands[cmd]);
-      setLastOutput(`Opening ${commands[cmd]} panel...`);
-    } else if (cmd === ":tools") {
+      setActiveSection(sectionMapping[cmd]);
+      setLastOutput(`Opening ${sectionMapping[cmd]} panel...`);
+    } else if (cmd === "tools") {
       setLastOutput("Opening tools page in new window...");
       window.open(TOOLS_URL, "_blank", "noopener,noreferrer");
-    } else if (cmd === ":clear") {
+    } else if (cmd === "clear") {
       setLastCommand("");
       setLastOutput("");
-    } else if (cmd === ":email") {
+    } else if (cmd === "email") {
       setActiveSection("email");
       setLastOutput("Enter insert mode to compose an email...");
-    } else if (cmd === "i" && mode === "normal") {
-      setMode("insert");
-      setLastOutput("-- INSERT MODE --");
     } else if (cmd === "<esc>" && mode === "insert") {
       if (activeSection === "email" && emailContent.trim()) {
         const mailtoLink = `mailto:${EMAIL_ADDRESS}?subject=Message from Portfolio Website&body=${encodeURIComponent(emailContent)}`;
@@ -68,7 +72,7 @@ const VimTerminal: React.FC = () => {
       setMode("normal");
       setLastOutput("-- NORMAL MODE --");
     } else {
-      setLastOutput(`Command not found: ${command}`);
+      setLastOutput(`Command not found: ${origCommand}`);
     }
 
     setTimeout(() => {
@@ -113,7 +117,7 @@ const VimTerminal: React.FC = () => {
   };
 
   const containerClasses = cn(
-    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
+    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem] border border-terminal-border",
     !devMode && "glass-morphism recruiter-mode"
   );
 

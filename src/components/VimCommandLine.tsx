@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 
 interface VimCommandLineProps {
@@ -28,16 +29,14 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
     e.preventDefault();
 
     if (command.trim()) {
-      const commandToSend = command.trim().startsWith(":")
-        ? command.trim()
-        : `:${command.trim()}`;
-      onExecuteCommand(commandToSend);
+      // Don't add : prefix automatically anymore - handle bare commands directly
+      onExecuteCommand(command.trim());
 
       if (
         commandHistory.length === 0 ||
-        commandHistory[commandHistory.length - 1] !== commandToSend
+        commandHistory[commandHistory.length - 1] !== command.trim()
       ) {
-        setCommandHistory((prev) => [...prev, commandToSend]);
+        setCommandHistory((prev) => [...prev, command.trim()]);
       }
 
       setCommand("");
@@ -79,10 +78,10 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   };
 
   return (
-    <div className="terminal-footer border-t border-terminal-border p-2">
+    <div className="terminal-footer border border-terminal-border p-2">
       <form onSubmit={handleSubmit} className="flex items-center font-mono">
         <span
-          className="terminal-prompt mr-2 text-terminal-bright-green font-bold select-none text-lg"
+          className="terminal-prompt mr-1 text-terminal-bright-green font-bold select-none text-lg"
           style={{
             fontFamily:
               "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
@@ -115,14 +114,14 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           <span
             className="terminal-caret animate-cursor-blink"
             style={{
-              backgroundColor: "white",
+              backgroundColor: "var(--terminal-bright-green)",
               width: "2px",
               display: "inline-block",
               height: "1.35em",
-              marginLeft: "0.125rem",
+              marginLeft: "0px",
               marginTop: "2px",
               verticalAlign: "middle",
-              borderRadius: "2px",
+              borderRadius: "1px",
               pointerEvents: "none"
             }}
           >
