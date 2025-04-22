@@ -17,7 +17,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   const [command, setCommand] = useState("");
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
-  const [cursorPosition, setCursorPosition] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -27,7 +26,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
   }, [mode]);
 
   useEffect(() => {
-    setCursorPosition(command.length);
   }, [command]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -100,14 +98,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           }}
         >
           :
-          <TerminalCursor 
-            position={cursorPosition} 
-            style={{ 
-              position: 'absolute', 
-              left: `${cursorPosition}ch`, 
-              marginLeft: '2px' 
-            }} 
-          />
+          <TerminalCursor />
         </span>
         <input
           ref={inputRef}

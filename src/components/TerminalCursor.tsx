@@ -3,18 +3,16 @@ import React from "react";
 
 /**
  * TerminalCursor
- * Renders a thin, blinking vertical line cursor that shifts with typing
+ * Renders a thin, blinking vertical line cursor right after the colon prompt (never moves)
  */
 interface TerminalCursorProps {
   className?: string;
   style?: React.CSSProperties;
-  position?: number;
 }
 
-const TerminalCursor: React.FC<TerminalCursorProps> = ({ 
-  className = "", 
-  style = {}, 
-  position = 0 
+const TerminalCursor: React.FC<TerminalCursorProps> = ({
+  className = "",
+  style = {},
 }) => (
   <span
     className={`terminal-caret animate-cursor-blink ${className}`}
@@ -23,12 +21,10 @@ const TerminalCursor: React.FC<TerminalCursorProps> = ({
       height: "1.25em",
       background: "var(--terminal-bright-green)",
       display: "inline-block",
-      position: "absolute",
-      left: `${position}ch`, // Dynamic positioning based on character count
-      top: "50%",
-      transform: "translateY(-55%)",
+      position: "relative", // stays inline after the colon
+      marginLeft: "6px", // small gap after colon
+      verticalAlign: "middle",
       pointerEvents: "none",
-      transition: "left 0.05s ease",
       ...style,
     }}
     aria-hidden="true"
