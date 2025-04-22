@@ -5,12 +5,14 @@ interface VimCommandLineProps {
   onExecuteCommand: (command: string) => void;
   mode: 'normal' | 'insert';
   setMode: React.Dispatch<React.SetStateAction<'normal' | 'insert'>>;
+  activeSection: string;
 }
 
 const VimCommandLine: React.FC<VimCommandLineProps> = ({ 
   onExecuteCommand, 
   mode,
-  setMode
+  setMode,
+  activeSection
 }) => {
   const [command, setCommand] = useState('');
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
@@ -90,7 +92,11 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
             onChange={e => setCommand(e.target.value)}
             onKeyDown={handleKeyDown}
             className="bg-transparent flex-1 outline-none terminal-command caret-transparent text-base md:text-base"
-            placeholder={mode === 'normal' ? "Type a command (:help for options)" : "Type text in insert mode, <ESC> to exit"}
+            placeholder={activeSection === 'email' && mode === 'normal' 
+              ? "Type 'i' to compose an email" 
+              : mode === 'normal' 
+                ? "Type a command (:help for options)" 
+                : "Type text in insert mode, <ESC> to exit"}
             autoComplete="off"
             spellCheck="false"
             style={{
