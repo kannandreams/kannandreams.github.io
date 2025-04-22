@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, FileText, Wrench, ToggleLeft, ToggleRight } from 'lucide-react';
+import { Terminal, FileText, Wrench, Download } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import VimCommandLine from './VimCommandLine';
 import VimSkills from './VimSkills';
@@ -10,12 +10,11 @@ import VimMetrics from './VimMetrics';
 import VimHelp from './VimHelp';
 import VimBlog from './VimBlog';
 import RecruiterResume from './RecruiterResume';
-import { Switch } from "@/components/ui/switch";
 import { Github, Linkedin, Rss } from "lucide-react";
 
 // Change this to your AI tools URL:
 const TOOLS_URL = "https://your-tools-list-url.com";
-const RESUME_TEX_FILE = "/src/resume.tex"; // Not a real file, loaded through import
+const RESUME_TEX_STATIC = "/resume.tex"; // Direct public file for downloading
 
 type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools';
 
@@ -84,9 +83,19 @@ const VimTerminal: React.FC = () => {
     }
   }, [history]);
 
-  const handleDevModeToggle = (checked: boolean) => {
-    setDevMode(checked);
-    console.log("Dev mode toggled:", checked);
+  const handleDevModeToggle = () => {
+    setDevMode((prev) => !prev);
+    console.log("Dev mode toggled:", !devMode);
+  };
+
+  // Handle file download in recruiter mode
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = RESUME_TEX_STATIC;
+    link.download = 'resume.tex';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // Add a class to the container based on the mode
@@ -95,7 +104,50 @@ const VimTerminal: React.FC = () => {
     !devMode && "glass-morphism recruiter-mode"
   );
 
-  // Top menu: icons (left), title (center), toggle + vim mode status (right)
+  // Custom toggle button styles based on state (matches screenshot)
+  const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
+    <button
+      onClick={onClick}
+      aria-label={checked ? "Switch to Recruiter Mode" : "Switch to Dev Mode"}
+      className={cn(
+        "relative inline-flex items-center transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent",
+        "h-6 w-10 rounded-full mr-1",
+        checked
+          ? "border-2 border-[--terminal-bright-green] bg-transparent"
+          : "border-2 border-terminal-muted bg-transparent"
+      )}
+      type="button"
+      tabIndex={0}
+    >
+      {/* Icon center in track */}
+      <span className={cn(
+        "absolute left-1.5 top-[55%] -translate-y-1/2 pointer-events-none",
+        "transition-colors",
+        checked ? "text-[--terminal-bright-green]" : "text-terminal-muted"
+      )}>
+        {/* Small Lucide toggle icon */}
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" style={{ display: 'block' }}>
+          <rect x="3" y="7" width="14" height="6" rx="3" fill="none"/>
+          <circle cx={checked ? 15 : 5} cy="10" r="2.1" fill="none" />
+        </svg>
+      </span>
+      {/* Circle for knob, smoothly moving L/R */}
+      <span
+        className={cn(
+          "block transition-transform duration-300",
+          "h-4 w-4 rounded-full",
+          checked
+            ? "bg-[--terminal-bright-green] border-2 border-[--terminal-bright-green]"
+            : "bg-terminal-muted border-2 border-terminal-muted",
+          checked
+            ? "translate-x-[28px]"
+            : "translate-x-0"
+        )}
+      />
+    </button>
+  );
+
+  // Top menu: icons (left), title (center), toggle + vim mode status or download button (right)
   return (
     <div className={containerClasses}>
       {/* Unified Menu Bar */}
@@ -119,28 +171,41 @@ const VimTerminal: React.FC = () => {
             ~/.profile
           </span>
         </div>
-        {/* Right: Mode toggle and status */}
+        {/* Right side: Toggle or Download in recruiter mode */}
         <div className="flex items-center gap-3">
-          {/* Dev/Recruiter toggle switch */}
-          <div className="flex items-center gap-2">
-            <div className="flex items-center space-x-2">
-              {!devMode && <ToggleLeft size={18} className="text-terminal-muted" />}
-              <Switch
-                checked={devMode}
-                onCheckedChange={handleDevModeToggle}
-                id="devmode-toggle"
-                aria-label="Dev Mode Toggle"
-                className="data-[state=checked]:bg-terminal-bright-green data-[state=unchecked]:bg-terminal-border"
-              />
-              {devMode && <ToggleRight size={18} className="text-terminal-bright-green" />}
-            </div>
-            <span className="ml-1 text-terminal-muted select-none text-sm">
-              {devMode ? "Dev Mode" : "Recruiter Mode"}
-            </span>
-          </div>
-          {/* Section icons (optional) */}
-          {devMode && ( // Only in Vim/dev mode show Vim details
+          {!devMode ? (
+            // Recruiter mode: show toggle + download button
             <>
+              <div className="flex items-center">
+                <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
+                <span
+                  className="ml-0.5 text-terminal-muted select-none text-base tracking-wide"
+                  style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}
+                >
+                  Recruiter Mode
+                </span>
+              </div>
+              <button
+                onClick={handleDownloadResume}
+                className="ml-3 flex items-center px-2 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"
+                aria-label="Download Resume"
+                type="button"
+              >
+                <Download size={19} />
+              </button>
+            </>
+          ) : (
+            // Dev mode: show toggle + mode indicator
+            <>
+              <div className="flex items-center">
+                <CustomToggle checked={devMode} onClick={handleDevModeToggle} />
+                <span
+                  className="ml-0.5 text-terminal-muted select-none text-base tracking-wide"
+                  style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}
+                >
+                  Dev Mode
+                </span>
+              </div>
               {activeSection === 'blog' && (
                 <FileText size={18} className="text-terminal-accent ml-1" />
               )}
