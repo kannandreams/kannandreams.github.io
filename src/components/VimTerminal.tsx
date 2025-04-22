@@ -13,6 +13,7 @@ import { Toggle } from "@/components/ui/toggle";
 
 // Change this to your AI tools URL:
 const TOOLS_URL = "https://your-tools-list-url.com";
+const RESUME_PDF_URL = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"; // Replace with real resume PDF
 
 type Section = 'skills' | 'projects' | 'github' | 'metrics' | 'help' | 'blog' | 'tools';
 
@@ -31,27 +32,23 @@ const VimTerminal: React.FC = () => {
     if (cmd === ':q' || cmd === ':quit') {
       setHistory(prev => [...prev, "Use browser navigation to exit. This is a web app!"]);
     } 
-    else if (cmd === ':skills' || cmd === ':s') {
-      setActiveSection('skills');
-      setHistory(prev => [...prev, "Opening skills panel..."]);
+    else if (cmd === ':skills' || cmd === ':projects' || cmd === ':github' || cmd === ':metrics' || cmd === ':help' || cmd === ':blog') {
+      const commands: Record<string, Section> = {
+        ':skills': 'skills',
+        ':projects': 'projects',
+        ':github': 'github',
+        ':metrics': 'metrics',
+        ':help': 'help',
+        ':blog': 'blog',
+      };
+      setActiveSection(commands[cmd]);
+      setHistory(prev => [...prev, `Opening ${commands[cmd]} panel...`]);
     }
-    else if (cmd === ':projects' || cmd === ':p') {
-      setActiveSection('projects');
-      setHistory(prev => [...prev, "Opening projects panel..."]);
+    else if (cmd === ':tools') {
+      setHistory(prev => [...prev, "Opening tools page in new window..."]);
+      window.open(TOOLS_URL, "_blank", "noopener,noreferrer");
     }
-    else if (cmd === ':github' || cmd === ':g') {
-      setActiveSection('github');
-      setHistory(prev => [...prev, "Opening github stats..."]);
-    }
-    else if (cmd === ':metrics' || cmd === ':m') {
-      setActiveSection('metrics');
-      setHistory(prev => [...prev, "Opening performance metrics..."]);
-    }
-    else if (cmd === ':help' || cmd === ':h') {
-      setActiveSection('help');
-      setHistory(prev => [...prev, "Opening help..."]);
-    }
-    else if (cmd === ':clear' || cmd === ':cl') {
+    else if (cmd === ':clear') {
       setHistory([]);
     }
     else if (cmd === 'i' && mode === 'normal') {
@@ -61,16 +58,6 @@ const VimTerminal: React.FC = () => {
     else if (cmd === '<esc>' && mode === 'insert') {
       setMode('normal');
       setHistory(prev => [...prev, "-- NORMAL MODE --"]);
-    }
-    // Blog command
-    else if (cmd === ':blog' || cmd === ':b') {
-      setActiveSection('blog');
-      setHistory(prev => [...prev, "Opening blog posts..."]);
-    }
-    // Tools command
-    else if (cmd === ':tools' || cmd === ':t') {
-      setHistory(prev => [...prev, "Opening tools page in new window..."]);
-      window.open(TOOLS_URL, "_blank", "noopener,noreferrer");
     }
     else {
       setHistory(prev => [...prev, `Command not found: ${command}`]);
@@ -99,6 +86,17 @@ const VimTerminal: React.FC = () => {
       document.body.classList.remove('recruiter-mode');
     }
   }, [recruiterMode]);
+
+  // PDF download button handler
+  const handleDownloadResume = () => {
+    const link = document.createElement('a');
+    link.href = RESUME_PDF_URL;
+    link.download = 'resume.pdf';
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   return (
     <div className={cn("terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono", recruiterMode && "glass-morphism")}>
@@ -140,27 +138,49 @@ const VimTerminal: React.FC = () => {
           </div>
         </div>
       </div>
-      
-      <div ref={terminalBodyRef} className="terminal-body h-[calc(100vh-120px)] overflow-y-auto">
-        {/* Command history */}
-        {history.map((line, index) => (
-          <div key={index} className="mb-1">
-            {line}
+      {
+        recruiterMode ? (
+          <div className="flex flex-col items-center justify-center min-h-[calc(100vh-80px)] p-8 bg-white text-gray-900 animate-fade-in">
+            <div className="max-w-2xl w-full rounded shadow border border-gray-200 bg-gray-50/90 mb-4 p-2 flex flex-col items-center">
+              <iframe
+                src={RESUME_PDF_URL}
+                title="Resume"
+                className="w-full h-[62vh] rounded border mb-4 bg-white"
+              />
+              <button
+                onClick={handleDownloadResume}
+                className="bg-primary text-white rounded px-5 py-2 hover:bg-primary/90 transition-colors"
+              >
+                Download Resume (PDF)
+              </button>
+            </div>
+            <div className="text-gray-500 text-center mt-3 italic">Switch to Dev Mode to explore the interactive Vim terminal.</div>
           </div>
-        ))}
-        
-        {/* Active section */}
-        <div className="mt-4">
-          {activeSection === 'skills' && <VimSkills />}
-          {activeSection === 'projects' && <VimProjects />}
-          {activeSection === 'github' && <VimGithub />}
-          {activeSection === 'metrics' && <VimMetrics />}
-          {activeSection === 'help' && <VimHelp />}
-          {activeSection === 'blog' && <VimBlog />}
-        </div>
-      </div>
-      
-      <VimCommandLine onExecuteCommand={executeCommand} mode={mode} setMode={setMode} />
+        ) : (
+          <>
+            <div ref={terminalBodyRef} className="terminal-body h-[calc(100vh-170px)] overflow-y-auto flex flex-col">
+              {/* Active section first */}
+              <div className="mb-4 flex-shrink-0">
+                {activeSection === 'skills' && <VimSkills />}
+                {activeSection === 'projects' && <VimProjects />}
+                {activeSection === 'github' && <VimGithub />}
+                {activeSection === 'metrics' && <VimMetrics />}
+                {activeSection === 'help' && <VimHelp />}
+                {activeSection === 'blog' && <VimBlog />}
+              </div>
+              {/* Move history to bottom */}
+              <div className="mt-auto">
+                {history.map((line, index) => (
+                  <div key={index} className="mb-1">
+                    {line}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <VimCommandLine onExecuteCommand={executeCommand} mode={mode} setMode={setMode} />
+          </>
+        )
+      }
     </div>
   );
 };
