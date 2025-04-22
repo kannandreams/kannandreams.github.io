@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -54,6 +53,15 @@
   .terminal-container {
     @apply bg-terminal-background text-terminal-foreground rounded-md border border-terminal-border shadow-lg overflow-hidden;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
+    font-size: 0.97rem; /* Reduced from 1rem (16px) to ~15.5px */
+    line-height: 1.5;
+    transition: font-size 0.2s, line-height 0.2s;
+  }
+
+  .recruiter-mode .terminal-container {
+    font-size: 1.12rem !important; /* Bump for recruiter mode (for legibility) */
+    line-height: 1.7 !important;
+    letter-spacing: 0.01em;
   }
 
   .terminal-header {
