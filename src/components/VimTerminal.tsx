@@ -24,7 +24,7 @@ const LINKEDIN_URL = "https://linkedin.com/";
 const SUBSTACK_URL = "https://substack.com/profile/";
 
 const VimTerminal: React.FC = () => {
-  const [devMode, setDevMode] = useState(true); // true=Dev(Vim), false=Recruiter
+  const [devMode, setDevMode] = useState<boolean>(true); // true=Dev(Vim), false=Recruiter
   const [activeSection, setActiveSection] = useState<Section>('help');
   const [mode, setMode] = useState<'normal' | 'insert'>('normal');
   const [history, setHistory] = useState<string[]>([]);
@@ -84,6 +84,11 @@ const VimTerminal: React.FC = () => {
     }
   }, [history]);
 
+  const handleDevModeToggle = (checked: boolean) => {
+    setDevMode(checked);
+    console.log("Dev mode toggled:", checked);
+  };
+
   // Top menu: icons (left), title (center), toggle + vim mode status (right)
   return (
     <div className={cn("terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]", !devMode && "glass-morphism")}>
@@ -114,7 +119,7 @@ const VimTerminal: React.FC = () => {
           <div className="flex items-center gap-2">
             <Switch
               checked={devMode}
-              onCheckedChange={setDevMode}
+              onCheckedChange={handleDevModeToggle}
               id="devmode-toggle"
               aria-label="Dev Mode Toggle"
               className="data-[state=checked]:bg-terminal-bright-green data-[state=unchecked]:bg-terminal-border"

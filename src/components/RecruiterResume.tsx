@@ -1,36 +1,6 @@
-
 import React, { useEffect, useState } from "react";
 
-// We'll import the LaTeX as a raw string.
-// Vite allows importing text files as 'text' with ?raw
-// You may need to update the path if you move the file.
-let latexResume: string = "";
-try {
-  latexResume = require('!!raw-loader!../resume.tex').default;
-} catch {
-  // fallback: use dynamic import for Vite
-}
-// If you have a real file server, you can also fetch /public/resume.tex
-
-const latexToPlain = (latex: string): string[] => {
-  // Super basic LaTeX to plain block extractor (sections and items)
-  // For real parsing, use a package.
-  const lines = latex
-    .replace(/\\section\{([^}]*)\}/g, "\n## $1\n")
-    .replace(/\\subsection\{([^}]*)\}/g, "\n### $1\n")
-    .replace(/\\begin\{itemize\}/g, "")
-    .replace(/\\end\{itemize\}/g, "")
-    .replace(/\\item/g, "-")
-    .replace(/\\textbf\{([^}]*)\}/g, "$1")
-    .replace(/\\textit\{([^}]*)\}/g, "$1")
-    .replace(/\\underline\{([^}]*)\}/g, "$1")
-    .replace(/\\([a-zA-Z]+\*?)(\[[^\]]*\])?\{([^}]*)\}/g, "$3") // fallback for other commands
-    .replace(/\\\\/g, "\n")
-    .replace(/\n{2,}/g, "\n\n")
-    .split("\n");
-  return lines;
-};
-
+// Default fallback resume content if no LaTeX file is available
 const fallbackResume = [
   "John Doe",
   "",
@@ -51,20 +21,58 @@ const fallbackResume = [
   "References available upon request."
 ];
 
+// Function to convert LaTeX to plain text blocks
+const latexToPlain = (latex: string): string[] => {
+  // Super basic LaTeX to plain block extractor (sections and items)
+  // For real parsing, use a package.
+  const lines = latex
+    .replace(/\\section\{([^}]*)\}/g, "\n## $1\n")
+    .replace(/\\subsection\{([^}]*)\}/g, "\n### $1\n")
+    .replace(/\\begin\{itemize\}/g, "")
+    .replace(/\\end\{itemize\}/g, "")
+    .replace(/\\item/g, "-")
+    .replace(/\\textbf\{([^}]*)\}/g, "$1")
+    .replace(/\\textit\{([^}]*)\}/g, "$1")
+    .replace(/\\underline\{([^}]*)\}/g, "$1")
+    .replace(/\\([a-zA-Z]+\*?)(\[[^\]]*\])?\{([^}]*)\}/g, "$3") // fallback for other commands
+    .replace(/\\\\/g, "\n")
+    .replace(/\n{2,}/g, "\n\n")
+    .split("\n");
+  return lines;
+};
+
 const RecruiterResume: React.FC = () => {
   const [resumeLines, setResumeLines] = useState<string[]>(fallbackResume);
 
   useEffect(() => {
-    // Try to load LaTeX file if available
-    fetch("/resume.tex")
-      .then(r => r.text())
-      .then(latex => {
-        const parsed = latexToPlain(latex);
-        setResumeLines(parsed);
-      })
-      .catch(() => {
-        setResumeLines(fallbackResume);
-      });
+    // Try to load LaTeX content
+    try {
+      // First try to import the resume.tex file directly
+      import('../resume.tex?raw')
+        .then(module => {
+          const latex = module.default;
+          const parsed = latexToPlain(latex);
+          setResumeLines(parsed);
+        })
+        .catch(err => {
+          console.log("Failed to import resume.tex directly:", err);
+          
+          // Fallback: try to fetch it from public
+          fetch("/resume.tex")
+            .then(r => r.text())
+            .then(latex => {
+              const parsed = latexToPlain(latex);
+              setResumeLines(parsed);
+            })
+            .catch(fetchErr => {
+              console.log("Failed to fetch resume.tex:", fetchErr);
+              // Keep using fallback resume if both methods fail
+            });
+        });
+    } catch (error) {
+      console.log("Error loading resume:", error);
+      // Keep using fallback resume on error
+    }
   }, []);
 
   return (
