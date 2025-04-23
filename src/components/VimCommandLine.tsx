@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 import TerminalCursor from "./TerminalCursor";
 
@@ -58,6 +59,14 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         onExecuteCommand("<esc>");
       }
       setCommand("");
+      return;
+    }
+
+    // Handle 'i' key in email section to enter insert mode
+    if (e.key === "i" && activeSection === "email" && mode === "normal" && command === "") {
+      e.preventDefault();
+      setMode("insert");
+      onExecuteCommand("i");
       return;
     }
 

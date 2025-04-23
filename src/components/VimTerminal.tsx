@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -53,8 +54,8 @@ const VimTerminal: React.FC = () => {
       setLastOutput("");
     } else if (cmd === ":email") {
       setActiveSection("email");
-      setMode("insert");
-      setLastOutput("-- EMAIL COMPOSER ACTIVATED (INSERT MODE) --");
+      setMode("normal"); // Start in normal mode to show contact details first
+      setLastOutput("-- EMAIL SECTION ACTIVATED (NORMAL MODE) --");
     } else if (cmd === "<esc>" && mode === "insert") {
       if (activeSection === "email" && emailContent.trim()) {
         const mailtoLink = `mailto:${EMAIL_ADDRESS}?subject=Message from Portfolio Website&body=${encodeURIComponent(emailContent)}`;
@@ -67,6 +68,16 @@ const VimTerminal: React.FC = () => {
     } else if (cmd === "i" && mode === "normal") {
       setMode("insert");
       setLastOutput("-- INSERT MODE --");
+      
+      // Focus on the textarea if in email section
+      if (activeSection === "email") {
+        setTimeout(() => {
+          const emailTextarea = document.querySelector('.email-composer textarea');
+          if (emailTextarea) {
+            (emailTextarea as HTMLTextAreaElement).focus();
+          }
+        }, 100);
+      }
     } else {
       setLastOutput(`Command not found: ${command}`);
     }
