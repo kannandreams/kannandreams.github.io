@@ -1,8 +1,8 @@
-
 import React from "react";
 import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const GITHUB_URL = "https://github.com/";
 const LINKEDIN_URL = "https://linkedin.com/";
@@ -80,6 +80,14 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       <span className="font-bold text-xl text-terminal-bright-green select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
         ~/.profile
       </span>
+      {/* Minimal About link */}
+      <Link
+        to="/about"
+        className="ml-2 px-2 py-0.5 rounded bg-terminal-muted/10 text-terminal-accent text-xs hover:bg-terminal-muted/30 transition hidden sm:inline"
+        style={{fontWeight: 500}}
+      >
+        About
+      </Link>
     </div>
     <div className="flex items-center gap-3">
       {!devMode ? (
