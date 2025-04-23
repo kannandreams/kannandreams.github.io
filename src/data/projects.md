@@ -25,8 +25,3 @@ Tool that uses machine learning to analyze and categorize content from various s
 https://github.com/yourusername/ai-analyzer
 Python, TensorFlow, Flask, React
 
-## Health Tracking Mobile App
-2024-05-15
-Cross-platform mobile application for tracking health metrics, exercise, and nutrition.
-https://github.com/yourusername/health-tracker
-React Native, Redux, Firebase
