@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
 import VimTerminalBody from "./VimTerminalBody";
+import VimStatusLine from "./VimStatusLine";
 import { cn } from "@/lib/utils";
 
 // URLs for tools, resume, and email
@@ -94,12 +95,12 @@ const VimTerminal: React.FC = () => {
     }
   }, [lastOutput]);
 
-  const handleDevModeToggle = () => {
+  const onDevModeToggle = () => {
     setDevMode((prev) => !prev);
     console.log("Dev mode toggled:", !devMode);
   };
 
-  const handleDownloadResume = () => {
+  const onDownloadResume = () => {
     const link = document.createElement("a");
     link.href = RESUME_TEX_STATIC;
     link.download = "resume.tex";
@@ -122,7 +123,6 @@ const VimTerminal: React.FC = () => {
     }
   };
 
-  // Handler for Recruiter nav dropdown: switches section and gives output
   const handleSectionSelect = (section: string) => {
     if (section === "home") {
       setDevMode(true);
@@ -145,15 +145,15 @@ const VimTerminal: React.FC = () => {
     <div className={containerClasses}>
       <VimTerminalHeader
         devMode={devMode}
-        onDevModeToggle={handleDevModeToggle}
-        onDownloadResume={handleDownloadResume}
+        onDevModeToggle={onDevModeToggle}
+        onDownloadResume={onDownloadResume}
         activeSection={activeSection}
         mode={mode}
         onSectionSelect={!devMode ? handleSectionSelect : undefined}
       />
       <div className={cn(
-        devMode ? "h-[calc(100vh-170px)] flex flex-col" : "recruiter-mode-container",
-        "overflow-hidden"
+        devMode ? "h-[calc(100vh-170px)]" : "recruiter-mode-container",
+        "overflow-hidden relative flex flex-col"
       )}>
         <VimTerminalBody
           devMode={devMode}
@@ -179,6 +179,11 @@ const VimTerminal: React.FC = () => {
               mode={mode}
               setMode={setMode}
               activeSection={activeSection}
+            />
+            <VimStatusLine 
+              mode={mode}
+              activeSection={activeSection}
+              className="mt-auto"
             />
           </>
         )}
