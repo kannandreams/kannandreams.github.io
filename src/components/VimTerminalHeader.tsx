@@ -9,7 +9,6 @@ const GITHUB_URL = "https://github.com/";
 const LINKEDIN_URL = "https://linkedin.com/";
 const SUBSTACK_URL = "https://substack.com/profile/";
 
-// Available sections for navigation
 const NAV_SECTIONS = [
   { label: "Home", value: "home", command: ":home" },
   { label: "Skills", value: "skills", command: ":skills" },
@@ -104,7 +103,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
             </span>
             <CustomToggle checked={devMode} onClick={onDevModeToggle} />
           </div>
-          {/* Navigation Dropdown for recruiters */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
@@ -121,7 +119,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
                 <DropdownMenuItem
                   key={section.value}
                   onClick={() => {
-                    // call the section selection handler
                     if (onSectionSelect) onSectionSelect(section.value);
                   }}
                   className={cn(
@@ -141,7 +138,8 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
             aria-label="Download Resume"
             type="button"
           >
-            <Download size={19} />
+            <Download size={19} className="mr-1" />
+            Resume
           </button>
         </>
       ) : (
