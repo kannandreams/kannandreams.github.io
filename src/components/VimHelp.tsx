@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Mail, Book, Wrench, Star, List, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -8,18 +7,16 @@ const navCommands = [
   { label: ":skills", desc: "View my skills", emoji: "💼" },
   { label: ":projects", desc: "View my projects", emoji: "📁" },
   { label: ":blog", desc: "Latest blog posts", emoji: "📝" },
-  { label: ":contact", desc: "Get in touch with me", emoji: "📧" }, // Updated label and description
+  { label: ":contact", desc: "Get in touch with me", emoji: "📧" },
   { label: ":help", desc: "Show this page", emoji: "❔" },
   { label: ":clear", desc: "Clear terminal", emoji: "🧹" },
   { label: ":q", desc: "Attempt to quit", emoji: "🚪" },
 ];
 
-// Split commands into 2 columns
 const midpoint = Math.ceil(navCommands.length / 2);
 const firstCol = navCommands.slice(0, midpoint);
 const secondCol = navCommands.slice(midpoint);
 
-// Accept activeSection as a prop to enable conditional rendering
 const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
   return (
     <div className="vim-help animate-fade-in text-white">
@@ -96,7 +93,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           <div className="text-terminal-muted italic border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
             <p>
               This portfolio design is inspired by the Vim editor interface. 80% of it was built through pure vibe coding using ❤️ and :lovable. 
-              Undeniable proof: I’m a certified vibe coder. 💻🎧⚡
+              Undeniable proof: I'm a certified vibe coder. 💻🎧⚡
             </p>
           </div>
         </>
