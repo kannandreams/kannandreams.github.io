@@ -37,7 +37,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
         </div>
       ) : (
         <>
-          <h2 className="text-terminal-accent text-xl mb-2">KK</h2>
+          <h2 className="text-terminal-accent text-xl mb-2">Kannan Kalidasan</h2>
           <div className="bg-transparent p-3 rounded mb-3">
             <h3 className="text-terminal-primary mb-2">About Me</h3>
             <p className="text-terminal-muted text-base">
