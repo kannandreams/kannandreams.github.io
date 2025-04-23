@@ -8,7 +8,7 @@ const navCommands = [
   { label: ":skills", desc: "View my skills", emoji: "💼" },
   { label: ":projects", desc: "View my projects", emoji: "📁" },
   { label: ":blog", desc: "Latest blog posts", emoji: "📝" },
-  { label: ":email", desc: "Open email composer", emoji: "📧" }, // Added back the :email command
+  { label: ":contact", desc: "Get in touch with me", emoji: "📧" }, // Updated label and description
   { label: ":help", desc: "Show this page", emoji: "❔" },
   { label: ":clear", desc: "Clear terminal", emoji: "🧹" },
   { label: ":q", desc: "Attempt to quit", emoji: "🚪" },
