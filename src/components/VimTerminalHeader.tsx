@@ -64,7 +64,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" aria-label="Substack">
         <Rss size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
       </a>
-      {/* Heart button for appreciation */}
       <button
         onClick={showAppreciationToast}
         className="ml-2 p-1 rounded hover:bg-terminal-border/70 transition focus-visible:outline-none focus:ring-2 focus:ring-terminal-accent"
@@ -80,14 +79,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       <span className="font-bold text-xl text-terminal-bright-green select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
         ~/.profile
       </span>
-      {/* Minimal About link */}
-      <Link
-        to="/about"
-        className="ml-2 px-2 py-0.5 rounded bg-terminal-muted/10 text-terminal-accent text-xs hover:bg-terminal-muted/30 transition hidden sm:inline"
-        style={{fontWeight: 500}}
-      >
-        About
-      </Link>
     </div>
     <div className="flex items-center gap-3">
       {!devMode ? (

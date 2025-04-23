@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -35,7 +34,8 @@ const VimTerminal: React.FC = () => {
       cmd === ":metrics" ||
       cmd === ":help" ||
       cmd === ":blog" ||
-      cmd === ":about"
+      cmd === ":about" ||
+      cmd === "about"
     ) {
       const commands: Record<string, Section> = {
         ":skills": "skills",
@@ -45,6 +45,7 @@ const VimTerminal: React.FC = () => {
         ":help": "help",
         ":blog": "blog",
         ":about": "about",
+        "about": "about"
       };
       setActiveSection(commands[cmd]);
       setLastOutput(`Opening ${commands[cmd]} panel...`);
@@ -176,4 +177,3 @@ const VimTerminal: React.FC = () => {
 };
 
 export default VimTerminal;
-
