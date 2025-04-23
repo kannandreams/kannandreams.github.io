@@ -137,7 +137,7 @@ const VimTerminal: React.FC = () => {
   };
 
   const containerClasses = cn(
-    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
+    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem] flex flex-col",
     !devMode && "glass-morphism recruiter-mode"
   );
 
@@ -148,11 +148,10 @@ const VimTerminal: React.FC = () => {
         onDevModeToggle={handleDevModeToggle}
         onDownloadResume={handleDownloadResume}
         activeSection={activeSection}
-        mode={mode}
         onSectionSelect={!devMode ? handleSectionSelect : undefined}
       />
       <div className={cn(
-        devMode ? "h-[calc(100vh-170px)] flex flex-col" : "recruiter-mode-container",
+        devMode ? "flex-1 flex flex-col" : "recruiter-mode-container",
         "overflow-hidden"
       )}>
         <VimTerminalBody
@@ -171,7 +170,9 @@ const VimTerminal: React.FC = () => {
             <div className="px-4 pb-2 pt-3 space-y-1">
               {lastOutput && <div className="text-white">{lastOutput}</div>}
               {lastCommand && (
-                <div className="text-terminal-bright-green font-semibold">{lastCommand}</div>
+                <div className="text-terminal-bright-green font-semibold">
+                  {lastCommand}
+                </div>
               )}
             </div>
             <VimCommandLine

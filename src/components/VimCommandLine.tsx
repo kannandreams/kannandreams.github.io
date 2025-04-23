@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 import TerminalCursor from "./TerminalCursor";
 
@@ -62,7 +61,6 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
       return;
     }
 
-    // Handle 'i' key in email section to enter insert mode
     if (e.key === "i" && activeSection === "email" && mode === "normal" && command === "") {
       e.preventDefault();
       setMode("insert");
@@ -101,23 +99,25 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         : "Type text in insert mode, ESC to exit";
 
   return (
-    <div className="terminal-footer p-2">
+    <div className="terminal-footer border-t border-terminal-border">
+      <div className="flex items-center justify-between px-2 py-1 bg-terminal-background/80 text-xs text-terminal-muted">
+        <div className="flex items-center gap-2">
+          <span className={mode === "insert" ? "text-terminal-bright-green" : "text-terminal-accent"}>
+            {mode.toUpperCase()} MODE
+          </span>
+          <span>|</span>
+          <span>{activeSection}.vim</span>
+        </div>
+        <span>unix | utf-8</span>
+      </div>
       <form
         onSubmit={handleSubmit}
-        className="flex items-center font-mono relative"
+        className="flex items-center font-mono relative px-2 py-1"
         autoComplete="off"
       >
-        <span
-          className="terminal-prompt mr-1 text-white font-bold select-none text-lg"
-          style={{
-            fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
-            position: "relative",
-            display: "inline-flex",
-            alignItems: "center",
-          }}
-        >
-          :
-        </span>
+        <span className="terminal-prompt mr-1 text-white font-bold select-none" style={{
+          fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"
+        }}>:</span>
         <div
           className="relative flex items-center flex-1 cursor-text min-w-0"
           tabIndex={0}
