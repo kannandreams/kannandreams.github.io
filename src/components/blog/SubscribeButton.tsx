@@ -12,7 +12,7 @@ const SubscribeButton = () => {
       asChild
     >
       <a
-        href="https://your-substack-url.substack.com/subscribe"
+        href="https://eggpuffengineer.substack.com/subscribe"
         target="_blank"
         rel="noopener noreferrer"
         className="text-terminal-accent hover:text-terminal-accent/90"
