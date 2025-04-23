@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SubscribeButton from "./blog/SubscribeButton";
 import { Button } from "./ui/button";
 import { RssIcon } from "lucide-react";
 
@@ -15,7 +16,6 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
     const response = await fetch('/src/data/blogs.md');
     const text = await response.text();
     
-    // Parse the markdown content
     const posts: BlogPost[] = [];
     const sections = text.split('## ').slice(1); // Skip the header
     
@@ -59,22 +59,7 @@ const VimBlog: React.FC = () => {
     <div className="animate-fade-in">
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-bold text-terminal-accent">Latest Blog Posts</h2>
-        <Button
-          variant="outline"
-          size="sm"
-          className="flex items-center gap-2"
-          asChild
-        >
-          <a
-            href="https://your-substack-url.substack.com/subscribe"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-terminal-accent hover:text-terminal-accent/90"
-          >
-            <RssIcon className="h-4 w-4" />
-            Subscribe
-          </a>
-        </Button>
+        <SubscribeButton />
       </div>
 
       {loading ? (
