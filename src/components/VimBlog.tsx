@@ -1,7 +1,7 @@
+
 import React, { useEffect, useState } from "react";
 import SubscribeButton from "./blog/SubscribeButton";
-import { Button } from "./ui/button";
-import { RssIcon } from "lucide-react";
+import { format } from "date-fns";
 
 interface BlogPost {
   id: string;
@@ -81,7 +81,7 @@ const VimBlog: React.FC = () => {
                 </h3>
                 <div className="mt-1 text-terminal-muted text-sm flex items-center gap-2">
                   <time dateTime={post.created}>
-                    {new Date(post.created).toLocaleDateString()}
+                    {format(new Date(post.created), "MMMM-yyyy")}
                   </time>
                 </div>
                 {post.excerpt && (
