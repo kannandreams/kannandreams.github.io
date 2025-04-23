@@ -99,7 +99,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         : "Type text in insert mode, ESC to exit";
 
   return (
-    <div className="terminal-footer border-t border-terminal-border">
+    <div className="terminal-footer border-t border-terminal-border mt-auto">
       <div className="flex items-center justify-between px-2 py-1 bg-terminal-background/80 text-xs text-terminal-muted">
         <div className="flex items-center gap-2">
           <span className={mode === "insert" ? "text-terminal-bright-green" : "text-terminal-accent"}>

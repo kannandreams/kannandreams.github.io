@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -137,53 +136,55 @@ const VimTerminal: React.FC = () => {
     setLastCommand(""); // Clear last command in this case
   };
 
-  const containerClasses = cn(
-    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem] flex flex-col",
-    !devMode && "glass-morphism recruiter-mode"
-  );
-
   return (
-    <div className={containerClasses}>
-      <VimTerminalHeader
-        devMode={devMode}
-        onDevModeToggle={handleDevModeToggle}
-        onDownloadResume={handleDownloadResume}
-        activeSection={activeSection}
-        onSectionSelect={!devMode ? handleSectionSelect : undefined}
-      />
+    <div className="min-h-screen bg-terminal-background text-terminal-foreground p-2 md:p-6">
       <div className={cn(
-        devMode ? "flex-1 flex flex-col" : "recruiter-mode-container",
-        "overflow-hidden"
+        "terminal-container flex flex-col h-[calc(100vh-1rem)] md:h-[calc(100vh-3rem)]",
+        !devMode && "glass-morphism recruiter-mode"
       )}>
-        <VimTerminalBody
+        <VimTerminalHeader
           devMode={devMode}
+          onDevModeToggle={handleDevModeToggle}
+          onDownloadResume={handleDownloadResume}
           activeSection={activeSection}
-          mode={mode}
-          emailContent={emailContent}
-          onEmailChange={handleEmailChange}
-          onSendEmail={handleSendEmail}
-          lastOutput={lastOutput}
-          lastCommand={lastCommand}
-          terminalBodyRef={terminalBodyRef}
+          onSectionSelect={!devMode ? handleSectionSelect : undefined}
         />
-        {devMode && (
-          <>
-            <div className="px-4 pb-2 pt-3 space-y-1">
-              {lastOutput && <div className="text-white">{lastOutput}</div>}
-              {lastCommand && (
-                <div className="text-terminal-bright-green font-semibold">
-                  {lastCommand}
-                </div>
-              )}
-            </div>
-            <VimCommandLine
-              onExecuteCommand={executeCommand}
-              mode={mode}
-              setMode={setMode}
+        <div className={cn(
+          "flex-1 flex flex-col overflow-hidden",
+          !devMode && "recruiter-mode-container"
+        )}>
+          <div className="flex-1 overflow-y-auto">
+            <VimTerminalBody
+              devMode={devMode}
               activeSection={activeSection}
+              mode={mode}
+              emailContent={emailContent}
+              onEmailChange={handleEmailChange}
+              onSendEmail={handleSendEmail}
+              lastOutput={lastOutput}
+              lastCommand={lastCommand}
+              terminalBodyRef={terminalBodyRef}
             />
-          </>
-        )}
+          </div>
+          {devMode && (
+            <>
+              <div className="px-4 pb-2 pt-3 space-y-1 border-t border-terminal-border">
+                {lastOutput && <div className="text-white">{lastOutput}</div>}
+                {lastCommand && (
+                  <div className="text-terminal-bright-green font-semibold">
+                    {lastCommand}
+                  </div>
+                )}
+              </div>
+              <VimCommandLine
+                onExecuteCommand={executeCommand}
+                mode={mode}
+                setMode={setMode}
+                activeSection={activeSection}
+              />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
