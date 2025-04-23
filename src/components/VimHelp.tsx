@@ -39,7 +39,8 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           <div className="bg-transparent p-3 rounded mb-3">
             <h3 className="text-terminal-primary mb-2">About Me</h3>
             <p className="text-terminal-muted text-base">
-              Hello! I'm a passionate software engineer with expertise in frontend and backend technologies. I love building user-centric web apps, learning new tools, and automating workflows. Type a command below to explore my portfolio and see how I work!
+              Hello! I'm a data-savvy software engineer who loves building products, teams, and the culture that powers them. <br />
+              Type a command below to explore my portfolio and see how I work!
             </p>
           </div>
           <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
