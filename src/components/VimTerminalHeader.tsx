@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -23,7 +24,6 @@ interface VimTerminalHeaderProps {
   onDevModeToggle: () => void;
   onDownloadResume: () => void;
   activeSection: string;
-  mode: "normal" | "insert";
   onSectionSelect?: (section: string) => void;
 }
 
@@ -63,7 +63,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
   onDevModeToggle,
   onDownloadResume,
   activeSection,
-  mode,
   onSectionSelect,
 }) => (
   <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
