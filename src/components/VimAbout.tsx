@@ -8,27 +8,27 @@ const intro =
 const VimAbout: React.FC = () => {
   return (
     <div
-      className="w-full mt-3 py-2 relative overflow-hidden"
+      className="w-full py-1 relative overflow-hidden"
       style={{
-        minHeight: 34,
+        minHeight: 28, // Slightly reduced height
       }}
     >
       <div
-        className="animate-scroll-horizontal whitespace-nowrap text-terminal-accent text-[1rem] font-semibold"
+        className="animate-scroll-vertical whitespace-nowrap text-white text-[1rem] font-semibold"
         style={{
-          animation: "scroll-left 18s linear infinite",
+          animation: "scroll-top 24s linear infinite", // Slower animation (increased from 18s to 24s)
           willChange: "transform",
         }}
       >
         {intro}
-        <span className="mx-6">{intro}</span>
-        <span className="mx-6">{intro}</span>
+        <span className="block mt-2">{intro}</span>
+        <span className="block mt-2">{intro}</span>
       </div>
       <style>
         {`
-          @keyframes scroll-left {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+          @keyframes scroll-top {
+            0% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
           }
         `}
       </style>
@@ -37,4 +37,3 @@ const VimAbout: React.FC = () => {
 };
 
 export default VimAbout;
-
