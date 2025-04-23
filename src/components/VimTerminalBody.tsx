@@ -1,3 +1,4 @@
+
 import React from "react";
 import VimSkills from "./VimSkills";
 import VimProjects from "./VimProjects";
@@ -40,9 +41,10 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           {activeSection === "projects" && <VimProjects />}
           {activeSection === "github" && <VimGithub />}
           {activeSection === "metrics" && <VimMetrics />}
-          {activeSection === "help" && <VimHelp />}
+          {(activeSection === "help" || activeSection === "about") && (
+            <VimHelp activeSection={activeSection} />
+          )}
           {activeSection === "blog" && <VimBlog />}
-          {/* Only show email composer when email section is active */}
           {activeSection === "email" && (
             <VimTerminalEmailComposer
               mode={mode}
@@ -52,10 +54,10 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
             />
           )}
         </div>
-        {/* Command history moved to VimTerminal */}
       </div>
     </div>
   );
 };
 
 export default VimTerminalBody;
+

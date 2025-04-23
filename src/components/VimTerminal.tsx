@@ -10,7 +10,7 @@ const TOOLS_URL = "https://your-tools-list-url.com";
 const RESUME_TEX_STATIC = "/resume.tex";
 const EMAIL_ADDRESS = "your-email@example.com"; // Replace with your actual email
 
-type Section = "skills" | "projects" | "github" | "metrics" | "help" | "blog" | "tools" | "email";
+type Section = "skills" | "projects" | "github" | "metrics" | "help" | "blog" | "tools" | "email" | "about";
 
 const VimTerminal: React.FC = () => {
   const [devMode, setDevMode] = useState<boolean>(true);
@@ -34,7 +34,8 @@ const VimTerminal: React.FC = () => {
       cmd === ":github" ||
       cmd === ":metrics" ||
       cmd === ":help" ||
-      cmd === ":blog"
+      cmd === ":blog" ||
+      cmd === ":about"
     ) {
       const commands: Record<string, Section> = {
         ":skills": "skills",
@@ -43,6 +44,7 @@ const VimTerminal: React.FC = () => {
         ":metrics": "metrics",
         ":help": "help",
         ":blog": "blog",
+        ":about": "about",
       };
       setActiveSection(commands[cmd]);
       setLastOutput(`Opening ${commands[cmd]} panel...`);
@@ -54,7 +56,7 @@ const VimTerminal: React.FC = () => {
       setLastOutput("");
     } else if (cmd === ":email") {
       setActiveSection("email");
-      setMode("normal"); // Start in normal mode to show contact details first
+      setMode("normal");
       setLastOutput("-- EMAIL SECTION ACTIVATED (NORMAL MODE) --");
     } else if (cmd === "<esc>" && mode === "insert") {
       if (activeSection === "email" && emailContent.trim()) {
@@ -152,7 +154,6 @@ const VimTerminal: React.FC = () => {
           lastCommand={lastCommand}
           terminalBodyRef={terminalBodyRef}
         />
-        {/* Command history: always show above input */}
         {devMode && (
           <>
             <div className="px-4 pb-2 pt-3 space-y-1">
@@ -175,3 +176,4 @@ const VimTerminal: React.FC = () => {
 };
 
 export default VimTerminal;
+

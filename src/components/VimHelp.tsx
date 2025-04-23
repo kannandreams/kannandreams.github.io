@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Mail, Book, Github, Wrench, Star, List, Smile } from 'lucide-react';
+import VimAbout from './VimAbout';
 
 const navCommands = [
   { label: ":skills", desc: "View my skills", emoji: "💼" },
@@ -10,6 +11,7 @@ const navCommands = [
   { label: ":blog", desc: "Latest blog posts", emoji: "📝" },
   { label: ":tools", desc: "Open AI tools page", emoji: "🛠️" },
   { label: ":email", desc: "Compose an email", emoji: "✉️" },
+  { label: ":about", desc: "See my short intro", emoji: "👨‍💻" },
   { label: ":help", desc: "Show this help", emoji: "❔" },
   { label: ":clear", desc: "Clear terminal", emoji: "🧹" },
   { label: ":q", desc: "Attempt to quit", emoji: "🚪" },
@@ -20,18 +22,17 @@ const midpoint = Math.ceil(navCommands.length / 2);
 const firstCol = navCommands.slice(0, midpoint);
 const secondCol = navCommands.slice(midpoint);
 
-const VimHelp: React.FC = () => {
+// Accept activeSection as a prop to enable conditional rendering
+const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
   return (
     <div className="vim-help animate-fade-in text-white">
       <h2 className="text-terminal-accent text-xl mb-2">KK</h2>
-      {/* About Me section (no border, just space) */}
       <div className="bg-transparent p-3 rounded mb-3">
         <h3 className="text-terminal-primary mb-2">About Me</h3>
         <p className="text-terminal-muted text-base">
           Hello! I'm a passionate software engineer with expertise in frontend and backend technologies. I love building user-centric web apps, learning new tools, and automating workflows. Type a command below to explore my portfolio and see how I work!
         </p>
       </div>
-      {/* Navigation commands with GUI border box style */}
       <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
         <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
           <div className="flex items-center pl-1">
@@ -61,7 +62,6 @@ const VimHelp: React.FC = () => {
             ))}
           </div>
         </div>
-        {/* Command Tips with CLI border box */}
         <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
           <div className="flex items-center pl-1">
             <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
@@ -85,6 +85,7 @@ const VimHelp: React.FC = () => {
         <p>
           This terminal is a vim-inspired interface for my professional portfolio. Curious about something not shown? Reach out anytime!
         </p>
+        {activeSection === "about" && <VimAbout />}
       </div>
     </div>
   );
