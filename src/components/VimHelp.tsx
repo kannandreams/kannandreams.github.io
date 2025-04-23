@@ -33,14 +33,14 @@ const VimHelp: React.FC = () => {
       </div>
       {/* Navigation commands with GUI border box style */}
       <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-        <div className="border border-[#555] !border-t-0 !border-l-0 rounded-sm bg-transparent col-span-1 px-0 pb-1">
-          <div className="flex items-center">
-            <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
+        <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
+          <div className="flex items-center pl-1">
+            <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
               Navigation Commands
             </span>
             <div className="flex-1 h-px bg-[#555] ml-3" />
           </div>
-          <div className="grid grid-cols-2 gap-y-1 gap-x-2 mt-2">
+          <div className="grid grid-cols-2 gap-y-1 gap-x-2 mt-2 pl-4 pr-2">
             {firstCol.map(({ label, desc, emoji }) => (
               <div key={label} className="flex items-baseline space-x-2">
                 <span className="text-terminal-accent min-w-[62px]">{label}</span>
@@ -62,14 +62,14 @@ const VimHelp: React.FC = () => {
           </div>
         </div>
         {/* Command Tips with CLI border box */}
-        <div className="border border-[#555] !border-t-0 !border-l-0 rounded-sm bg-transparent col-span-1 px-0 pb-1">
-          <div className="flex items-center">
-            <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
+        <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
+          <div className="flex items-center pl-1">
+            <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
               Command Tips
             </span>
             <div className="flex-1 h-px bg-[#555] ml-3" />
           </div>
-          <ul className="space-y-1 mt-2 text-xs text-white">
+          <ul className="space-y-1 mt-2 text-xs text-white pl-4">
             <li>Commands are case-insensitive.</li>
             <li>
               You can type <span className="text-terminal-accent">i</span> to enter Insert Mode; <span className="text-terminal-accent">&lt;ESC&gt;</span> returns to Normal.
