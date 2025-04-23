@@ -1,12 +1,23 @@
+
 import React from "react";
-import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart } from "lucide-react";
+import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu";
 import { Link } from "react-router-dom";
 
 const GITHUB_URL = "https://github.com/";
 const LINKEDIN_URL = "https://linkedin.com/";
 const SUBSTACK_URL = "https://substack.com/profile/";
+
+// Available sections for navigation
+const NAV_SECTIONS = [
+  { label: "Skills", value: "skills", command: ":skills" },
+  { label: "Projects", value: "projects", command: ":projects" },
+  { label: "GitHub", value: "github", command: ":github" },
+  { label: "Blog", value: "blog", command: ":blog" },
+  { label: "About", value: "about", command: ":about" },
+];
 
 interface VimTerminalHeaderProps {
   devMode: boolean;
@@ -14,6 +25,7 @@ interface VimTerminalHeaderProps {
   onDownloadResume: () => void;
   activeSection: string;
   mode: "normal" | "insert";
+  onSectionSelect?: (section: string) => void;
 }
 
 const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
@@ -26,6 +38,7 @@ const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => v
         ? "bg-[--terminal-bright-green]" 
         : "bg-terminal-muted"
     )}
+    type="button"
   >
     <span
       className={cn(
@@ -52,6 +65,7 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
   onDownloadResume,
   activeSection,
   mode,
+  onSectionSelect,
 }) => (
   <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
     <div className="flex items-center gap-3">
@@ -90,6 +104,37 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
             </span>
             <CustomToggle checked={devMode} onClick={onDevModeToggle} />
           </div>
+          {/* Navigation Dropdown for recruiters */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button
+                className="ml-3 flex items-center px-3 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"
+                aria-label="Navigate Sections"
+                type="button"
+              >
+                Navigate
+                <ChevronDown size={16} className="ml-1" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="z-[999] min-w-[155px]">
+              {NAV_SECTIONS.map((section) => (
+                <DropdownMenuItem
+                  key={section.value}
+                  onClick={() => {
+                    // call the section selection handler
+                    if (onSectionSelect) onSectionSelect(section.value);
+                  }}
+                  className={cn(
+                    "cursor-pointer",
+                    activeSection === section.value && "bg-terminal-accent/15"
+                  )}
+                  aria-label={section.label}
+                >
+                  {section.label}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
           <button
             onClick={onDownloadResume}
             className="ml-3 flex items-center px-2 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"

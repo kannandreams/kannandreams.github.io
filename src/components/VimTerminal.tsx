@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -126,6 +127,13 @@ const VimTerminal: React.FC = () => {
     }
   };
 
+  // Handler for Recruiter nav dropdown: switches section and gives output
+  const handleSectionSelect = (section: string) => {
+    setActiveSection(section as Section);
+    setLastOutput(`Opening ${section.charAt(0).toUpperCase() + section.slice(1)} panel...`);
+    setLastCommand(""); // Clear last command in this case
+  };
+
   const containerClasses = cn(
     "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
     !devMode && "glass-morphism recruiter-mode"
@@ -139,6 +147,7 @@ const VimTerminal: React.FC = () => {
         onDownloadResume={handleDownloadResume}
         activeSection={activeSection}
         mode={mode}
+        onSectionSelect={!devMode ? handleSectionSelect : undefined}
       />
       <div className={cn(
         devMode ? "h-[calc(100vh-170px)] flex flex-col" : "recruiter-mode-container",
