@@ -81,7 +81,7 @@ const VimBlog: React.FC = () => {
                 </h3>
                 <div className="mt-1 text-terminal-muted text-sm flex items-center gap-2">
                   <time dateTime={post.created}>
-                    {format(new Date(post.created), "MMMM-yyyy")}
+                    {format(new Date(post.created), "MMMM yyyy")}
                   </time>
                 </div>
                 {post.excerpt && (
