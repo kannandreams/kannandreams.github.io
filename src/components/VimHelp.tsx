@@ -90,7 +90,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
               </ul>
             </div>
           </div>
-          <div className="text-white border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
+          <div className="text-white border-l-2 border-terminal-accent pl-3 mt-2 text-xs">
             <p>
               This page is inspired by the Vim editor interface. It was built through pure vibe coding with ❤️ and :lovable.<br />
               Undeniable proof: I'm a certified vibe coder. 💻🎧⚡
