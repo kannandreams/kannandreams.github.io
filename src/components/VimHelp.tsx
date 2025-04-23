@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Mail, Book, Github, Wrench, Star, List, Smile } from 'lucide-react';
-import VimAbout from './VimAbout';
+// Removed VimAbout import since we no longer use it
 
 const navCommands = [
   { label: ":skills", desc: "View my skills", emoji: "💼" },
@@ -85,11 +85,10 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
         <p>
           This terminal is a vim-inspired interface for my professional portfolio. Curious about something not shown? Reach out anytime!
         </p>
-        {activeSection === "about" && <VimAbout />}
+        {/* The about/introduction is no longer rendered here */}
       </div>
     </div>
   );
 };
 
 export default VimHelp;
-
