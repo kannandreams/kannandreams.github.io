@@ -1,14 +1,11 @@
-
 import React from 'react';
-import { Mail, Book, Github, Wrench, Star, List, Smile } from 'lucide-react';
+import { Mail, Book, Wrench, Star, List, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 // Removed VimAbout import since we no longer use it
 
 const navCommands = [
   { label: ":skills", desc: "View my skills", emoji: "💼" },
   { label: ":projects", desc: "View my projects", emoji: "📁" },
-  { label: ":github", desc: "GitHub activity", emoji: "🐙" },
-  { label: ":metrics", desc: "Performance metrics", emoji: "📊" },
   { label: ":blog", desc: "Latest blog posts", emoji: "📝" },
   { label: ":tools", desc: "Open AI tools page", emoji: "🛠️" },
   { label: ":email", desc: "Compose an email", emoji: "✉️" },
