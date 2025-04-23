@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,7 @@ const NAV_SECTIONS = [
   { label: "Projects", value: "projects", command: ":projects" },
   { label: "GitHub", value: "github", command: ":github" },
   { label: "Blog", value: "blog", command: ":blog" },
-  { label: "Email", value: "email", command: ":email" },
+  { label: "Contact", value: "email", command: ":contact" },
   { label: "About", value: "about", command: ":about" },
 ];
 

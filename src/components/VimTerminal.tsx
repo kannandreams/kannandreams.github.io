@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -52,7 +53,7 @@ const VimTerminal: React.FC = () => {
     } else if (cmd === ":clear") {
       setLastCommand("");
       setLastOutput("");
-    } else if (cmd === ":email") {
+    } else if (cmd === ":email" || cmd === ":contact") {
       setActiveSection("email");
       setMode("normal");
       setLastOutput("-- EMAIL SECTION ACTIVATED (NORMAL MODE) --");
