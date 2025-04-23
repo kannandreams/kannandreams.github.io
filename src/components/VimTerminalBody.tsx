@@ -32,7 +32,30 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   lastCommand,
   terminalBodyRef,
 }) => {
-  if (!devMode) return <RecruiterResume />;
+  // In recruiter mode, render the appropriate section based on activeSection
+  if (!devMode) {
+    return (
+      <div className="terminal-body recruiter-mode-body p-4" ref={terminalBodyRef}>
+        {activeSection === "skills" && <VimSkills />}
+        {activeSection === "projects" && <VimProjects />}
+        {activeSection === "github" && <VimGithub />}
+        {activeSection === "metrics" && <VimMetrics />}
+        {activeSection === "help" && <VimHelp activeSection="help" />}
+        {activeSection === "about" && <VimHelp activeSection="about" />}
+        {activeSection === "blog" && <VimBlog />}
+        {activeSection === "email" && (
+          <VimTerminalEmailComposer
+            mode={mode}
+            emailContent={emailContent}
+            onEmailChange={onEmailChange}
+            onSendEmail={onSendEmail}
+          />
+        )}
+      </div>
+    );
+  }
+
+  // Original dev mode rendering
   return (
     <div className="terminal-body flex-1 overflow-y-auto" ref={terminalBodyRef}>
       <div className="min-h-full pb-4">
