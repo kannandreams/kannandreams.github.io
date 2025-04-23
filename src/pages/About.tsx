@@ -2,9 +2,9 @@
 import React from "react";
 import { Github, Linkedin, Rss } from "lucide-react";
 
-const GITHUB_URL = "https://github.com/";
-const LINKEDIN_URL = "https://linkedin.com/";
-const SUBSTACK_URL = "https://substack.com/profile/";
+const GITHUB_URL = "https://github.com/kannandreams";
+const LINKEDIN_URL = "https://www.linkedin.com/in/kannandreams/";
+const SUBSTACK_URL = "https://eggpuffengineer.substack.com/";
 
 const About = () => {
   return (
