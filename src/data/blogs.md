@@ -1,18 +1,18 @@
 
 # Blog Posts
 
-## How I Built My First React App
-2024-04-01
-A deep dive into the process of building my first React application and the lessons learned along the way.
-https://your-substack-url.substack.com/p/first-react-app
+## The AI Paradox
+2025-04
+Balancing Progress and People in an AI-Driven World
+https://eggpuffengineer.substack.com/p/the-ai-paradox
 
-## Understanding TypeScript Generics
-2024-03-15
-Exploring TypeScript generics and how they can make your code more reusable and type-safe.
-https://your-substack-url.substack.com/p/typescript-generics
+## How the Priming Effect Shapes Engineers: The Hidden Biases in Our Decisions
+2025-03
+Explore how the priming effect subtly shapes engineers and their decision-making in different context
+https://eggpuffengineer.substack.com/p/how-the-priming-effect-shapes-engineers
 
-## The Power of Custom Hooks
-2024-03-01
-Learn how to create and use custom React hooks to share logic between components.
-https://your-substack-url.substack.com/p/custom-hooks
+## How WebAssembly is reshaping Data & AI
+2025-03
+WebAssembly is now gaining traction in the data world, thanks to its performance advantages, portability, and security
+https://eggpuffengineer.substack.com/p/the-wasm-edge-how-webassembly-is
 
