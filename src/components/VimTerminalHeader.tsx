@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -12,6 +11,7 @@ const SUBSTACK_URL = "https://substack.com/profile/";
 
 // Available sections for navigation
 const NAV_SECTIONS = [
+  { label: "Home", value: "home", command: ":home" },
   { label: "Skills", value: "skills", command: ":skills" },
   { label: "Projects", value: "projects", command: ":projects" },
   { label: "GitHub", value: "github", command: ":github" },

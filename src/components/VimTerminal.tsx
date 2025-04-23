@@ -129,6 +129,13 @@ const VimTerminal: React.FC = () => {
 
   // Handler for Recruiter nav dropdown: switches section and gives output
   const handleSectionSelect = (section: string) => {
+    if (section === "home") {
+      setDevMode(true);
+      setActiveSection("help");
+      setLastOutput("Returned to Home — Dev Mode Help Page.");
+      setLastCommand(""); // Clear last command in this case
+      return;
+    }
     setActiveSection(section as Section);
     setLastOutput(`Opening ${section.charAt(0).toUpperCase() + section.slice(1)} panel...`);
     setLastCommand(""); // Clear last command in this case
