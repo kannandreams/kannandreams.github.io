@@ -1,4 +1,3 @@
-
 import React from "react";
 import VimSkills from "./VimSkills";
 import VimProjects from "./VimProjects";
@@ -43,7 +42,6 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           {activeSection === "metrics" && <VimMetrics />}
           {activeSection === "help" && <VimHelp />}
           {activeSection === "blog" && <VimBlog />}
-          
           {/* Only show email composer when email section is active */}
           {activeSection === "email" && (
             <VimTerminalEmailComposer
@@ -54,17 +52,10 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
             />
           )}
         </div>
-        
-        <div className="mt-4 space-y-1">
-          {lastOutput && <div className="text-white">{lastOutput}</div>}
-          {lastCommand && (
-            <div className="text-terminal-bright-green font-semibold">{lastCommand}</div>
-          )}
-        </div>
+        {/* Command history moved to VimTerminal */}
       </div>
     </div>
   );
 };
 
 export default VimTerminalBody;
-

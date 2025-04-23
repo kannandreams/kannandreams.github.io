@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -142,13 +141,22 @@ const VimTerminal: React.FC = () => {
           lastCommand={lastCommand}
           terminalBodyRef={terminalBodyRef}
         />
+        {/* Command history: always show above input */}
         {devMode && (
-          <VimCommandLine
-            onExecuteCommand={executeCommand}
-            mode={mode}
-            setMode={setMode}
-            activeSection={activeSection}
-          />
+          <>
+            <div className="px-4 pb-2 pt-3 space-y-1">
+              {lastOutput && <div className="text-white">{lastOutput}</div>}
+              {lastCommand && (
+                <div className="text-terminal-bright-green font-semibold">{lastCommand}</div>
+              )}
+            </div>
+            <VimCommandLine
+              onExecuteCommand={executeCommand}
+              mode={mode}
+              setMode={setMode}
+              activeSection={activeSection}
+            />
+          </>
         )}
       </div>
     </div>
