@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import VimCommandLine from "./VimCommandLine";
 import VimTerminalHeader from "./VimTerminalHeader";
@@ -10,7 +9,7 @@ const TOOLS_URL = "https://your-tools-list-url.com";
 const RESUME_TEX_STATIC = "/resume.tex";
 const EMAIL_ADDRESS = "your-email@example.com"; // Replace with your actual email
 
-type Section = "skills" | "projects" | "github" | "metrics" | "help" | "blog" | "tools" | "email" | "about";
+type Section = "skills" | "projects" | "help" | "blog" | "tools" | "email" | "about";
 
 const VimTerminal: React.FC = () => {
   const [devMode, setDevMode] = useState<boolean>(true);
@@ -31,8 +30,6 @@ const VimTerminal: React.FC = () => {
     else if (
       cmd === ":skills" ||
       cmd === ":projects" ||
-      cmd === ":github" ||
-      cmd === ":metrics" ||
       cmd === ":help" ||
       cmd === ":blog" ||
       cmd === ":about" ||
@@ -41,8 +38,6 @@ const VimTerminal: React.FC = () => {
       const commands: Record<string, Section> = {
         ":skills": "skills",
         ":projects": "projects",
-        ":github": "github",
-        ":metrics": "metrics",
         ":help": "help",
         ":blog": "blog",
         ":about": "about",

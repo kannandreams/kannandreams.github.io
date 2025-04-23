@@ -1,11 +1,8 @@
-
 import React from "react";
 import VimSkills from "./VimSkills";
 import VimProjects from "./VimProjects";
-import VimGithub from "./VimGithub";
-import VimMetrics from "./VimMetrics";
-import VimHelp from "./VimHelp";
 import VimBlog from "./VimBlog";
+import VimHelp from "./VimHelp";
 import VimTerminalEmailComposer from "./VimTerminalEmailComposer";
 import RecruiterResume from "./RecruiterResume";
 
@@ -38,8 +35,6 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
       <div className="terminal-body recruiter-mode-body p-4" ref={terminalBodyRef}>
         {activeSection === "skills" && <VimSkills />}
         {activeSection === "projects" && <VimProjects />}
-        {activeSection === "github" && <VimGithub />}
-        {activeSection === "metrics" && <VimMetrics />}
         {activeSection === "help" && <VimHelp activeSection="help" />}
         {activeSection === "about" && <VimHelp activeSection="about" />}
         {activeSection === "blog" && <VimBlog />}
@@ -62,8 +57,6 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
         <div className="mb-4">
           {activeSection === "skills" && <VimSkills />}
           {activeSection === "projects" && <VimProjects />}
-          {activeSection === "github" && <VimGithub />}
-          {activeSection === "metrics" && <VimMetrics />}
           {activeSection === "help" && <VimHelp activeSection="help" />}
           {activeSection === "about" && <VimHelp activeSection="about" />}
           {activeSection === "blog" && <VimBlog />}
