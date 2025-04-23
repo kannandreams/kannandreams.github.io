@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Terminal, FileText, Wrench, Download, Send, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -24,6 +23,7 @@ interface VimTerminalHeaderProps {
   onDevModeToggle: () => void;
   onDownloadResume: () => void;
   activeSection: string;
+  mode: "normal" | "insert";
   onSectionSelect?: (section: string) => void;
 }
 
@@ -63,6 +63,7 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
   onDevModeToggle,
   onDownloadResume,
   activeSection,
+  mode,
   onSectionSelect,
 }) => (
   <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
@@ -142,13 +143,30 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
           </button>
         </>
       ) : (
-        <div className="flex items-center">
-          <span className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
-            style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}>
-            Dev Mode
-          </span>
-          <CustomToggle checked={devMode} onClick={onDevModeToggle} />
-        </div>
+        <>
+          <div className="flex items-center">
+            <span className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
+              style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}>
+              Dev Mode
+            </span>
+            <CustomToggle checked={devMode} onClick={onDevModeToggle} />
+          </div>
+          {activeSection === 'blog' && (
+            <FileText size={18} className="text-terminal-accent ml-1" />
+          )}
+          {activeSection === 'tools' && (
+            <Wrench size={18} className="text-terminal-accent ml-1" />
+          )}
+          {activeSection === 'email' && (
+            <Send size={18} className="text-terminal-accent ml-1" />
+          )}
+          <div className={cn(
+            "vim-mode",
+            mode === 'insert' && "vim-insert-mode"
+          )}>
+            {mode === 'normal' ? 'NORMAL' : 'INSERT'}
+          </div>
+        </>
       )}
     </div>
   </div>
