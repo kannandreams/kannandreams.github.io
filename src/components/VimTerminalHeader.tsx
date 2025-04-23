@@ -15,6 +15,7 @@ const NAV_SECTIONS = [
   { label: "Projects", value: "projects", command: ":projects" },
   { label: "GitHub", value: "github", command: ":github" },
   { label: "Blog", value: "blog", command: ":blog" },
+  { label: "Email", value: "email", command: ":email" },
   { label: "About", value: "about", command: ":about" },
 ];
 
@@ -160,12 +161,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
           {activeSection === 'email' && (
             <Send size={18} className="text-terminal-accent ml-1" />
           )}
-          <div className={cn(
-            "vim-mode",
-            mode === 'insert' && "vim-insert-mode"
-          )}>
-            {mode === 'normal' ? 'NORMAL' : 'INSERT'}
-          </div>
         </>
       )}
     </div>
