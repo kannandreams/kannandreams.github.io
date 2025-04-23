@@ -41,9 +41,8 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           {activeSection === "projects" && <VimProjects />}
           {activeSection === "github" && <VimGithub />}
           {activeSection === "metrics" && <VimMetrics />}
-          {(activeSection === "help" || activeSection === "about") && (
-            <VimHelp activeSection={activeSection} />
-          )}
+          {activeSection === "help" && <VimHelp activeSection="help" />}
+          {activeSection === "about" && <VimHelp activeSection="about" />}
           {activeSection === "blog" && <VimBlog />}
           {activeSection === "email" && (
             <VimTerminalEmailComposer
@@ -60,4 +59,3 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
 };
 
 export default VimTerminalBody;
-
