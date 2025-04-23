@@ -1,34 +1,34 @@
-
 import React, { useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Code, Database, Settings, Laptop, Palette } from 'lucide-react';
 import SkillCard from './SkillCard';
+import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon } from './TechIcons';
 
 const skillsData = [
   {
     category: 'Frontend Development',
     icon: <Code size={18} className="text-terminal-primary" />,
     skills: [
-      { name: 'JavaScript', level: "Expert", years: 5, icon: <Code className="h-4 w-4 text-yellow-400" /> },
-      { name: 'TypeScript', level: "Expert", years: 4, icon: <Code className="h-4 w-4 text-blue-400" /> },
-      { name: 'React', level: "Expert", years: 4, icon: <Code className="h-4 w-4 text-cyan-400" /> },
-      { name: 'Vue.js', level: "Advanced", years: 2, icon: <Code className="h-4 w-4 text-green-400" /> },
+      { name: 'JavaScript', level: "Expert", years: 5, icon: <JavaScriptIcon /> },
+      { name: 'TypeScript', level: "Expert", years: 4, icon: <TypeScriptIcon /> },
+      { name: 'React', level: "Expert", years: 4, icon: <ReactIcon /> },
+      { name: 'Vue.js', level: "Advanced", years: 2, icon: <ReactIcon /> },
     ]
   },
   {
     category: 'Backend Development',
     icon: <Database size={18} className="text-terminal-primary" />,
     skills: [
-      { name: 'Node.js', level: "Expert", years: 4, icon: <Settings className="h-4 w-4 text-green-500" /> },
-      { name: 'Python', level: "Advanced", years: 3, icon: <Settings className="h-4 w-4 text-yellow-500" /> },
-      { name: 'PostgreSQL', level: "Advanced", years: 3, icon: <Database className="h-4 w-4 text-blue-400" /> },
+      { name: 'Node.js', level: "Expert", years: 4, icon: <NodeIcon /> },
+      { name: 'Python', level: "Advanced", years: 3, icon: <PythonIcon /> },
+      { name: 'PostgreSQL', level: "Advanced", years: 3, icon: <PostgresIcon /> },
     ]
   },
   {
     category: 'UI/UX Design',
     icon: <Palette size={18} className="text-terminal-primary" />,
     skills: [
-      { name: 'Figma', level: "Expert", years: 3, icon: <Palette className="h-4 w-4 text-purple-400" /> },
+      { name: 'Figma', level: "Expert", years: 3, icon: <FigmaIcon /> },
       { name: 'Responsive Design', level: "Expert", years: 5, icon: <Laptop className="h-4 w-4 text-blue-400" /> },
     ]
   },
