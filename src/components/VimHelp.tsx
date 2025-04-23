@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom';
 // Removed VimAbout import since we no longer use it
 
 const navCommands = [
+  { label: ":about", desc: "See my short intro", emoji: "👨‍💻" },
   { label: ":skills", desc: "View my skills", emoji: "💼" },
   { label: ":projects", desc: "View my projects", emoji: "📁" },
   { label: ":blog", desc: "Latest blog posts", emoji: "📝" },
-  { label: ":tools", desc: "Open AI tools page", emoji: "🛠️" },
-  { label: ":email", desc: "Compose an email", emoji: "✉️" },
-  { label: ":about", desc: "See my short intro", emoji: "👨‍💻" },
-  { label: ":help", desc: "Show this help", emoji: "❔" },
+  { label: ":help", desc: "Show this page", emoji: "❔" },
   { label: ":clear", desc: "Clear terminal", emoji: "🧹" },
   { label: ":q", desc: "Attempt to quit", emoji: "🚪" },
 ];
