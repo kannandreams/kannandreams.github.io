@@ -93,7 +93,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           <div className="text-terminal-muted italic border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
             <p>
               This page is inspired by the Vim editor interface. It was built through pure vibe coding with ❤️ and :lovable.
-              <span>Undeniable proof: I'm a certified vibe coder. 💻🎧⚡</span>
+              Undeniable proof: I'm a certified vibe coder. 💻🎧⚡
             </p>
           </div>
         </>
