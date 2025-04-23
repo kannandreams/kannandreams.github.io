@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Code, Database, Gear, Laptop, Palette } from 'lucide-react';
+import { Code, Database, Settings, Laptop, Palette } from 'lucide-react';
 import SkillCard from './SkillCard';
 
 const skillsData = [
@@ -19,8 +19,8 @@ const skillsData = [
     category: 'Backend Development',
     icon: <Database size={18} className="text-terminal-primary" />,
     skills: [
-      { name: 'Node.js', level: "Expert", years: 4, icon: <Gear className="h-4 w-4 text-green-500" /> },
-      { name: 'Python', level: "Advanced", years: 3, icon: <Gear className="h-4 w-4 text-yellow-500" /> },
+      { name: 'Node.js', level: "Expert", years: 4, icon: <Settings className="h-4 w-4 text-green-500" /> },
+      { name: 'Python', level: "Advanced", years: 3, icon: <Settings className="h-4 w-4 text-yellow-500" /> },
       { name: 'PostgreSQL', level: "Advanced", years: 3, icon: <Database className="h-4 w-4 text-blue-400" /> },
     ]
   },
