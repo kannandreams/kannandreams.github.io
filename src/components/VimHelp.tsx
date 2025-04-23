@@ -95,10 +95,9 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           </div>
           <div className="text-terminal-muted italic border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
             <p>
-              This portfolio design is inspired by the Vim editor interface. 80% of it was built through pure vibe coding using ❤️ and :lovable. 
-              <span style="display: block; margin-top: 0.5em;">
+              This portfolio design is inspired by the Vim editor interface. 80% of it was built through pure vibe coding using ❤️ and :lovable. &#10;
                 Undeniable proof: I’m a certified vibe coder. 💻🎧⚡
-              </span>
+              
             </p>
           </div>
         </>
