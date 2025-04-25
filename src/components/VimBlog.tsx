@@ -129,8 +129,8 @@ const VimBlog: React.FC = () => {
       ) : error ? (
         <div className="text-terminal-error">{error}</div>
       ) : (
-        <div className="flex flex-col h-full">
-          <ScrollArea className="flex-grow mb-4" style={{ height: "calc(100vh - 280px)" }}>
+        <div className="flex flex-col h-full max-h-[calc(100vh-280px)]">
+          <ScrollArea className="flex-grow mb-4 h-full">
             {posts.length === 0 ? (
               <div className="text-terminal-muted">No blog posts found. Please check the blogs.md file.</div>
             ) : (
