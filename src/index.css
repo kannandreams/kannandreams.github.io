@@ -74,12 +74,16 @@
   }
 
   .terminal-body {
-    @apply p-4 pt-16 pb-2 overflow-y-auto overflow-x-hidden;
+    @apply p-4 pt-16 pb-2;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
     scroll-padding-top: 5rem; /* Increase padding to ensure content is visible */
   }
 
   .recruiter-mode-body {
+    overflow: hidden !important;
+  }
+
+  .recruiter-mode-container {
     overflow: hidden !important;
   }
 
@@ -191,8 +195,9 @@
     border-radius: 3px 3px 3px 3px;
     padding-top: 0.3em;
     box-shadow: none;
-    overflow: hidden;
+    overflow: hidden !important;
   }
+  
   .email-composer input, .email-composer textarea {
     color: #fff !important;
     background: #1A1F2C !important;

@@ -6,6 +6,7 @@ import VimBlog from "./VimBlog";
 import VimHelp from "./VimHelp";
 import VimTerminalEmailComposer from "./VimTerminalEmailComposer";
 import RecruiterResume from "./RecruiterResume";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface VimTerminalBodyProps {
   devMode: boolean;
@@ -33,7 +34,11 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   // In recruiter mode, render the appropriate section based on activeSection
   if (!devMode) {
     return (
-      <div className="terminal-body recruiter-mode-body p-4 overflow-hidden" ref={terminalBodyRef}>
+      <div 
+        className="terminal-body recruiter-mode-body p-4 overflow-hidden"
+        ref={terminalBodyRef}
+        style={{ overflowY: 'hidden', overflowX: 'hidden' }}
+      >
         {activeSection === "skills" && <VimSkills />}
         {activeSection === "projects" && <VimProjects />}
         {activeSection === "help" && <VimHelp activeSection="help" />}

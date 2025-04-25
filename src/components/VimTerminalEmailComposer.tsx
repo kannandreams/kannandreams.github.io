@@ -56,7 +56,8 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
         color: "#fff",
         fontFamily: "'JetBrains Mono', monospace",
         marginTop: "0.25rem",
-        maxHeight: "calc(100vh - 220px)",
+        height: "auto",
+        maxHeight: "calc(100vh - 240px)",
         overflow: "hidden"
       }}
     >
@@ -71,7 +72,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
       </div>
       
       {isActive ? (
-        <form onSubmit={form.handleSubmit(handleSubmit)} className="p-4 space-y-4">
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="p-4 space-y-4" style={{ overflow: "hidden" }}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="senderName" className="text-white">
@@ -119,7 +120,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
             <Label htmlFor="message" className="text-white">Message</Label>
             <Textarea
               id="message"
-              className="bg-terminal-background border-terminal-muted text-white w-full h-32 focus:border-terminal-bright-green text-sm resize-none"
+              className="bg-terminal-background border-terminal-muted text-white w-full h-24 focus:border-terminal-bright-green text-sm resize-none"
               {...form.register("message")}
               required
               disabled
@@ -143,7 +144,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
         </form>
       ) : (
         mode === "normal" && (
-          <div className="p-4 space-y-3 overflow-hidden">
+          <div className="p-4 space-y-3 overflow-hidden" style={{ maxHeight: "100%" }}>
             <p className="text-terminal-muted text-[0.91rem] italic mb-3">
               Type <span className="text-terminal-accent">'i'</span> to enter insert mode and compose an email.
             </p>
