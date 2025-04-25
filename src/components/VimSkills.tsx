@@ -27,9 +27,19 @@ const getIconComponent = (iconName: string) => {
     Python: <PythonIcon />,
     Postgres: <PostgresIcon />,
     Figma: <FigmaIcon />,
-    Laptop: <Laptop className="h-4 w-4 text-blue-400" />
+    Laptop: <Laptop className="h-4 w-4 text-blue-400" />,
+    Snowflake: <Database className="h-4 w-4 text-blue-400" />,
+    DBT: <Database className="h-4 w-4 text-blue-400" />,
+    Spark: <Database className="h-4 w-4 text-orange-400" />,
+    Oracle: <Database className="h-4 w-4 text-red-400" />,
+    FastAPI: <Code className="h-4 w-4 text-green-400" />,
+    AWS: <Code className="h-4 w-4 text-yellow-400" />,
+    Docker: <Code className="h-4 w-4 text-blue-400" />,
+    Github: <Code className="h-4 w-4 text-purple-400" />,
+    Terraform: <Code className="h-4 w-4 text-indigo-400" />,
+    Jenkins: <Code className="h-4 w-4 text-red-400" />
   };
-  return icons[iconName];
+  return icons[iconName] || <Code className="h-4 w-4 text-gray-400" />;
 };
 
 const getCategoryIcon = (category: string) => {
@@ -40,14 +50,126 @@ const getCategoryIcon = (category: string) => {
       return <Database size={18} className="text-terminal-primary" />;
     case "UI/UX Design":
       return <Palette size={18} className="text-terminal-primary" />;
+    case "Data & Machine Learning":
+      return <Database size={18} className="text-terminal-primary" />;
+    case "Software Engineering":
+      return <Code size={18} className="text-terminal-primary" />;
+    case "Platform Engineering":
+      return <Code size={18} className="text-terminal-primary" />;
     default:
       return <Code size={18} className="text-terminal-primary" />;
   }
 };
 
+// Hardcoded skills data to avoid file loading issues
+const hardcodedSkills: SkillCategory[] = [
+  {
+    category: "Data & Machine Learning",
+    icon: <Database size={18} className="text-terminal-primary" />,
+    skills: [
+      {
+        name: "Snowflake",
+        level: "Advanced",
+        years: 5,
+        icon: "Snowflake"
+      },
+      {
+        name: "DBT",
+        level: "Expert",
+        years: 5,
+        icon: "DBT"
+      },
+      {
+        name: "Spark",
+        level: "Advanced",
+        years: 10,
+        icon: "Spark"
+      },
+      {
+        name: "Kafka",
+        level: "Advanced",
+        years: 10,
+        icon: "Spark"
+      }
+    ]
+  },
+  {
+    category: "Software Engineering",
+    icon: <Code size={18} className="text-terminal-primary" />,
+    skills: [
+      {
+        name: "Python",
+        level: "Expert",
+        years: 15,
+        icon: "Python"
+      },
+      {
+        name: "SQL",
+        level: "Expert",
+        years: 15,
+        icon: "Oracle"
+      },
+      {
+        name: "React",
+        level: "Intermediate",
+        years: 2,
+        icon: "React"
+      },
+      {
+        name: "FastAPI",
+        level: "Expert",
+        years: 4,
+        icon: "FastAPI"
+      }
+    ]
+  },
+  {
+    category: "Platform Engineering",
+    icon: <Code size={18} className="text-terminal-primary" />,
+    skills: [
+      {
+        name: "AWS",
+        level: "Advanced",
+        years: 10,
+        icon: "AWS"
+      },
+      {
+        name: "Containerization",
+        level: "Advanced",
+        years: 10,
+        icon: "Docker"
+      },
+      {
+        name: "GitOps",
+        level: "Advanced",
+        years: 10,
+        icon: "Github"
+      },
+      {
+        name: "Terraform",
+        level: "Advanced",
+        years: 5,
+        icon: "Terraform"
+      },
+      {
+        name: "CI/CD",
+        level: "Advanced",
+        years: 10,
+        icon: "Jenkins"
+      }
+    ]
+  }
+];
+
 async function fetchSkills(): Promise<SkillCategory[]> {
   try {
+    // Try to fetch from file first
     const response = await fetch('/src/data/skills.md');
+    if (!response.ok) {
+      console.log('Using hardcoded skills data');
+      return hardcodedSkills;
+    }
+    
     const text = await response.text();
     
     const categories: SkillCategory[] = [];
@@ -80,20 +202,31 @@ async function fetchSkills(): Promise<SkillCategory[]> {
     return categories;
   } catch (error) {
     console.error('Error fetching skills:', error);
-    return [];
+    return hardcodedSkills;
   }
 }
 
 const VimTerminalSkills: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
+  const [loading, setLoading] = useState(true);
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    fetchSkills().then(setSkillCategories);
+    setLoading(true);
+    fetchSkills()
+      .then(data => {
+        setSkillCategories(data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error setting skills:', error);
+        setSkillCategories(hardcodedSkills);
+        setLoading(false);
+      });
   }, []);
 
-  if (skillCategories.length === 0) {
+  if (loading) {
     return <div className="text-terminal-info">Loading...</div>;
   }
 
