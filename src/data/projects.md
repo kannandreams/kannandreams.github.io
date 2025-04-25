@@ -10,6 +10,7 @@ React, TypeScript, Tailwind CSS, Radix UI
 ## DBT MCP Server
 This is a minimal, extensible MCP (Model Control Protocol) server to run dbt models with a unified interface.
 https://github.com/kannandreams/dbt-mcp-server
+https://github.com/kannandreams/dbt-mcp-server
 Python, Docker, FastAPI
 
 ## Tnteractive app to visualize your life in weeks
