@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Code, Database, Palette, File, X } from 'lucide-react';
@@ -16,6 +15,7 @@ interface SkillCategory {
   category: string;
   icon: React.ReactNode;
   skills: Skill[];
+  comment?: string | null;
 }
 
 const getIconComponent = (iconName: string) => {
@@ -61,7 +61,6 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
-// Hardcoded skills data to avoid file loading issues
 const hardcodedSkills: SkillCategory[] = [
   {
     category: "Data & Machine Learning",
@@ -177,10 +176,9 @@ async function fetchSkills(): Promise<SkillCategory[]> {
     sections.forEach(section => {
       const lines = section.trim().split('\n');
       const category = lines[0];
-      const commentLine = lines[1] && lines[1].startsWith('//') ? lines[1].replace('//', '').trim() : null;
       const skills: Skill[] = [];
       
-      lines.slice(commentLine ? 2 : 1).forEach(line => {
+      lines.slice(1).forEach(line => {
         if (line.trim()) {
           const [name, level, years, icon] = line.split(',');
           skills.push({
@@ -195,8 +193,7 @@ async function fetchSkills(): Promise<SkillCategory[]> {
       categories.push({
         category,
         icon: getCategoryIcon(category),
-        skills,
-        comment: commentLine
+        skills
       });
     });
     
@@ -205,14 +202,6 @@ async function fetchSkills(): Promise<SkillCategory[]> {
     console.error('Error fetching skills:', error);
     return hardcodedSkills;
   }
-}
-
-// Update the interface to include comment
-interface SkillCategory {
-  category: string;
-  icon: React.ReactNode;
-  skills: Skill[];
-  comment?: string | null;
 }
 
 const VimTerminalSkills: React.FC = () => {
@@ -254,14 +243,6 @@ const VimTerminalSkills: React.FC = () => {
           >
             <File size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
             <span>{isMobile ? category.category.split(' ')[0] : category.category}</span>
-            {category.comment && (
-              <span 
-                className="ml-2 text-xs text-[#aaadb0] opacity-70 italic"
-                title={category.comment}
-              >
-                // {category.comment}
-              </span>
-            )}
             <X 
               size={12} 
               className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-terminal-muted hover:text-terminal-foreground" 
@@ -275,6 +256,26 @@ const VimTerminalSkills: React.FC = () => {
       </div>
 
       <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
+        {activeTab === 0 && (
+          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
+            // Core technologies I extensively use and have deep expertise in
+          </div>
+        )}
+        {activeTab === 1 && (
+          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
+            // Technologies I'm actively learning and integrating
+          </div>
+        )}
+        {activeTab === 2 && (
+          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
+            // Emerging technologies I'm exploring
+          </div>
+        )}
+        {activeTab === 3 && (
+          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
+            // Technologies that are no longer my primary focus
+          </div>
+        )}
         {skillCategories[activeTab]?.skills.map((skill, index) => (
           <SkillCard
             key={index}
