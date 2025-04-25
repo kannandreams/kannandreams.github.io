@@ -107,7 +107,7 @@ const VimSkills: React.FC = () => {
       </div>
 
       <div className="mb-6">
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-6">
           {skillCategories.map((category, index) => (
             <button
               key={index}
@@ -124,7 +124,7 @@ const VimSkills: React.FC = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-wrap gap-3">
           {skillCategories[activeTab]?.skills.map((skill, index) => (
             <SkillCard
               key={index}
