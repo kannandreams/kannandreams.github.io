@@ -6,9 +6,9 @@ import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/componen
 interface Project {
   id: string;
   title: string;
-  date: string;
   description: string;
   repo: string;
+  liveDemo?: string;
   technologies: string[];
 }
 
@@ -23,17 +23,17 @@ async function fetchProjects(): Promise<Project[]> {
     sections.forEach((section, index) => {
       const lines = section.trim().split('\n');
       const title = lines[0];
-      const date = lines[1];
-      const description = lines[2];
-      const repo = lines[3];
+      const description = lines[1];
+      const repo = lines[2];
+      const liveDemo = lines[3];
       const technologies = lines[4].split(', ');
       
       projects.push({
         id: String(index),
         title,
-        date,
         description,
         repo,
+        liveDemo,
         technologies,
       });
     });
@@ -90,7 +90,6 @@ const VimProjects: React.FC = () => {
                 }`}
               >
                 <h3 className="text-terminal-primary font-medium">{project.title}</h3>
-                <p className="text-sm text-terminal-muted mt-1">{project.date}</p>
               </div>
             ))}
           </div>
@@ -138,6 +137,17 @@ const VimProjects: React.FC = () => {
                       >
                         <Github size={16} />
                         <span>View Source</span>
+                      </a>
+                    )}
+                    {selectedProject.liveDemo && (
+                      <a
+                        href={selectedProject.liveDemo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2 text-terminal-accent hover:underline"
+                      >
+                        <span>🌐</span>
+                        <span>Live Demo</span>
                       </a>
                     )}
                   </div>
