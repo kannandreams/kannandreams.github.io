@@ -21,14 +21,7 @@ const ContactInfo = () => {
           </div>
           <div className="flex items-center gap-2">
             <LinkIcon size={16} className="text-terminal-accent" />
-            <a 
-              href="https://adplist.org/mentors/kannan-kalidasan" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-terminal-bright-green hover:underline"
-            >
-              ADPList Mentor Profile
-            </a>
+            <span className="text-white">adplist.org/mentors/kannan-kalidasan</span>
           </div>
         </div>
         
