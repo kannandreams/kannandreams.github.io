@@ -1,117 +1,22 @@
 
 # Projects
 
-## Vim Portfolio Terminal
-A terminal-based portfolio website with Vim-inspired navigation and commands. Built with React and TypeScript.
+## Vim Style Portfolio
+A terminal-based portfolio website with Vim-inspired navigation and commands.
 https://github.com/yourusername/vim-portfolio
 https://vim-portfolio-demo.vercel.app
-React, TypeScript, Tailwind CSS
+React, TypeScript, Tailwind CSS, Radix UI
 
-## E-Commerce Platform
-A full-featured e-commerce platform with product management, cart functionality, and payment processing.
-https://github.com/yourusername/ecommerce
-https://ecommerce-platform-demo.vercel.app
-React, Node.js, Express, MongoDB, Stripe
+## DBT MCP Server
+This is a minimal, extensible MCP (Model Control Protocol) server to run dbt models with a unified interface.
+https://github.com/kannandreams/dbt-mcp-server
+Python, Docker, FastAPI
 
-## Project Management Dashboard
-A dashboard for tracking projects, tasks, and team performance with real-time updates.
-https://github.com/yourusername/project-dashboard
-https://project-management-demo.vercel.app
-Vue.js, Firebase, Vuex, Chart.js
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
+## Tnteractive app to visualize your life in weeks
+I was inspired by Epicsheet’s The 30,000 Days of Your Life and the time management insights from "Four Thousand Weeks" Book by Oliver Burkeman.
+https://github.com/kannandreams/life-weeks-visualization
+https://www.timeline4.me/
+React, TypeScript, Mantine UI, D3.js
 
 
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
-
-## AI Content Analyzer
-Tool that uses machine learning to analyze and categorize content from various sources.
-https://github.com/yourusername/ai-analyzer
-https://ai-content-analyzer-demo.vercel.app
-Python, TensorFlow, Flask, React
 
