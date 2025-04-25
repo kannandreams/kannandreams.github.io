@@ -47,7 +47,7 @@ export const FigmaIcon = () => (
   </svg>
 );
 
-// Add the Laptop icon export using lucide-react
-export const Laptop = () => {
+// Fix the Laptop icon export to correctly handle the className prop
+export const Laptop: React.FC = () => {
   return <LaptopIcon className="h-4 w-4 text-blue-400" />;
 };
