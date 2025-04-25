@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Briefcase, ExternalLink, Github } from 'lucide-react';
+import { Briefcase, Github } from 'lucide-react';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -85,13 +85,13 @@ const VimProjects: React.FC = () => {
                 <div
                   key={project.id}
                   onClick={() => setSelectedProject(project)}
-                  className={`p-4 cursor-pointer transition-colors ${
+                  className={`px-3 py-2 cursor-pointer transition-colors border-l-2 ${
                     selectedProject?.id === project.id
-                      ? 'bg-terminal-border/40 border-l-2 border-terminal-accent'
-                      : 'hover:bg-terminal-border/20'
+                      ? 'bg-terminal-primary/10 border-terminal-primary text-terminal-primary'
+                      : 'border-transparent hover:bg-terminal-border/10'
                   }`}
                 >
-                  <h3 className="text-terminal-primary font-medium">{project.title}</h3>
+                  <h3 className="text-sm font-medium">{project.title}</h3>
                 </div>
               ))}
             </div>
