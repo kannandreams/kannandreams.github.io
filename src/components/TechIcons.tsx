@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Laptop as LaptopIcon } from 'lucide-react';
 
 export const JavaScriptIcon = () => (
   <svg viewBox="0 0 24 24" className="h-4 w-4 text-yellow-400">
@@ -47,7 +46,3 @@ export const FigmaIcon = () => (
   </svg>
 );
 
-// Fix the Laptop icon export to correctly handle the className prop
-export const Laptop: React.FC = () => {
-  return <LaptopIcon className="h-4 w-4 text-blue-400" />;
-};
