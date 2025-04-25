@@ -1,15 +1,21 @@
 
-## Frontend Development
-JavaScript,Expert,5,JavaScript
-TypeScript,Expert,4,TypeScript
-React,Expert,4,React
-Vue.js,Advanced,2,React
+## Data & Machine Learning
+Snowflake,Advanced,5+,Snowflake
+DBT,Expert,5+,DBT
+Spark,Advanced,10+,Spark
+Kafka,Advanced,10+,Spark
 
-## Backend Development
-Node.js,Expert,4,Node
-Python,Advanced,3,Python
-PostgreSQL,Advanced,3,Postgres
+## Software Engineering
+Python,Expert,15+,Python
+SQL,Expert,15+,Oracle
+React,Intermediate,2,React
+FastAPI,Expert,4,FastAPI
 
-## UI/UX Design
-Figma,Expert,3,Figma
-Responsive Design,Expert,5,Laptop
+
+## Platform Engineering
+AWS,Advanced,10+,AWS
+Containerization,Advanced,10+,Docker
+GitOps,Advanced,10+,Github
+Terraform,Advanced,5+,Terraform
+CI/CD,Advanced,10+,Jenkins
+
