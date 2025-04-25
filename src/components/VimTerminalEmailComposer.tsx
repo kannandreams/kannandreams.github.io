@@ -1,5 +1,5 @@
 import React from "react";
-import { Ban, Mail, User, MessageSquare } from "lucide-react";
+import { Ban, Mail, User, MessageSquare, Phone, Globe, Linkedin, Github } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -139,39 +139,41 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
           </div>
         </form>
       ) : (
-        <div className="p-4 space-y-3">
-          <p className="text-terminal-muted text-[0.91rem] italic mb-3">
-            Type <span className="text-terminal-accent">'i'</span> to enter insert mode and compose an email.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Mail size={16} className="text-terminal-accent" />
-                <span className="text-white">email@example.com</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone size={16} className="text-terminal-accent" />
-                <span className="text-white">(555) 123-4567</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Globe size={16} className="text-terminal-accent" />
-                <span className="text-white">example.com</span>
-              </div>
-            </div>
+        mode === "normal" && (
+          <div className="p-4 space-y-3">
+            <p className="text-terminal-muted text-[0.91rem] italic mb-3">
+              Type <span className="text-terminal-accent">'i'</span> to enter insert mode and compose an email.
+            </p>
             
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <Linkedin size={16} className="text-terminal-accent" />
-                <span className="text-white">linkedin.com/in/example</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Mail size={16} className="text-terminal-accent" />
+                  <span className="text-white">email@example.com</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Phone size={16} className="text-terminal-accent" />
+                  <span className="text-white">(555) 123-4567</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Globe size={16} className="text-terminal-accent" />
+                  <span className="text-white">example.com</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Github size={16} className="text-terminal-accent" />
-                <span className="text-white">github.com/example</span>
+              
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Linkedin size={16} className="text-terminal-accent" />
+                  <span className="text-white">linkedin.com/in/example</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Github size={16} className="text-terminal-accent" />
+                  <span className="text-white">github.com/example</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )
       )}
     </div>
   );
