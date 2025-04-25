@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import SubscribeButton from "./blog/SubscribeButton";
 import { format } from "date-fns";
@@ -10,6 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "./ui/pagination";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface BlogPost {
   id: string;
@@ -20,7 +20,6 @@ interface BlogPost {
   tags?: string[];
 }
 
-// This is the blog data since we're having trouble loading it from the file
 const BLOG_POSTS: BlogPost[] = [
   {
     id: "1",
@@ -76,7 +75,6 @@ const BLOG_POSTS: BlogPost[] = [
 async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
     console.log('Using hardcoded blog posts instead of fetching from file');
-    // Return the hardcoded blog posts
     return BLOG_POSTS;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
@@ -106,13 +104,11 @@ const VimBlog: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  // Calculate pagination
   const totalPages = Math.ceil(posts.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentPosts = posts.slice(startIndex, endIndex);
 
-  // Debugging pagination
   console.log('Total posts:', posts.length);
   console.log('Total pages:', totalPages);
   console.log('Current page:', currentPage);
@@ -124,7 +120,6 @@ const VimBlog: React.FC = () => {
         <SubscribeButton />
       </div>
 
-      {/* Tags section - will be implemented when tags are added to blogs.md */}
       <div className="mb-4">
         {/* Tags will be rendered here */}
       </div>
@@ -135,8 +130,7 @@ const VimBlog: React.FC = () => {
         <div className="text-terminal-error">{error}</div>
       ) : (
         <div className="flex flex-col h-full">
-          {/* Blog posts in a scrollable container */}
-          <div className="flex-grow overflow-y-auto mb-4" style={{ height: "calc(100vh - 280px)" }}>
+          <ScrollArea className="flex-grow mb-4" style={{ height: "calc(100vh - 280px)" }}>
             {posts.length === 0 ? (
               <div className="text-terminal-muted">No blog posts found. Please check the blogs.md file.</div>
             ) : (
@@ -167,11 +161,10 @@ const VimBlog: React.FC = () => {
                 ))}
               </ul>
             )}
-          </div>
+          </ScrollArea>
 
-          {/* Pagination at bottom of the container */}
           {totalPages > 1 && (
-            <div className="mt-auto py-3 bg-terminal-background border-t border-terminal-border sticky bottom-0">
+            <div className="mt-auto py-3 bg-terminal-background border-t border-terminal-border">
               <Pagination>
                 <PaginationContent className="flex justify-center gap-2">
                   {currentPage > 1 && (
