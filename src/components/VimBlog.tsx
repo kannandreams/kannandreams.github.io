@@ -62,12 +62,15 @@ const VimBlog: React.FC = () => {
       ) : (
         <ul className="space-y-3">
           {posts.map(post => (
-            <li key={post.id}>
+            <li key={post.id} className="flex items-baseline gap-2">
+              <span className="text-terminal-muted">
+                {format(new Date(post.created), "MMM yyyy")}:
+              </span>
               <a
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-terminal-foreground hover:text-terminal-accent transition-colors"
+                className="text-white hover:text-terminal-accent transition-colors"
               >
                 {post.title}
               </a>
