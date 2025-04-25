@@ -1,6 +1,5 @@
-
 import React from "react";
-import { Send, Mail, User, MessageSquare } from "lucide-react";
+import { Send, Mail, User, MessageSquare, Phone, Globe, Linkedin, Github } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -74,7 +73,6 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
       </div>
       
       {isActive ? (
-        // Insert Mode - Show Email Form
         <form onSubmit={form.handleSubmit(handleSubmit)} className="p-4 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
@@ -138,7 +136,6 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
           </div>
         </form>
       ) : (
-        // Normal Mode - Show Contact Information
         <div className="p-4 space-y-3">
           <p className="text-terminal-muted text-[0.91rem] italic mb-3">
             Type <span className="text-terminal-accent">'i'</span> to enter insert mode and compose an email.
