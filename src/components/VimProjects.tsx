@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Briefcase, ExternalLink, Code, Calendar } from 'lucide-react';
+import { Briefcase, ExternalLink, Github } from 'lucide-react';
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
 
 interface Project {
   id: string;
@@ -48,15 +49,24 @@ const VimProjects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeProject, setActiveProject] = useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     setLoading(true);
     fetchProjects()
-      .then(setProjects)
+      .then((fetchedProjects) => {
+        setProjects(fetchedProjects);
+        // Select the first project by default
+        if (fetchedProjects.length > 0) {
+          setSelectedProject(fetchedProjects[0]);
+        }
+      })
       .catch(() => setError("Failed to load projects"))
       .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <div className="text-terminal-info">Loading...</div>;
+  if (error) return <div className="text-terminal-error">{error}</div>;
 
   return (
     <div className="vim-projects animate-fade-in">
@@ -65,67 +75,82 @@ const VimProjects: React.FC = () => {
         <h2 className="text-terminal-accent text-xl font-semibold">Recent Side Projects</h2>
       </div>
 
-      {loading ? (
-        <div className="text-terminal-info">Loading...</div>
-      ) : error ? (
-        <div className="text-terminal-error">{error}</div>
-      ) : (
-        <div className="space-y-4">
-          {projects.map((project, index) => (
-            <div 
-              key={project.id}
-              className={`
-                p-4 rounded-md transition-all duration-300 cursor-pointer
-                ${activeProject === index ? 'bg-terminal-border/40' : 'bg-terminal-border/10 hover:bg-terminal-border/20'}
-                ${index === 0 ? 'border-l-2 border-terminal-accent' : ''}
-              `}
-              onClick={() => setActiveProject(activeProject === index ? null : index)}
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
+      <ResizablePanelGroup direction="horizontal">
+        {/* Left Panel - Project List */}
+        <ResizablePanel defaultSize={40}>
+          <div className="h-[600px] overflow-y-auto border-r border-terminal-border">
+            {projects.map((project) => (
+              <div
+                key={project.id}
+                onClick={() => setSelectedProject(project)}
+                className={`p-4 cursor-pointer transition-colors ${
+                  selectedProject?.id === project.id
+                    ? 'bg-terminal-border/40 border-l-2 border-terminal-accent'
+                    : 'hover:bg-terminal-border/20'
+                }`}
+              >
                 <h3 className="text-terminal-primary font-medium">{project.title}</h3>
-                
-                <div className="flex items-center space-x-3 text-terminal-muted text-sm mt-2 md:mt-0">
-                  <span className="flex items-center">
-                    <Calendar size={14} className="mr-1" />
-                    {project.date}
-                  </span>
-                  
-                  <a 
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center text-terminal-accent hover:underline"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <Code size={14} className="mr-1" />
-                    Code
-                  </a>
-                </div>
+                <p className="text-sm text-terminal-muted mt-1">{project.date}</p>
               </div>
-              
-              {activeProject === index && (
-                <div className="mt-3 animate-slide-up">
-                  <p className="text-terminal-foreground mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <span 
-                        key={techIndex}
-                        className="px-2 py-1 text-xs bg-terminal-border/30 text-terminal-primary rounded"
+            ))}
+          </div>
+        </ResizablePanel>
+
+        {/* Resizable Handle */}
+        <ResizableHandle withHandle />
+
+        {/* Right Panel - Project Details */}
+        <ResizablePanel defaultSize={60}>
+          <div className="h-[600px] overflow-y-auto p-6">
+            {selectedProject ? (
+              <div className="space-y-6">
+                <div>
+                  <h2 className="text-2xl font-semibold text-terminal-primary mb-2">
+                    {selectedProject.title}
+                  </h2>
+                  <p className="text-terminal-foreground">
+                    {selectedProject.description}
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-terminal-accent mb-2">Tech Stack</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.technologies.map((tech, index) => (
+                        <span
+                          key={index}
+                          className="px-3 py-1 bg-terminal-border/30 text-terminal-primary rounded-md text-sm"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    {selectedProject.repo && (
+                      <a
+                        href={selectedProject.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center space-x-2 text-terminal-accent hover:underline"
                       >
-                        {tech}
-                      </span>
-                    ))}
+                        <Github size={16} />
+                        <span>View Source</span>
+                      </a>
+                    )}
                   </div>
                 </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-
-      <div className="text-terminal-muted text-sm italic mt-6">
-        <p>Click on a project to expand/collapse details.</p>
-      </div>
+              </div>
+            ) : (
+              <div className="text-terminal-muted text-center pt-10">
+                Select a project to view details
+              </div>
+            )}
+          </div>
+        </ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   );
 };
