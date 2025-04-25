@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Briefcase, ExternalLink, Github } from 'lucide-react';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Project {
   id: string;
@@ -78,21 +79,23 @@ const VimProjects: React.FC = () => {
       <ResizablePanelGroup direction="horizontal">
         {/* Left Panel - Project List */}
         <ResizablePanel defaultSize={40}>
-          <div className="h-[600px] overflow-y-auto border-r border-terminal-border">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                onClick={() => setSelectedProject(project)}
-                className={`p-4 cursor-pointer transition-colors ${
-                  selectedProject?.id === project.id
-                    ? 'bg-terminal-border/40 border-l-2 border-terminal-accent'
-                    : 'hover:bg-terminal-border/20'
-                }`}
-              >
-                <h3 className="text-terminal-primary font-medium">{project.title}</h3>
-              </div>
-            ))}
-          </div>
+          <ScrollArea className="h-[600px]">
+            <div className="border-r border-terminal-border">
+              {projects.map((project) => (
+                <div
+                  key={project.id}
+                  onClick={() => setSelectedProject(project)}
+                  className={`p-4 cursor-pointer transition-colors ${
+                    selectedProject?.id === project.id
+                      ? 'bg-terminal-border/40 border-l-2 border-terminal-accent'
+                      : 'hover:bg-terminal-border/20'
+                  }`}
+                >
+                  <h3 className="text-terminal-primary font-medium">{project.title}</h3>
+                </div>
+              ))}
+            </div>
+          </ScrollArea>
         </ResizablePanel>
 
         {/* Resizable Handle */}
@@ -100,65 +103,67 @@ const VimProjects: React.FC = () => {
 
         {/* Right Panel - Project Details */}
         <ResizablePanel defaultSize={60}>
-          <div className="h-[600px] overflow-y-auto p-6">
-            {selectedProject ? (
-              <div className="space-y-6">
-                <div>
-                  <h2 className="text-2xl font-semibold text-terminal-primary mb-2">
-                    {selectedProject.title}
-                  </h2>
-                  <p className="text-terminal-foreground">
-                    {selectedProject.description}
-                  </p>
-                </div>
-
-                <div className="space-y-4">
+          <ScrollArea className="h-[600px]">
+            <div className="p-6">
+              {selectedProject ? (
+                <div className="space-y-6">
                   <div>
-                    <h3 className="text-terminal-accent mb-2">Tech Stack</h3>
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech, index) => (
-                        <span
-                          key={index}
-                          className="px-3 py-1 bg-terminal-border/30 text-terminal-primary rounded-md text-sm"
+                    <h2 className="text-2xl font-semibold text-terminal-primary mb-2">
+                      {selectedProject.title}
+                    </h2>
+                    <p className="text-terminal-foreground">
+                      {selectedProject.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div>
+                      <h3 className="text-terminal-accent mb-2">Tech Stack</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProject.technologies.map((tech, index) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 bg-terminal-border/30 text-terminal-primary rounded-md text-sm"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col space-y-2">
+                      {selectedProject.repo && (
+                        <a
+                          href={selectedProject.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center space-x-2 text-terminal-accent hover:underline"
                         >
-                          {tech}
-                        </span>
-                      ))}
+                          <Github size={16} />
+                          <span>View Source</span>
+                        </a>
+                      )}
+                      {selectedProject.liveDemo && (
+                        <a
+                          href={selectedProject.liveDemo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center space-x-2 text-terminal-accent hover:underline"
+                        >
+                          <span>🌐</span>
+                          <span>Live Demo</span>
+                        </a>
+                      )}
                     </div>
                   </div>
-
-                  <div className="flex items-center space-x-4">
-                    {selectedProject.repo && (
-                      <a
-                        href={selectedProject.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 text-terminal-accent hover:underline"
-                      >
-                        <Github size={16} />
-                        <span>View Source</span>
-                      </a>
-                    )}
-                    {selectedProject.liveDemo && (
-                      <a
-                        href={selectedProject.liveDemo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center space-x-2 text-terminal-accent hover:underline"
-                      >
-                        <span>🌐</span>
-                        <span>Live Demo</span>
-                      </a>
-                    )}
-                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="text-terminal-muted text-center pt-10">
-                Select a project to view details
-              </div>
-            )}
-          </div>
+              ) : (
+                <div className="text-terminal-muted text-center pt-10">
+                  Select a project to view details
+                </div>
+              )}
+            </div>
+          </ScrollArea>
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
