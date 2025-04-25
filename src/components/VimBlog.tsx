@@ -146,16 +146,16 @@ const VimBlog: React.FC = () => {
             )}
           </div>
 
-          {/* Pagination section - always show when more than one page exists */}
+          {/* Fixed pagination section - always visible when needed */}
           {totalPages > 1 && (
-            <div className="py-4 mt-auto border-t border-terminal-border">
+            <div className="py-2 mt-auto border-t border-terminal-border bg-terminal-background">
               <Pagination>
                 <PaginationContent>
                   {currentPage > 1 && (
                     <PaginationItem>
                       <PaginationPrevious
                         onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                        className="cursor-pointer bg-terminal-border hover:bg-terminal-muted text-terminal-foreground"
+                        className="cursor-pointer bg-terminal-border text-terminal-foreground hover:bg-terminal-muted hover:text-terminal-accent"
                       />
                     </PaginationItem>
                   )}
@@ -165,7 +165,11 @@ const VimBlog: React.FC = () => {
                       <PaginationLink
                         onClick={() => setCurrentPage(page)}
                         isActive={currentPage === page}
-                        className="cursor-pointer bg-terminal-border hover:bg-terminal-muted text-terminal-foreground"
+                        className={`cursor-pointer ${
+                          currentPage === page 
+                            ? "bg-terminal-accent text-terminal-background" 
+                            : "bg-terminal-border text-terminal-foreground hover:bg-terminal-muted"
+                        }`}
                       >
                         {page}
                       </PaginationLink>
@@ -176,7 +180,7 @@ const VimBlog: React.FC = () => {
                     <PaginationItem>
                       <PaginationNext
                         onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                        className="cursor-pointer bg-terminal-border hover:bg-terminal-muted text-terminal-foreground"
+                        className="cursor-pointer bg-terminal-border text-terminal-foreground hover:bg-terminal-muted hover:text-terminal-accent"
                       />
                     </PaginationItem>
                   )}
