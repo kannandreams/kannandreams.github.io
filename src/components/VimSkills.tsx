@@ -1,55 +1,114 @@
-import React, { useState } from 'react';
-import { useIsMobile } from '@/hooks/use-mobile';
-import { Code, Database, Settings, Laptop, Palette } from 'lucide-react';
-import SkillCard from './SkillCard';
-import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon } from './TechIcons';
 
-const skillsData = [
-  {
-    category: 'Frontend Development',
-    icon: <Code size={18} className="text-terminal-primary" />,
-    skills: [
-      { name: 'JavaScript', level: "Expert", years: 5, icon: <JavaScriptIcon /> },
-      { name: 'TypeScript', level: "Expert", years: 4, icon: <TypeScriptIcon /> },
-      { name: 'React', level: "Expert", years: 4, icon: <ReactIcon /> },
-      { name: 'Vue.js', level: "Advanced", years: 2, icon: <ReactIcon /> },
-    ]
-  },
-  {
-    category: 'Backend Development',
-    icon: <Database size={18} className="text-terminal-primary" />,
-    skills: [
-      { name: 'Node.js', level: "Expert", years: 4, icon: <NodeIcon /> },
-      { name: 'Python', level: "Advanced", years: 3, icon: <PythonIcon /> },
-      { name: 'PostgreSQL', level: "Advanced", years: 3, icon: <PostgresIcon /> },
-    ]
-  },
-  {
-    category: 'UI/UX Design',
-    icon: <Palette size={18} className="text-terminal-primary" />,
-    skills: [
-      { name: 'Figma', level: "Expert", years: 3, icon: <FigmaIcon /> },
-      { name: 'Responsive Design', level: "Expert", years: 5, icon: <Laptop className="h-4 w-4 text-blue-400" /> },
-    ]
-  },
-] as const;
+import React, { useState, useEffect } from 'react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import { Code, Database, Palette } from 'lucide-react';
+import SkillCard from './SkillCard';
+import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop } from './TechIcons';
+
+interface Skill {
+  name: string;
+  level: "Expert" | "Advanced" | "Intermediate";
+  years: number;
+  icon: string;
+}
+
+interface SkillCategory {
+  category: string;
+  icon: React.ReactNode;
+  skills: Skill[];
+}
+
+const getIconComponent = (iconName: string) => {
+  const icons: { [key: string]: React.ReactNode } = {
+    JavaScript: <JavaScriptIcon />,
+    TypeScript: <TypeScriptIcon />,
+    React: <ReactIcon />,
+    Node: <NodeIcon />,
+    Python: <PythonIcon />,
+    Postgres: <PostgresIcon />,
+    Figma: <FigmaIcon />,
+    Laptop: <Laptop className="h-4 w-4 text-blue-400" />
+  };
+  return icons[iconName];
+};
+
+const getCategoryIcon = (category: string) => {
+  switch (category) {
+    case "Frontend Development":
+      return <Code size={18} className="text-terminal-primary" />;
+    case "Backend Development":
+      return <Database size={18} className="text-terminal-primary" />;
+    case "UI/UX Design":
+      return <Palette size={18} className="text-terminal-primary" />;
+    default:
+      return <Code size={18} className="text-terminal-primary" />;
+  }
+};
+
+async function fetchSkills(): Promise<SkillCategory[]> {
+  try {
+    const response = await fetch('/src/data/skills.md');
+    const text = await response.text();
+    
+    const categories: SkillCategory[] = [];
+    const sections = text.split('## ').slice(1);
+    
+    sections.forEach(section => {
+      const lines = section.trim().split('\n');
+      const category = lines[0];
+      const skills: Skill[] = [];
+      
+      lines.slice(1).forEach(line => {
+        if (line.trim()) {
+          const [name, level, years, icon] = line.split(',');
+          skills.push({
+            name,
+            level: level as "Expert" | "Advanced" | "Intermediate",
+            years: parseInt(years),
+            icon
+          });
+        }
+      });
+      
+      categories.push({
+        category,
+        icon: getCategoryIcon(category),
+        skills
+      });
+    });
+    
+    return categories;
+  } catch (error) {
+    console.error('Error fetching skills:', error);
+    return [];
+  }
+}
 
 const VimSkills: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    fetchSkills().then(setSkillCategories);
+  }, []);
+
+  if (skillCategories.length === 0) {
+    return <div className="text-terminal-info">Loading...</div>;
+  }
 
   return (
     <div className="vim-skills animate-fade-in">
       <div className="flex items-center space-x-2 mb-6">
-        {skillsData[activeTab].icon}
+        {skillCategories[activeTab]?.icon}
         <h2 className="text-terminal-accent text-xl font-semibold">
-          {skillsData[activeTab].category}
+          {skillCategories[activeTab]?.category}
         </h2>
       </div>
 
       <div className="mb-6">
         <div className="flex flex-wrap gap-2 mb-4">
-          {skillsData.map((category, index) => (
+          {skillCategories.map((category, index) => (
             <button
               key={index}
               onClick={() => setActiveTab(index)}
@@ -66,13 +125,13 @@ const VimSkills: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {skillsData[activeTab].skills.map((skill, index) => (
+          {skillCategories[activeTab]?.skills.map((skill, index) => (
             <SkillCard
               key={index}
               name={skill.name}
               level={skill.level}
               years={skill.years}
-              icon={skill.icon}
+              icon={getIconComponent(skill.icon)}
             />
           ))}
         </div>
