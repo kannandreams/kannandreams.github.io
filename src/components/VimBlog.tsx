@@ -20,42 +20,64 @@ interface BlogPost {
   tags?: string[];
 }
 
+// This is the blog data since we're having trouble loading it from the file
+const BLOG_POSTS: BlogPost[] = [
+  {
+    id: "1",
+    title: "The AI Paradox",
+    created: "2025-04",
+    excerpt: "Balancing Progress and People in an AI-Driven World",
+    url: "https://eggpuffengineer.substack.com/p/the-ai-paradox"
+  },
+  {
+    id: "2",
+    title: "How the Priming Effect Shapes Engineers: The Hidden Biases in Our Decisions",
+    created: "2025-03",
+    excerpt: "Explore how the priming effect subtly shapes engineers and their decision-making in different context",
+    url: "https://eggpuffengineer.substack.com/p/how-the-priming-effect-shapes-engineers"
+  },
+  {
+    id: "3",
+    title: "How WebAssembly is reshaping Data & AI",
+    created: "2025-03",
+    excerpt: "WebAssembly is now gaining traction in the data world, thanks to its performance advantages, portability, and security",
+    url: "https://eggpuffengineer.substack.com/p/the-wasm-edge-how-webassembly-is"
+  },
+  {
+    id: "4",
+    title: "LLMAnalytics: Beyond Clicks and Views",
+    created: "2025-03",
+    excerpt: "Exploring new methods, modeling, and experimentation for LLM Analytics",
+    url: "https://eggpuffengineer.substack.com/p/llmanalytics-beyond-clicks-and-views"
+  },
+  {
+    id: "5",
+    title: "Engineering Challenges in Building NLP-Driven UI/UX",
+    created: "2025-03",
+    excerpt: "Traditional search-based and form-driven UI paradigms are rapidly being replaced by conversational, dynamic, and intent-aware interfaces.",
+    url: "https://eggpuffengineer.substack.com/p/engineering-challenges-in-building"
+  },
+  {
+    id: "6",
+    title: "Why Pi-Shaped Engineering Teams Matter in This AI Era",
+    created: "2025-03",
+    excerpt: "This post was born from a frustration: the persistent myth that data engineers are merely 'pipeline builders.'",
+    url: "https://eggpuffengineer.substack.com/p/are-you-building-pi-shaped-teams"
+  },
+  {
+    id: "7",
+    title: "Engineering Challenges in Building NLP-Driven UI/UX",
+    created: "2025-03",
+    excerpt: "Traditional search-based and form-driven UI paradigms are rapidly being replaced by conversational, dynamic, and intent-aware interfaces.",
+    url: "https://eggpuffengineer.substack.com/p/engineering-challenges-in-building"
+  }
+];
+
 async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
-    // Change the path to use relative path that works in the browser
-    const response = await fetch('./src/data/blogs.md');
-    
-    // For debugging
-    console.log('Blog fetch response status:', response.status);
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    
-    const text = await response.text();
-    console.log('Blog content fetched, length:', text.length);
-    
-    const posts: BlogPost[] = [];
-    const sections = text.split('## ').slice(1); // Skip the header
-    
-    sections.forEach((section, index) => {
-      const lines = section.trim().split('\n');
-      const title = lines[0];
-      const date = lines[1];
-      const excerpt = lines[2];
-      const url = lines[3];
-      
-      posts.push({
-        id: String(index),
-        title,
-        url,
-        created: date,
-        excerpt
-      });
-    });
-    
-    console.log('Parsed blog posts:', posts.length);
-    return posts;
+    console.log('Using hardcoded blog posts instead of fetching from file');
+    // Return the hardcoded blog posts
+    return BLOG_POSTS;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
     return [];
@@ -112,13 +134,13 @@ const VimBlog: React.FC = () => {
       ) : error ? (
         <div className="text-terminal-error">{error}</div>
       ) : (
-        <div className="flex flex-col" style={{ height: "calc(100vh - 180px)" }}>
-          {/* Blog posts container with fixed height to ensure pagination is visible */}
-          <div className="overflow-y-auto mb-4" style={{ maxHeight: "calc(100vh - 250px)" }}>
+        <div className="flex flex-col h-full">
+          {/* Blog posts in a scrollable container */}
+          <div className="flex-grow overflow-y-auto mb-4" style={{ height: "calc(100vh - 280px)" }}>
             {posts.length === 0 ? (
               <div className="text-terminal-muted">No blog posts found. Please check the blogs.md file.</div>
             ) : (
-              <ul className="space-y-4 mb-4">
+              <ul className="space-y-4 mb-4 pr-2">
                 {currentPosts.map(post => (
                   <li key={post.id} className="border-b border-terminal-border pb-4 last:border-0">
                     <a
@@ -147,9 +169,9 @@ const VimBlog: React.FC = () => {
             )}
           </div>
 
-          {/* Fixed position pagination outside of scroll container */}
+          {/* Pagination at bottom of the container */}
           {totalPages > 1 && (
-            <div className="py-3 bg-terminal-background border-t-2 border-terminal-border">
+            <div className="mt-auto py-3 bg-terminal-background border-t border-terminal-border sticky bottom-0">
               <Pagination>
                 <PaginationContent className="flex justify-center gap-2">
                   {currentPage > 1 && (
