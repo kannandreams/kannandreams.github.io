@@ -2,13 +2,13 @@
 # Projects
 
 ## Vim Portfolio Terminal
-2025-04-01
+2025-04
 A terminal-based portfolio website with Vim-inspired navigation and commands. Built with React and TypeScript.
 https://github.com/yourusername/vim-portfolio
 React, TypeScript, Tailwind CSS
 
 ## E-Commerce Platform
-2024-12-15
+2024-12
 A full-featured e-commerce platform with product management, cart functionality, and payment processing.
 https://github.com/yourusername/ecommerce
 React, Node.js, Express, MongoDB, Stripe
