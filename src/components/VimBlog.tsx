@@ -112,8 +112,9 @@ const VimBlog: React.FC = () => {
       ) : error ? (
         <div className="text-terminal-error">{error}</div>
       ) : (
-        <div className="flex flex-col h-full">
-          <div className="flex-grow overflow-y-auto mb-4 max-h-[calc(100vh-300px)]">
+        <div className="flex flex-col" style={{ height: "calc(100vh - 180px)" }}>
+          {/* Blog posts container with fixed height to ensure pagination is visible */}
+          <div className="overflow-y-auto mb-4" style={{ maxHeight: "calc(100vh - 250px)" }}>
             {posts.length === 0 ? (
               <div className="text-terminal-muted">No blog posts found. Please check the blogs.md file.</div>
             ) : (
@@ -146,16 +147,16 @@ const VimBlog: React.FC = () => {
             )}
           </div>
 
-          {/* Make sure pagination is always visible when needed with distinct styling */}
+          {/* Fixed position pagination outside of scroll container */}
           {totalPages > 1 && (
-            <div className="sticky bottom-0 py-3 mt-auto border-t border-terminal-border bg-terminal-background">
+            <div className="py-3 bg-terminal-background border-t-2 border-terminal-border">
               <Pagination>
                 <PaginationContent className="flex justify-center gap-2">
                   {currentPage > 1 && (
                     <PaginationItem>
                       <PaginationPrevious
                         onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                        className="cursor-pointer bg-terminal-border hover:bg-terminal-accent hover:text-terminal-background transition-colors text-terminal-foreground"
+                        className="cursor-pointer bg-terminal-accent text-terminal-background hover:bg-terminal-border hover:text-terminal-foreground transition-colors px-3 py-1.5"
                       />
                     </PaginationItem>
                   )}
@@ -165,10 +166,10 @@ const VimBlog: React.FC = () => {
                       <PaginationLink
                         onClick={() => setCurrentPage(page)}
                         isActive={currentPage === page}
-                        className={`cursor-pointer min-w-[2rem] flex items-center justify-center ${
+                        className={`cursor-pointer min-w-[2.5rem] h-[2.5rem] flex items-center justify-center ${
                           currentPage === page 
                             ? "bg-terminal-accent text-terminal-background font-bold" 
-                            : "bg-terminal-border text-terminal-foreground hover:bg-terminal-muted hover:text-terminal-accent"
+                            : "bg-terminal-border text-terminal-foreground hover:bg-terminal-accent hover:text-terminal-background"
                         } transition-colors`}
                       >
                         {page}
@@ -180,7 +181,7 @@ const VimBlog: React.FC = () => {
                     <PaginationItem>
                       <PaginationNext
                         onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                        className="cursor-pointer bg-terminal-border text-terminal-foreground hover:bg-terminal-accent hover:text-terminal-background transition-colors"
+                        className="cursor-pointer bg-terminal-accent text-terminal-background hover:bg-terminal-border hover:text-terminal-foreground transition-colors px-3 py-1.5"
                       />
                     </PaginationItem>
                   )}
