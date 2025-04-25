@@ -9,18 +9,7 @@ interface SkillCardProps {
   lineNumber: number;
 }
 
-const SkillCard: React.FC<SkillCardProps> = ({ name, level, years, icon, lineNumber }) => {
-  const getLevelColor = () => {
-    switch (level) {
-      case "Expert":
-        return "text-purple-400";
-      case "Advanced":
-        return "text-blue-400";
-      case "Intermediate":
-        return "text-gray-400";
-    }
-  };
-
+const SkillCard: React.FC<SkillCardProps> = ({ name, icon, lineNumber }) => {
   return (
     <div className="flex items-center group hover:bg-terminal-border/20 transition-colors py-1">
       <div className="w-12 text-right pr-4 text-terminal-muted select-none text-sm">
@@ -31,8 +20,6 @@ const SkillCard: React.FC<SkillCardProps> = ({ name, level, years, icon, lineNum
           {icon}
         </span>
         <span className="text-terminal-foreground">{name}</span>
-        <span className={`${getLevelColor()} text-sm`}>[{level}]</span>
-        <span className="text-terminal-muted text-sm">{years}y</span>
       </div>
     </div>
   );
