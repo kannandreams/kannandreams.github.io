@@ -1,5 +1,5 @@
 import React from "react";
-import { Ban, Mail, User, MessageSquare, Phone, Globe, Linkedin, Github } from "lucide-react";
+import { Ban, Mail, User, MessageSquare, Globe, Linkedin, Github } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -150,10 +150,6 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
                 <div className="flex items-center gap-2">
                   <Mail size={16} className="text-terminal-accent" />
                   <span className="text-white">email@example.com</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone size={16} className="text-terminal-accent" />
-                  <span className="text-white">(555) 123-4567</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Globe size={16} className="text-terminal-accent" />
