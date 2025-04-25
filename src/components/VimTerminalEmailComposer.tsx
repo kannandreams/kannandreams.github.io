@@ -1,7 +1,19 @@
 
 import React from "react";
-import { Send, Mail, Phone, Globe, Linkedin, Github } from "lucide-react";
+import { Send, Mail, User, MessageSquare } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+interface EmailFormData {
+  senderName: string;
+  senderEmail: string;
+  reason: string;
+  message: string;
+}
 
 interface VimTerminalEmailComposerProps {
   mode: "normal" | "insert";
@@ -19,6 +31,26 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
   alwaysVisible = false,
 }) => {
   const isActive = mode === "insert";
+  const form = useForm<EmailFormData>({
+    defaultValues: {
+      senderName: "",
+      senderEmail: "",
+      reason: "",
+      message: emailContent,
+    },
+  });
+
+  const handleSubmit = async (data: EmailFormData) => {
+    try {
+      // For now, we'll just show what would be sent
+      console.log("Form data to be sent:", data);
+      toast.success("Email functionality will be implemented with Resend API");
+      onSendEmail();
+    } catch (error) {
+      toast.error("Failed to send email");
+      console.error("Email send error:", error);
+    }
+  };
   
   return (
     <div
@@ -42,27 +74,69 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
       </div>
       
       {isActive ? (
-        // Insert Mode - Show Email Composer
-        <>
-          <Textarea
-            value={emailContent}
-            onChange={onEmailChange}
-            placeholder="Type your message here..."
-            className="bg-terminal-background border-terminal-muted text-white w-full h-44 focus:border-terminal-bright-green text-sm resize-none"
-            style={{ minHeight: 180, fontSize: "0.93rem" }}
-            autoFocus
-          />
+        // Insert Mode - Show Email Form
+        <form onSubmit={form.handleSubmit(handleSubmit)} className="p-4 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="senderName" className="text-white">
+                <User className="inline-block w-4 h-4 mr-2" />
+                Name
+              </Label>
+              <Input
+                id="senderName"
+                className="bg-terminal-background border-terminal-muted text-white"
+                {...form.register("senderName")}
+                required
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="senderEmail" className="text-white">
+                <Mail className="inline-block w-4 h-4 mr-2" />
+                Email
+              </Label>
+              <Input
+                id="senderEmail"
+                type="email"
+                className="bg-terminal-background border-terminal-muted text-white"
+                {...form.register("senderEmail")}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="reason" className="text-white">
+              <MessageSquare className="inline-block w-4 h-4 mr-2" />
+              Reason for Contact (Optional)
+            </Label>
+            <Input
+              id="reason"
+              className="bg-terminal-background border-terminal-muted text-white"
+              {...form.register("reason")}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="message" className="text-white">Message</Label>
+            <Textarea
+              id="message"
+              className="bg-terminal-background border-terminal-muted text-white w-full h-44 focus:border-terminal-bright-green text-sm resize-none"
+              {...form.register("message")}
+              required
+            />
+          </div>
+
           <div className="flex items-center justify-between mt-2">
-            <p className="text-terminal-muted text-xs">Press ESC to exit insert mode and send</p>
+            <p className="text-terminal-muted text-xs">Press ESC to exit insert mode</p>
             <button
-              onClick={onSendEmail}
+              type="submit"
               className="flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-terminal-muted bg-terminal-muted/10 hover:bg-terminal-muted/20 text-terminal-bright-green"
             >
               <Send size={14} />
               <span>Send</span>
             </button>
           </div>
-        </>
+        </form>
       ) : (
         // Normal Mode - Show Contact Information
         <div className="p-4 space-y-3">
