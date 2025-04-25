@@ -11,7 +11,6 @@ Kafka,Advanced,10+,Kafka
 Iceberg,Advanced,10+,Iceberg
 Trino,Advanced,10+,Trino
 Containerization,Advanced,10+,Docker
-GitOps,Advanced,10+,Github
 Terraform,Advanced,5+,Terraform
 CI/CD,Advanced,10+,Jenkins
 
