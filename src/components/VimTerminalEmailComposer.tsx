@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Send, Mail, User, MessageSquare, Phone, Globe, Linkedin, Github } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
@@ -6,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Resend } from 'resend';
 
 interface EmailFormData {
   senderName: string;
@@ -30,6 +32,9 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
   alwaysVisible = false,
 }) => {
   const isActive = mode === "insert";
+  const [apiKey, setApiKey] = useState<string>("");
+  const [showApiKeyInput, setShowApiKeyInput] = useState<boolean>(false);
+  
   const form = useForm<EmailFormData>({
     defaultValues: {
       senderName: "",
@@ -41,12 +46,42 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
 
   const handleSubmit = async (data: EmailFormData) => {
     try {
-      // For now, we'll just show what would be sent
-      console.log("Form data to be sent:", data);
-      toast.success("Email functionality will be implemented with Resend API");
-      onSendEmail();
+      // If no API key is provided, prompt the user
+      if (!apiKey && !showApiKeyInput) {
+        setShowApiKeyInput(true);
+        return;
+      }
+      
+      if (apiKey) {
+        const resend = new Resend(apiKey);
+        
+        toast.loading("Sending email...");
+        
+        const response = await resend.emails.send({
+          from: 'onboarding@resend.dev', // Use a verified domain on Resend
+          to: 'your-email@example.com', // Replace with your receiving email
+          subject: `New message from ${data.senderName}: ${data.reason || 'Website Contact Form'}`,
+          html: `
+            <h2>New message from your website</h2>
+            <p><strong>From:</strong> ${data.senderName} (${data.senderEmail})</p>
+            <p><strong>Reason:</strong> ${data.reason || 'Not specified'}</p>
+            <hr />
+            <p>${data.message.replace(/\n/g, '<br />')}</p>
+          `
+        });
+        
+        if (response.error) {
+          throw new Error(response.error.message);
+        }
+        
+        toast.dismiss();
+        toast.success("Email sent successfully!");
+        onSendEmail();
+        form.reset();
+      }
     } catch (error) {
-      toast.error("Failed to send email");
+      toast.dismiss();
+      toast.error(error instanceof Error ? error.message : "Failed to send email");
       console.error("Email send error:", error);
     }
   };
@@ -74,6 +109,27 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
       
       {isActive ? (
         <form onSubmit={form.handleSubmit(handleSubmit)} className="p-4 space-y-4">
+          {showApiKeyInput && (
+            <div className="space-y-2">
+              <Label htmlFor="apiKey" className="text-white">
+                <span className="inline-block mr-2">🔑</span>
+                Resend API Key (Temporary for demo)
+              </Label>
+              <Input
+                id="apiKey"
+                type="password"
+                className="bg-terminal-background border-terminal-muted text-white"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                placeholder="Enter your Resend API key here..."
+                required={showApiKeyInput}
+              />
+              <p className="text-terminal-muted text-xs">
+                For production, use a more secure method like Supabase Edge Functions
+              </p>
+            </div>
+          )}
+        
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="senderName" className="text-white">
@@ -131,7 +187,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
               className="flex items-center gap-1 text-xs px-2 py-1 rounded-md border border-terminal-muted bg-terminal-muted/10 hover:bg-terminal-muted/20 text-terminal-bright-green"
             >
               <Send size={14} />
-              <span>Send</span>
+              <span>{showApiKeyInput && !apiKey ? "Continue" : "Send"}</span>
             </button>
           </div>
         </form>
