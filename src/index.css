@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,6 +77,10 @@
     @apply p-4 pt-16 pb-2 overflow-y-auto overflow-x-hidden;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
     scroll-padding-top: 5rem; /* Increase padding to ensure content is visible */
+  }
+
+  .recruiter-mode-body {
+    overflow: hidden !important;
   }
 
   .terminal-prompt {
@@ -186,6 +191,7 @@
     border-radius: 3px 3px 3px 3px;
     padding-top: 0.3em;
     box-shadow: none;
+    overflow: hidden;
   }
   .email-composer input, .email-composer textarea {
     color: #fff !important;

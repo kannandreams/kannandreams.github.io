@@ -57,7 +57,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
         fontFamily: "'JetBrains Mono', monospace",
         marginTop: "0.25rem",
         maxHeight: "calc(100vh - 220px)",
-        overflow: "hidden",
+        overflow: "hidden"
       }}
     >
       <div className="flex items-center">
@@ -143,7 +143,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
         </form>
       ) : (
         mode === "normal" && (
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-3 overflow-hidden">
             <p className="text-terminal-muted text-[0.91rem] italic mb-3">
               Type <span className="text-terminal-accent">'i'</span> to enter insert mode and compose an email.
             </p>

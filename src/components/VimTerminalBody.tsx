@@ -1,3 +1,4 @@
+
 import React from "react";
 import VimSkills from "./VimSkills";
 import VimProjects from "./VimProjects";
@@ -32,7 +33,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   // In recruiter mode, render the appropriate section based on activeSection
   if (!devMode) {
     return (
-      <div className="terminal-body recruiter-mode-body p-4" ref={terminalBodyRef}>
+      <div className="terminal-body recruiter-mode-body p-4 overflow-hidden" ref={terminalBodyRef}>
         {activeSection === "skills" && <VimSkills />}
         {activeSection === "projects" && <VimProjects />}
         {activeSection === "help" && <VimHelp activeSection="help" />}
