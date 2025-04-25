@@ -83,14 +83,14 @@ const VimBlog: React.FC = () => {
   }, [selectedTag, posts]);
 
   return (
-    <div className="flex flex-col h-[calc(100vh-200px)]">
-      <div className="space-y-4">
-        <div className="flex items-center justify-between mb-4">
+    <div className="flex flex-col h-full">
+      <div className="space-y-4 mb-4">
+        <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold text-terminal-accent">Latest Blog Posts</h2>
           <SubscribeButton />
         </div>
 
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2">
           <Tag className="text-terminal-muted" />
           <Select value={selectedTag} onValueChange={setSelectedTag}>
             <SelectTrigger className="w-[180px]">
@@ -113,8 +113,8 @@ const VimBlog: React.FC = () => {
       ) : error ? (
         <div className="text-terminal-error">{error}</div>
       ) : (
-        <ScrollArea className="flex-grow">
-          <ul className="space-y-4">
+        <ScrollArea className="flex-1 min-h-0 overflow-y-auto">
+          <ul className="space-y-4 pb-4">
             {filteredPosts.map(post => (
               <li key={post.id} className="border-b border-terminal-border pb-4 last:border-0">
                 <a
