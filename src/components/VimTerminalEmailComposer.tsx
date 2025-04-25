@@ -37,7 +37,6 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
         fontFamily: "'JetBrains Mono', monospace",
         marginTop: "0.25rem",
         height: "auto",
-        maxHeight: "calc(100vh - 240px)",
         overflow: "hidden"
       }}
     >

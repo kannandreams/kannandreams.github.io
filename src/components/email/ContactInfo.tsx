@@ -4,7 +4,7 @@ import { Mail, Globe, Linkedin, Github } from "lucide-react";
 
 const ContactInfo = () => {
   return (
-    <div className="p-4 space-y-3 overflow-hidden" style={{ maxHeight: "100%" }}>
+    <div className="p-4 space-y-3 overflow-hidden">
       <p className="text-terminal-muted text-[0.91rem] italic mb-3">
         Type <span className="text-terminal-accent">'i'</span> to enter insert mode and compose an email.
       </p>

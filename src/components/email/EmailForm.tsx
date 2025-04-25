@@ -29,7 +29,7 @@ const EmailForm = ({ onSubmit, emailContent }: EmailFormProps) => {
   });
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-4" style={{ overflow: "hidden" }}>
+    <form onSubmit={form.handleSubmit(onSubmit)} className="p-4 space-y-4 overflow-hidden">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="senderName" className="text-white">
