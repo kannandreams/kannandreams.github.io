@@ -30,3 +30,15 @@ https://eggpuffengineer.substack.com/p/engineering-challenges-in-building
 2025-03
 This post was born from a frustration: the persistent myth that data engineers are merely "pipeline builders."
 https://eggpuffengineer.substack.com/p/are-you-building-pi-shaped-teams
+
+## Think in Shapes: A Quick Visual Guide for Engineers
+2025-02
+The human brain processes images 60,000 times faster than text, and 90 per cent of the information transmitted to the brain is visual.
+https://eggpuffengineer.substack.com/p/think-in-shapes-a-visual-guide-for
+
+## How to Pick the Right Tech for Your Startup
+2025-02
+In the rapidly evolving technology landscape, product and service offerings can be categorized into three major types: Essentials, Enablers, and Accelerators.
+https://eggpuffengineer.substack.com/p/how-to-pick-the-right-tech-for-your
+
+
