@@ -21,7 +21,7 @@ https://eggpuffengineer.substack.com/p/the-wasm-edge-how-webassembly-is
 Exploring new methods, modeling, and experimentation for LLM Analytics
 https://eggpuffengineer.substack.com/p/llmanalytics-beyond-clicks-and-views
 
-## Engineering Challenges in Building NLP-Driven UI/UX [ Podcast Enabled ]
+## Engineering Challenges in Building NLP-Driven UI/UX
 2025-03
 Traditional search-based and form-driven UI paradigms are rapidly being replaced by conversational, dynamic, and intent-aware interfaces.
 https://eggpuffengineer.substack.com/p/engineering-challenges-in-building
@@ -30,3 +30,8 @@ https://eggpuffengineer.substack.com/p/engineering-challenges-in-building
 2025-03
 This post was born from a frustration: the persistent myth that data engineers are merely "pipeline builders."
 https://eggpuffengineer.substack.com/p/are-you-building-pi-shaped-teams
+
+## Engineering Challenges in Building NLP-Driven UI/UX
+2025-03
+Traditional search-based and form-driven UI paradigms are rapidly being replaced by conversational, dynamic, and intent-aware interfaces.
+https://eggpuffengineer.substack.com/p/engineering-challenges-in-building
