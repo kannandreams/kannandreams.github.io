@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Code, Database, Palette } from 'lucide-react';
+import { Code, Database, Palette, File } from 'lucide-react';
 import SkillCard from './SkillCard';
 import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop } from './TechIcons';
 
@@ -84,7 +83,7 @@ async function fetchSkills(): Promise<SkillCategory[]> {
   }
 }
 
-const VimSkills: React.FC = () => {
+const VimTerminalSkills: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
   const isMobile = useIsMobile();
@@ -99,50 +98,42 @@ const VimSkills: React.FC = () => {
 
   return (
     <div className="vim-skills animate-fade-in">
-      <div className="flex items-center space-x-2 mb-6">
-        {skillCategories[activeTab]?.icon}
-        <h2 className="text-terminal-accent text-xl font-semibold">
-          {skillCategories[activeTab]?.category}
-        </h2>
+      <div className="flex flex-wrap gap-0 mb-6">
+        {skillCategories.map((category, index) => (
+          <button
+            key={index}
+            onClick={() => setActiveTab(index)}
+            className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative ${
+              activeTab === index 
+                ? 'bg-terminal-border text-terminal-foreground border-x border-t border-terminal-border/40 rounded-t-md z-10' 
+                : 'bg-terminal-background text-terminal-muted border-b border-terminal-border/40 hover:text-terminal-foreground'
+            }`}
+          >
+            <File size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
+            <span>{isMobile ? category.category.split(' ')[0] : category.category}</span>
+          </button>
+        ))}
+        <div className="flex-grow border-b border-terminal-border/40" />
       </div>
 
-      <div className="mb-6">
-        <div className="flex flex-wrap gap-2 mb-6">
-          {skillCategories.map((category, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={`px-3 py-1.5 rounded-md flex items-center space-x-2 transition-colors ${
-                activeTab === index 
-                  ? 'bg-terminal-border text-terminal-foreground' 
-                  : 'bg-terminal-background hover:bg-terminal-border/30 text-terminal-muted'
-              }`}
-            >
-              {category.icon}
-              <span>{isMobile ? '' : category.category}</span>
-            </button>
-          ))}
-        </div>
-
-        <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
-          {skillCategories[activeTab]?.skills.map((skill, index) => (
-            <SkillCard
-              key={index}
-              name={skill.name}
-              level={skill.level}
-              years={skill.years}
-              icon={getIconComponent(skill.icon)}
-              lineNumber={index + 1}
-            />
-          ))}
-        </div>
+      <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
+        {skillCategories[activeTab]?.skills.map((skill, index) => (
+          <SkillCard
+            key={index}
+            name={skill.name}
+            level={skill.level}
+            years={skill.years}
+            icon={getIconComponent(skill.icon)}
+            lineNumber={index + 1}
+          />
+        ))}
       </div>
 
-      <div className="text-terminal-muted text-sm italic">
+      <div className="text-terminal-muted text-sm italic mt-4">
         <p>* Skill levels and years of experience are based on professional work and personal projects.</p>
       </div>
     </div>
   );
 };
 
-export default VimSkills;
+export default VimTerminalSkills;
