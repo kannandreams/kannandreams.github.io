@@ -73,7 +73,7 @@ const VimProjects: React.FC = () => {
     <div className="vim-projects animate-fade-in">
       <div className="flex items-center space-x-2 mb-6">
         <Briefcase className="text-terminal-secondary" />
-        <h2 className="text-terminal-accent text-xl font-semibold">Recent Side Projects</h2>
+        <h2 className="text-terminal-accent text-xl font-semibold">Recent Experiments</h2>
       </div>
 
       <ResizablePanelGroup direction="horizontal">
