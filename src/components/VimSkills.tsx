@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Code, Database, Palette, File } from 'lucide-react';
+import { Code, Database, Palette, File, X } from 'lucide-react';
 import SkillCard from './SkillCard';
 import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop } from './TechIcons';
 
@@ -103,7 +104,7 @@ const VimTerminalSkills: React.FC = () => {
           <button
             key={index}
             onClick={() => setActiveTab(index)}
-            className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative ${
+            className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative group ${
               activeTab === index 
                 ? 'bg-terminal-border text-terminal-foreground border-x border-t border-terminal-border/40 rounded-t-md z-10' 
                 : 'bg-terminal-background text-terminal-muted border-b border-terminal-border/40 hover:text-terminal-foreground'
@@ -111,6 +112,14 @@ const VimTerminalSkills: React.FC = () => {
           >
             <File size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
             <span>{isMobile ? category.category.split(' ')[0] : category.category}</span>
+            <X 
+              size={12} 
+              className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-terminal-muted hover:text-terminal-foreground" 
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent tab selection when clicking close
+                // Optional: Add logic to "close" the tab if needed
+              }}
+            />
           </button>
         ))}
         <div className="flex-grow border-b border-terminal-border/40" />
