@@ -41,4 +41,11 @@ https://eggpuffengineer.substack.com/p/think-in-shapes-a-visual-guide-for
 In the rapidly evolving technology landscape, product and service offerings can be categorized into three major types: Essentials, Enablers, and Accelerators.
 https://eggpuffengineer.substack.com/p/how-to-pick-the-right-tech-for-your
 
+## Service, Handlers and Controllers - Explained
+2023-02
+Service, handler, and controller
+https://eggpuffengineer.substack.com/p/service-handlers-controllers-in-go
 
+## Decades of Data Roles: My Journey to ML Engineer
+2019-12
+https://eggpuffengineer.substack.com/p/decades-of-data-my-journey-from-data
