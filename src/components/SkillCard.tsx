@@ -1,36 +1,39 @@
 
 import React from 'react';
-import { Badge } from "@/components/ui/badge";
 
 interface SkillCardProps {
   name: string;
   level: "Expert" | "Advanced" | "Intermediate";
   years: number;
   icon: React.ReactNode;
+  lineNumber: number;
 }
 
-const SkillCard: React.FC<SkillCardProps> = ({ name, level, years, icon }) => {
+const SkillCard: React.FC<SkillCardProps> = ({ name, level, years, icon, lineNumber }) => {
   const getLevelColor = () => {
     switch (level) {
       case "Expert":
-        return "bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 border-purple-500/20";
+        return "text-purple-400";
       case "Advanced":
-        return "bg-blue-500/10 text-blue-500 hover:bg-blue-500/20 border-blue-500/20";
+        return "text-blue-400";
       case "Intermediate":
-        return "bg-gray-500/10 text-gray-400 hover:bg-gray-500/20 border-gray-500/20";
+        return "text-gray-400";
     }
   };
 
   return (
-    <div className="group">
-      <Badge 
-        variant="outline"
-        className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-all ${getLevelColor()} hover:scale-105`}
-      >
-        {icon}
-        <span>{name}</span>
-        <span className="ml-auto text-xs opacity-60">{years}y</span>
-      </Badge>
+    <div className="flex items-center group hover:bg-terminal-border/20 transition-colors py-1">
+      <div className="w-12 text-right pr-4 text-terminal-muted select-none text-sm">
+        {lineNumber}
+      </div>
+      <div className="flex items-center gap-3">
+        <span className="w-5 h-5 flex items-center justify-center">
+          {icon}
+        </span>
+        <span className="text-terminal-foreground">{name}</span>
+        <span className={`${getLevelColor()} text-sm`}>[{level}]</span>
+        <span className="text-terminal-muted text-sm">{years}y</span>
+      </div>
     </div>
   );
 };

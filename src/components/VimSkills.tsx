@@ -124,7 +124,7 @@ const VimSkills: React.FC = () => {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
           {skillCategories[activeTab]?.skills.map((skill, index) => (
             <SkillCard
               key={index}
@@ -132,6 +132,7 @@ const VimSkills: React.FC = () => {
               level={skill.level}
               years={skill.years}
               icon={getIconComponent(skill.icon)}
+              lineNumber={index + 1}
             />
           ))}
         </div>
