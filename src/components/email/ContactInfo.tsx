@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Mail, Globe, Linkedin, Github } from "lucide-react";
+import { Mail, Globe, Linkedin, Github, Link as LinkIcon } from "lucide-react";
 
 const ContactInfo = () => {
   return (
@@ -18,6 +18,17 @@ const ContactInfo = () => {
           <div className="flex items-center gap-2">
             <Globe size={16} className="text-terminal-accent" />
             <span className="text-white">eggpuffengineer.substack.com</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <LinkIcon size={16} className="text-terminal-accent" />
+            <a 
+              href="https://adplist.org/mentors/kannan-kalidasan" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-terminal-bright-green hover:underline"
+            >
+              ADPList Mentor Profile
+            </a>
           </div>
         </div>
         
