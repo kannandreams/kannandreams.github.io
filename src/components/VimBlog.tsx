@@ -22,8 +22,18 @@ interface BlogPost {
 
 async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
-    const response = await fetch('/src/data/blogs.md');
+    // Change the path to use relative path that works in the browser
+    const response = await fetch('./src/data/blogs.md');
+    
+    // For debugging
+    console.log('Blog fetch response status:', response.status);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    
     const text = await response.text();
+    console.log('Blog content fetched, length:', text.length);
     
     const posts: BlogPost[] = [];
     const sections = text.split('## ').slice(1); // Skip the header
@@ -32,8 +42,8 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
       const lines = section.trim().split('\n');
       const title = lines[0];
       const date = lines[1];
-      const url = lines[3];
       const excerpt = lines[2];
+      const url = lines[3];
       
       posts.push({
         id: String(index),
@@ -44,6 +54,7 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
       });
     });
     
+    console.log('Parsed blog posts:', posts.length);
     return posts;
   } catch (error) {
     console.error('Error fetching blog posts:', error);
@@ -62,8 +73,14 @@ const VimBlog: React.FC = () => {
   useEffect(() => {
     setLoading(true);
     fetchBlogPosts()
-      .then(setPosts)
-      .catch(() => setError("Failed to load blog posts"))
+      .then((fetchedPosts) => {
+        console.log('Fetched posts:', fetchedPosts.length);
+        setPosts(fetchedPosts);
+      })
+      .catch((err) => {
+        console.error('Error in useEffect:', err);
+        setError("Failed to load blog posts");
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -97,32 +114,36 @@ const VimBlog: React.FC = () => {
       ) : (
         <div className="flex flex-col h-full">
           <div className="flex-grow overflow-y-auto mb-4">
-            <ul className="space-y-4 mb-4">
-              {currentPosts.map(post => (
-                <li key={post.id} className="border-b border-terminal-border pb-4 last:border-0">
-                  <a
-                    href={post.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block group"
-                  >
-                    <h3 className="text-terminal-foreground font-medium group-hover:text-terminal-accent transition-colors">
-                      {post.title}
-                    </h3>
-                    <div className="mt-1 text-terminal-muted text-sm flex items-center gap-2">
-                      <time dateTime={post.created}>
-                        {format(new Date(post.created), "MMMM yyyy")}
-                      </time>
-                    </div>
-                    {post.excerpt && (
-                      <p className="mt-2 text-terminal-muted text-sm line-clamp-2">
-                        {post.excerpt}
-                      </p>
-                    )}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            {posts.length === 0 ? (
+              <div className="text-terminal-muted">No blog posts found. Please check the blogs.md file.</div>
+            ) : (
+              <ul className="space-y-4 mb-4">
+                {currentPosts.map(post => (
+                  <li key={post.id} className="border-b border-terminal-border pb-4 last:border-0">
+                    <a
+                      href={post.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group"
+                    >
+                      <h3 className="text-terminal-foreground font-medium group-hover:text-terminal-accent transition-colors">
+                        {post.title}
+                      </h3>
+                      <div className="mt-1 text-terminal-muted text-sm flex items-center gap-2">
+                        <time dateTime={post.created}>
+                          {format(new Date(post.created), "MMMM yyyy")}
+                        </time>
+                      </div>
+                      {post.excerpt && (
+                        <p className="mt-2 text-terminal-muted text-sm line-clamp-2">
+                          {post.excerpt}
+                        </p>
+                      )}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           {/* Pagination section - always show when more than one page exists */}
@@ -134,7 +155,7 @@ const VimBlog: React.FC = () => {
                     <PaginationItem>
                       <PaginationPrevious
                         onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                        className="cursor-pointer bg-terminal-background hover:bg-terminal-border text-terminal-foreground"
+                        className="cursor-pointer bg-terminal-border hover:bg-terminal-muted text-terminal-foreground"
                       />
                     </PaginationItem>
                   )}
@@ -144,7 +165,7 @@ const VimBlog: React.FC = () => {
                       <PaginationLink
                         onClick={() => setCurrentPage(page)}
                         isActive={currentPage === page}
-                        className="cursor-pointer bg-terminal-background hover:bg-terminal-border text-terminal-foreground"
+                        className="cursor-pointer bg-terminal-border hover:bg-terminal-muted text-terminal-foreground"
                       >
                         {page}
                       </PaginationLink>
@@ -155,7 +176,7 @@ const VimBlog: React.FC = () => {
                     <PaginationItem>
                       <PaginationNext
                         onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                        className="cursor-pointer bg-terminal-background hover:bg-terminal-border text-terminal-foreground"
+                        className="cursor-pointer bg-terminal-border hover:bg-terminal-muted text-terminal-foreground"
                       />
                     </PaginationItem>
                   )}
