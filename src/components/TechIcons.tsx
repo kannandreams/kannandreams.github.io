@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Laptop as LucideLaptop } from 'lucide-react';
 
 export const JavaScriptIcon = () => (
   <svg viewBox="0 0 24 24" className="h-4 w-4 text-yellow-400">
@@ -44,5 +45,9 @@ export const FigmaIcon = () => (
   <svg viewBox="0 0 24 24" className="h-4 w-4 text-purple-400">
     <path fill="currentColor" d="M15.332 8c2.203 0 3.988-1.782 3.988-3.982 0-2.2-1.785-3.982-3.988-3.982H8.668c-2.203 0-3.988 1.782-3.988 3.982 0 2.2 1.785 3.982 3.988 3.982 2.203 0 3.988-1.782 3.988-3.982V8h2.676zM8.668 16c2.203 0 3.988-1.782 3.988-3.982 0-2.2-1.785-3.982-3.988-3.982-2.203 0-3.988 1.782-3.988 3.982 0 2.2 1.785 3.982 3.988 3.982zm6.664 0c2.203 0 3.988-1.782 3.988-3.982 0-2.2-1.785-3.982-3.988-3.982-2.203 0-3.988 1.782-3.988 3.982 0 2.2 1.785 3.982 3.988 3.982zm0 8c2.203 0 3.988-1.782 3.988-3.982 0-2.2-1.785-3.982-3.988-3.982-2.203 0-3.988 1.782-3.988 3.982 0 2.2 1.785 3.982 3.988 3.982z"/>
   </svg>
+);
+
+export const Laptop: React.FC<{ className: string }> = ({ className }) => (
+  <LucideLaptop className={className} />
 );
 
