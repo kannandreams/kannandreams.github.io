@@ -90,7 +90,7 @@ const VimBlog: React.FC = () => {
       ) : error ? (
         <div className="text-terminal-error">{error}</div>
       ) : (
-        <>
+        <div className="space-y-4">
           <ul className="space-y-4 mb-4">
             {currentPosts.map(post => (
               <li key={post.id} className="border-b border-terminal-border pb-4 last:border-0">
@@ -118,42 +118,45 @@ const VimBlog: React.FC = () => {
             ))}
           </ul>
 
+          {/* Ensure pagination is always visible when there are multiple pages */}
           {totalPages > 1 && (
-            <Pagination className="py-4">
-              <PaginationContent>
-                {currentPage > 1 && (
-                  <PaginationItem>
-                    <PaginationPrevious
-                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                      className="cursor-pointer"
-                    />
-                  </PaginationItem>
-                )}
-                
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <PaginationItem key={page}>
-                    <PaginationLink
-                      onClick={() => setCurrentPage(page)}
-                      isActive={currentPage === page}
-                      className="cursor-pointer"
-                    >
-                      {page}
-                    </PaginationLink>
-                  </PaginationItem>
-                ))}
+            <div className="py-4">
+              <Pagination>
+                <PaginationContent>
+                  {currentPage > 1 && (
+                    <PaginationItem>
+                      <PaginationPrevious
+                        onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                        className="cursor-pointer bg-terminal-background hover:bg-terminal-border"
+                      />
+                    </PaginationItem>
+                  )}
+                  
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <PaginationItem key={page}>
+                      <PaginationLink
+                        onClick={() => setCurrentPage(page)}
+                        isActive={currentPage === page}
+                        className="cursor-pointer bg-terminal-background hover:bg-terminal-border"
+                      >
+                        {page}
+                      </PaginationLink>
+                    </PaginationItem>
+                  ))}
 
-                {currentPage < totalPages && (
-                  <PaginationItem>
-                    <PaginationNext
-                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                      className="cursor-pointer"
-                    />
-                  </PaginationItem>
-                )}
-              </PaginationContent>
-            </Pagination>
+                  {currentPage < totalPages && (
+                    <PaginationItem>
+                      <PaginationNext
+                        onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                        className="cursor-pointer bg-terminal-background hover:bg-terminal-border"
+                      />
+                    </PaginationItem>
+                  )}
+                </PaginationContent>
+              </Pagination>
+            </div>
           )}
-        </>
+        </div>
       )}
     </div>
   );
