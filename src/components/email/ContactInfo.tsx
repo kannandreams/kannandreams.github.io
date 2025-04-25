@@ -13,7 +13,7 @@ const ContactInfo = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Mail size={16} className="text-terminal-accent" />
-            <span className="text-white">email@example.com</span>
+            <span className="text-white">kannanpoem1984@gmail.com</span>
           </div>
           <div className="flex items-center gap-2">
             <Globe size={16} className="text-terminal-accent" />
@@ -24,11 +24,11 @@ const ContactInfo = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Linkedin size={16} className="text-terminal-accent" />
-            <span className="text-white">linkedin.com/in/example</span>
+            <span className="text-white">linkedin.com/in/kannandreams/</span>
           </div>
           <div className="flex items-center gap-2">
             <Github size={16} className="text-terminal-accent" />
-            <span className="text-white">github.com/example</span>
+            <span className="text-white">github.com/kannandreams</span>
           </div>
         </div>
       </div>
