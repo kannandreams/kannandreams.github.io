@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Ban, Mail, User, MessageSquare, Globe, Linkedin, Github } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
@@ -48,13 +49,15 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
   
   return (
     <div
-      className="email-composer bg-transparent border border-[#555] rounded-sm mb-2"
+      className="email-composer bg-transparent border border-[#555] rounded-sm"
       style={{
         borderTop: "none",
         borderLeft: "none",
         color: "#fff",
         fontFamily: "'JetBrains Mono', monospace",
-        marginTop: "2.25rem",
+        marginTop: "0.25rem",
+        maxHeight: "calc(100vh - 220px)",
+        overflow: "hidden",
       }}
     >
       <div className="flex items-center">
@@ -116,7 +119,7 @@ const VimTerminalEmailComposer: React.FC<VimTerminalEmailComposerProps> = ({
             <Label htmlFor="message" className="text-white">Message</Label>
             <Textarea
               id="message"
-              className="bg-terminal-background border-terminal-muted text-white w-full h-44 focus:border-terminal-bright-green text-sm resize-none"
+              className="bg-terminal-background border-terminal-muted text-white w-full h-32 focus:border-terminal-bright-green text-sm resize-none"
               {...form.register("message")}
               required
               disabled
