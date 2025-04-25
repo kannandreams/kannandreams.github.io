@@ -164,43 +164,51 @@ async function fetchSkills(): Promise<SkillCategory[]> {
   try {
     const response = await fetch('/src/data/skills.md');
     if (!response.ok) {
-      console.log('Using hardcoded skills data');
-      return hardcodedSkills;
+      throw new Error('Failed to fetch skills data');
     }
     
     const text = await response.text();
-    
     const categories: SkillCategory[] = [];
-    const sections = text.split('## ').slice(1);
+    
+    const sections = text.split('\n## ').slice(1);
     
     sections.forEach(section => {
       const lines = section.trim().split('\n');
-      const category = lines[0];
+      const category = lines[0].trim();
+      
+      const commentLineIndex = lines.findIndex(line => line.startsWith('###'));
+      const comment = commentLineIndex !== -1 
+        ? lines[commentLineIndex].replace('###', '').trim()
+        : null;
+      
       const skills: Skill[] = [];
       
-      lines.slice(1).forEach(line => {
-        if (line.trim()) {
+      lines.slice(commentLineIndex + 1).forEach(line => {
+        if (line.trim() && !line.startsWith('#')) {
           const [name, level, years, icon] = line.split(',');
-          skills.push({
-            name,
-            level: level as "Expert" | "Advanced" | "Intermediate",
-            years: parseInt(years),
-            icon
-          });
+          if (name && level && years && icon) {
+            skills.push({
+              name,
+              level: level as "Expert" | "Advanced" | "Intermediate",
+              years: parseInt(years),
+              icon
+            });
+          }
         }
       });
       
       categories.push({
         category,
         icon: getCategoryIcon(category),
-        skills
+        skills,
+        comment
       });
     });
     
     return categories;
   } catch (error) {
     console.error('Error fetching skills:', error);
-    return hardcodedSkills;
+    return [];
   }
 }
 
@@ -256,24 +264,9 @@ const VimTerminalSkills: React.FC = () => {
       </div>
 
       <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
-        {activeTab === 0 && (
+        {skillCategories[activeTab]?.comment && (
           <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
-            // Core technologies I extensively use and have deep expertise in
-          </div>
-        )}
-        {activeTab === 1 && (
-          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
-            // Technologies I'm actively learning and integrating
-          </div>
-        )}
-        {activeTab === 2 && (
-          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
-            // Emerging technologies I'm exploring
-          </div>
-        )}
-        {activeTab === 3 && (
-          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
-            // Technologies that are no longer my primary focus
+            // {skillCategories[activeTab].comment}
           </div>
         )}
         {skillCategories[activeTab]?.skills.map((skill, index) => (

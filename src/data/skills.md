@@ -1,5 +1,6 @@
 
-## Adopt – "My Core"
+## Adopt
+### Core technologies I extensively use and have deep expertise in
 Snowflake,Advanced,5+,Snowflake
 DBT,Expert,5+,DBT
 Spark,Advanced,10+,Spark
@@ -10,17 +11,19 @@ GitOps,Advanced,10+,Github
 Terraform,Advanced,5+,Terraform
 CI/CD,Advanced,10+,Jenkins
 
-## Trial – "Useful & Reliable"
+## Trial
+### Skills I've used meaningfully and will continue to apply
 React,Intermediate,1+,React
 Typescript,Intermediate,1+,React
 
-## Assess - Experimenting
+## Assess
+### Emerging technologies I'm exploring and evaluating
 Next.js,Intermediate,1+,Next
 Agentic Framework,Intermediate,1+,Google
 Rust,Begineer,1+,Rust
 
-## Hold - Less Relevant Now
+## Hold
+### Technologies that are no longer my primary focus
 Hadoop,Advanced,10+,Hadoop
 Spring boot,Advanced,10+,Java
 Oracle,Advanced,10+,Oracle
-
