@@ -163,7 +163,6 @@ const hardcodedSkills: SkillCategory[] = [
 
 async function fetchSkills(): Promise<SkillCategory[]> {
   try {
-    // Try to fetch from file first
     const response = await fetch('/src/data/skills.md');
     if (!response.ok) {
       console.log('Using hardcoded skills data');
@@ -178,9 +177,10 @@ async function fetchSkills(): Promise<SkillCategory[]> {
     sections.forEach(section => {
       const lines = section.trim().split('\n');
       const category = lines[0];
+      const commentLine = lines[1] && lines[1].startsWith('//') ? lines[1].replace('//', '').trim() : null;
       const skills: Skill[] = [];
       
-      lines.slice(1).forEach(line => {
+      lines.slice(commentLine ? 2 : 1).forEach(line => {
         if (line.trim()) {
           const [name, level, years, icon] = line.split(',');
           skills.push({
@@ -195,7 +195,8 @@ async function fetchSkills(): Promise<SkillCategory[]> {
       categories.push({
         category,
         icon: getCategoryIcon(category),
-        skills
+        skills,
+        comment: commentLine
       });
     });
     
@@ -204,6 +205,14 @@ async function fetchSkills(): Promise<SkillCategory[]> {
     console.error('Error fetching skills:', error);
     return hardcodedSkills;
   }
+}
+
+// Update the interface to include comment
+interface SkillCategory {
+  category: string;
+  icon: React.ReactNode;
+  skills: Skill[];
+  comment?: string | null;
 }
 
 const VimTerminalSkills: React.FC = () => {
@@ -245,12 +254,19 @@ const VimTerminalSkills: React.FC = () => {
           >
             <File size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
             <span>{isMobile ? category.category.split(' ')[0] : category.category}</span>
+            {category.comment && (
+              <span 
+                className="ml-2 text-xs text-[#aaadb0] opacity-70 italic"
+                title={category.comment}
+              >
+                // {category.comment}
+              </span>
+            )}
             <X 
               size={12} 
               className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-terminal-muted hover:text-terminal-foreground" 
               onClick={(e) => {
-                e.stopPropagation(); // Prevent tab selection when clicking close
-                // Optional: Add logic to "close" the tab if needed
+                e.stopPropagation();
               }}
             />
           </button>
