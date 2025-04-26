@@ -13,7 +13,7 @@ interface BlogPost {
 const hardcodedBlogs: BlogPost[] = [
   {
     id: "1",
-    title: "The AI Paradox",
+    title: "The AI Parddadox",
     url: "https://eggpuffengineer.substack.com/p/the-ai-paradox",
     created: "2025-04"
   },
