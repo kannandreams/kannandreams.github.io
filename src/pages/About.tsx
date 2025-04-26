@@ -12,7 +12,23 @@ const About = () => {
       <div className="max-w-xl w-full bg-terminal paper rounded-lg shadow-lg p-8 border border-terminal-border">
         <h1 className="text-3xl font-bold mb-2 text-terminal-accent">About Me</h1>
         <p className="text-base text-white mb-6">
-          👋 Hi, I'm KK — a deeply curious and collaborative software engineer passionate about making meaningful products, especially in web, developer tools, and AI. I thrive building elegant products, shipping iteratively, and bringing energy to every team.
+          👋 Hi, I'm Kannan Kalidasan (you can call me KK) — a Software Engineer and tech leader coding since 2005. I'm passionate about building meaningful products, especially in the Data and AI space.
+          I thrive at the intersection of Technology, Leadership, and Strategy, with a strong focus on visual and product thinking.
+
+          Quick Blurb:
+
+              🚩 Pi-shaped engineer with deep and broad experience since 2005.
+              
+              🛠 Specialised in Data Engineering, Architecture, Analytics, and ML — a Data Guy at heart.
+              
+              🧢 Worked across the spectrum — from <100 people startups to 10,000+ people enterprises.
+              
+              💎 Strong mix of Data Engineering and AI/ML expertise — I enjoy crafting data-driven products.
+              
+              💡 Big on product and strategic thinking — turning vision into actionable goals.
+              
+              📚 Contributed to two PACKT books as a reviewer and co-author.
+          
         </p>
         <p className="text-terminal-muted mb-4">
           I enjoy architecting scalable, robust web applications, collaborating with cross-functional teams, and building tools that empower others. My toolkit spans frontend frameworks, full-stack solutions, and modern infrastructure. Let's connect or check out some of my work!
