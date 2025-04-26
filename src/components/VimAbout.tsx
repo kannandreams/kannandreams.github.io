@@ -12,7 +12,7 @@ I thrive at the intersection of Technology, Leadership, and Strategy, with a str
 💎 Strong mix of Data Engineering and AI/ML expertise — I enjoy crafting data-driven products.
 💡 Big on product and strategic thinking — turning vision into actionable goals.
 📚 Contributed to two PACKT books as a reviewer and co-author.`;
-
+"
 const VimAbout: React.FC = () => {
   return (
     <div
