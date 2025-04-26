@@ -22,11 +22,11 @@ const VimStatusLine: React.FC<VimStatusLineProps> = ({
       case 'blog':
         return 'blog.md';
       case 'email':
-        return 'compose.md';
+        return 'compose.sh';
       case 'about':
         return 'about.md';
       default:
-        return 'help.md';
+        return 'help.prompt';
     }
   };
 
