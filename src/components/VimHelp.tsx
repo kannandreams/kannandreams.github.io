@@ -23,6 +23,12 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
       {activeSection === "about" ? (
         <div className="bg-transparent p-3 rounded mb-3">
           <h2 className="text-terminal-accent text-xl mb-2">About Me</h2>
+          <p className="text-terminal-muted text-base">
+            👋 Hi, I'm Kannan Kalidasan — you can call me KK.
+            
+            I am software engineer and tech leader coding since 2005. My expertise lies in Data, Analytics, backend systems and AI.
+            What I enjoy most is operating at the intersection of Technology, Leadership, and Strategy. Visual thinking and teaching are the best add-on feature stays with me.
+          </p>
           <p className="mt-2">
             Outside of tech, I lean into the creative side too.
             I’m an ENFJ (yep, "The Protagonist"even after two personality tests attempts ), and I’ve always been someone who blends logic with a touch of storytelling.
@@ -32,14 +38,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
             
             Fun fact : I’m a huge fan of egg puffs 🥟. They were my go-to breakfast for nearly four years. Not anymore, but the love remains.
           </p>
-          <p className="text-terminal-muted text-base">
-            👋 Hi, I'm Kannan Kalidasan — you can call me KK.
-                My journey with code began back in 2005, and it’s been quite the ride since then. Over the years, I’ve grown into a Software Engineer and tech leader with a deep passion for building meaningful products — especially where Data and AI come into play.
-                What I enjoy most is operating at the intersection of Technology, Leadership, and Strategy. I’ve always had a thing for visual thinking and turning complex ideas into clear, actionable paths. Whether it's architecting a data system or shaping product direction, I love bringing ideas to life with purpose and clarity.
-          </p>
-          <p className="mt-2">
-            I enjoy architecting scalable, robust web applications, collaborating with cross-functional teams, and building tools that empower others. My toolkit spans frontend frameworks, full-stack solutions, and modern infrastructure.
-          </p>
+          
           <p className="text-terminal-muted mt-2 italic">
             For more details, check out the <Link to="/about" className="text-terminal-accent hover:underline">About page</Link>.
           </p>
