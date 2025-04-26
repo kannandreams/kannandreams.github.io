@@ -1,9 +1,9 @@
 
 import React from "react";
-import { Link } from "react-router-dom";
 
 // Brief introduction for the static text
-const intro = "View the About page to learn more about me.";
+const intro =
+  "👋 Hi, I'm KK — a deeply curious and collaborative software engineer passionate about making meaningful products, especially in web, developer tools, and AI. I thrive building elegant products, shipping iteratively, and bringing energy to every team.";
 
 const VimAbout: React.FC = () => {
   return (
@@ -14,14 +14,6 @@ const VimAbout: React.FC = () => {
       }}
     >
       <span className="text-white text-[1rem] font-semibold">{intro}</span>
-      <div className="mt-4">
-        <Link 
-          to="/about" 
-          className="px-3 py-1 bg-terminal-accent text-black rounded hover:bg-terminal-bright-green transition-colors"
-        >
-          Go to About Page
-        </Link>
-      </div>
     </div>
   );
 };
