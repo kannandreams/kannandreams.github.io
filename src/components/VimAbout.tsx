@@ -3,7 +3,7 @@ import React from "react";
 
 // Brief introduction for the static text
 const intro =
-"
+  "
   👋 Hi, I'm Kannan Kalidasan (you can call me KK) — a Software Engineer and tech leader coding since 2005. I'm passionate about building meaningful products, especially in the Data and AI space.
 
 I thrive at the intersection of Technology, Leadership, and Strategy, with a strong focus on visual and product thinking.
@@ -22,7 +22,8 @@ Quick Blurb:
 
 📚 Contributed to two PACKT books as a reviewer and co-author.
   
-"
+ "
+
 const VimAbout: React.FC = () => {
   return (
     <div
