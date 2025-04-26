@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Code, Database, Palette, File, X } from 'lucide-react';
 import SkillCard from './SkillCard';
-import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop } from './TechIcons';
 
 interface Skill {
   name: string;
@@ -17,30 +16,6 @@ interface SkillCategory {
   skills: Skill[];
   comment?: string | null;
 }
-
-const getIconComponent = (iconName: string) => {
-  const icons: { [key: string]: React.ReactNode } = {
-    JavaScript: <JavaScriptIcon />,
-    TypeScript: <TypeScriptIcon />,
-    React: <ReactIcon />,
-    Node: <NodeIcon />,
-    Python: <PythonIcon />,
-    Postgres: <PostgresIcon />,
-    Figma: <FigmaIcon />,
-    Laptop: <Laptop className="h-4 w-4 text-blue-400" />,
-    Snowflake: <Database className="h-4 w-4 text-blue-400" />,
-    DBT: <Database className="h-4 w-4 text-blue-400" />,
-    Spark: <Database className="h-4 w-4 text-orange-400" />,
-    Oracle: <Database className="h-4 w-4 text-red-400" />,
-    FastAPI: <Code className="h-4 w-4 text-green-400" />,
-    AWS: <Code className="h-4 w-4 text-yellow-400" />,
-    Docker: <Code className="h-4 w-4 text-blue-400" />,
-    Github: <Code className="h-4 w-4 text-purple-400" />,
-    Terraform: <Code className="h-4 w-4 text-indigo-400" />,
-    Jenkins: <Code className="h-4 w-4 text-red-400" />
-  };
-  return icons[iconName] || <Code className="h-4 w-4 text-gray-400" />;
-};
 
 const getCategoryIcon = (category: string) => {
   switch (category) {
@@ -162,7 +137,7 @@ const hardcodedSkills: SkillCategory[] = [
 
 async function fetchSkills(): Promise<SkillCategory[]> {
   try {
-    const response = await fetch('/src/data/skills.md');
+    const response = await fetch('/data/skills.md');
     if (!response.ok) {
       throw new Error('Failed to fetch skills data');
     }
@@ -186,11 +161,11 @@ async function fetchSkills(): Promise<SkillCategory[]> {
       lines.slice(commentLineIndex + 1).forEach(line => {
         if (line.trim() && !line.startsWith('#')) {
           const [name, level, years, icon] = line.split(',');
-          if (name && level && years && icon) {
+          if (name && level && icon) {
             skills.push({
               name,
               level: level as "Expert" | "Advanced" | "Intermediate",
-              years: parseInt(years),
+              years: parseInt(years || '0'),
               icon
             });
           }
@@ -208,7 +183,7 @@ async function fetchSkills(): Promise<SkillCategory[]> {
     return categories;
   } catch (error) {
     console.error('Error fetching skills:', error);
-    return [];
+    return hardcodedSkills;
   }
 }
 

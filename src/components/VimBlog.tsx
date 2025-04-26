@@ -75,7 +75,7 @@ const hardcodedBlogs: BlogPost[] = [
 
 async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
-    const response = await fetch('/src/data/blogs.md');
+    const response = await fetch('/data/blogs.md');
     if (!response.ok) {
       console.log('Using hardcoded blog data');
       return hardcodedBlogs;
@@ -90,7 +90,7 @@ async function fetchBlogPosts(): Promise<BlogPost[]> {
       const lines = section.trim().split('\n');
       const title = lines[0];
       const date = lines[1];
-      const url = lines[3];
+      const url = lines.find(line => line.startsWith('http')) || '';
       
       posts.push({
         id: String(index),

@@ -15,7 +15,7 @@ Terraform,Advanced,5+,Terraform
 CI/CD,Advanced,10+,Jenkins
 
 ## Trial
-### Skills I’ve used meaningfully and will continue to apply when the situation calls for it.
+### Skills I've used meaningfully and will continue to apply when the situation calls for it.
 BigQuery,Intermediate,1+,React
 Google Cloud,Intermediate,1+,Google
 React,Intermediate,1+,React
@@ -28,12 +28,12 @@ mlflow,Intermediate,1+,React
 HuggingFace,Intermediate,1+,React
 
 ## Assess
-### Skills I’m currently exploring or focused to deep dive.
+### Skills I'm currently exploring or focused to deep dive.
 Agentic Framework,Intermediate,1+,Google
 Rust,Begineer,1+,Rust
 
 ## Hold
-### Skills I’ve used in the past, but are either outdated, no longer central to my current role, or being phased out.
+### Skills I've used in the past, but are either outdated, no longer central to my current role, or being phased out.
 Hadoop,Advanced,10+,Hadoop
 Spring boot,Advanced,10+,Java
 Oracle,Advanced,10+,Oracle
