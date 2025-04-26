@@ -12,23 +12,15 @@ const About = () => {
       <div className="max-w-xl w-full bg-terminal paper rounded-lg shadow-lg p-8 border border-terminal-border">
         <h1 className="text-3xl font-bold mb-2 text-terminal-accent">About Me</h1>
         <p className="text-base text-white mb-6">
-          👋 Hi, I'm Kannan Kalidasan (you can call me KK) — a Software Engineer and tech leader coding since 2005. I'm passionate about building meaningful products, especially in the Data and AI space.
-          I thrive at the intersection of Technology, Leadership, and Strategy, with a strong focus on visual and product thinking.
+          👋 Hi, I'm Kannan Kalidasan — you can call me KK.
+My journey with code began back in 2005, and it’s been quite the ride since then. Over the years, I’ve grown into a Software Engineer and tech leader with a deep passion for building meaningful products — especially where Data and AI come into play.
+What I enjoy most is operating at the intersection of Technology, Leadership, and Strategy. I’ve always had a thing for visual thinking and turning complex ideas into clear, actionable paths. Whether it's architecting a data system or shaping product direction, I love bringing ideas to life with purpose and clarity.
 
-          Quick Blurb:
-
-              🚩 Pi-shaped engineer with deep and broad experience since 2005.
-              
-              🛠 Specialised in Data Engineering, Architecture, Analytics, and ML — a Data Guy at heart.
-              
-              🧢 Worked across the spectrum — from &lt;100 people startups to 10,000+ people enterprises.
-              
-              💎 Strong mix of Data Engineering and AI/ML expertise — I enjoy crafting data-driven products.
-              
-              💡 Big on product and strategic thinking — turning vision into actionable goals.
-              
-              📚 Contributed to two PACKT books as a reviewer and co-author.
-          
+Outside of tech, I lean into the creative side too.
+I’m an ENFJ (yep, "The Protagonist" if you’re into personality tests), and I’ve always been someone who blends logic with a touch of storytelling.
+Tamil is my mother tongue — an ancient language I hold close — and in it, I write poems, some of which I share on Sundalpaper, my personal Substack.
+More recently, I started Eggpuff Engineer — a newsletter where I explore ideas, share real-world experiences, and experiment with content creation. 
+In many ways, it’s helping me live a small piece of the entrepreneur dream.          
         </p>
         <p className="text-terminal-muted mb-4">
           I enjoy architecting scalable, robust web applications, collaborating with cross-functional teams, and building tools that empower others. My toolkit spans frontend frameworks, full-stack solutions, and modern infrastructure. Let's connect or check out some of my work!
