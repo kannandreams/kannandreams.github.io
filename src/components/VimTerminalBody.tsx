@@ -4,6 +4,7 @@ import VimSkills from "./VimSkills";
 import VimProjects from "./VimProjects";
 import VimBlog from "./VimBlog";
 import VimHelp from "./VimHelp";
+import VimAbout from "./VimAbout";
 import VimTerminalEmailComposer from "./VimTerminalEmailComposer";
 import RecruiterResume from "./RecruiterResume";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -42,7 +43,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
         {activeSection === "skills" && <VimSkills />}
         {activeSection === "projects" && <VimProjects />}
         {activeSection === "help" && <VimHelp activeSection="help" />}
-        {activeSection === "about" && <VimHelp activeSection="about" />}
+        {activeSection === "about" && <VimAbout />}
         {activeSection === "blog" && <VimBlog />}
         {activeSection === "email" && (
           <div className="overflow-hidden">
@@ -66,7 +67,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           {activeSection === "skills" && <VimSkills />}
           {activeSection === "projects" && <VimProjects />}
           {activeSection === "help" && <VimHelp activeSection="help" />}
-          {activeSection === "about" && <VimHelp activeSection="about" />}
+          {activeSection === "about" && <VimAbout />}
           {activeSection === "blog" && <VimBlog />}
           {activeSection === "email" && (
             <div className="overflow-hidden">
