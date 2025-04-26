@@ -21,7 +21,7 @@ const About = () => {
               
               🛠 Specialised in Data Engineering, Architecture, Analytics, and ML — a Data Guy at heart.
               
-              🧢 Worked across the spectrum — from <100 people startups to 10,000+ people enterprises.
+              🧢 Worked across the spectrum — from &lt;100 people startups to 10,000+ people enterprises.
               
               💎 Strong mix of Data Engineering and AI/ML expertise — I enjoy crafting data-driven products.
               
