@@ -14,7 +14,7 @@ const NAV_SECTIONS = [
   { label: "Home", value: "home", command: ":home" },
   { label: "Skills", value: "skills", command: ":skills" },
   { label: "Projects", value: "projects", command: ":projects" },
-  { label: "GitHub", value: "github", command: ":github" },
+  // { label: "GitHub", value: "github", command: ":github" },
   { label: "Blog", value: "blog", command: ":blog" },
   { label: "Contact", value: "email", command: ":contact" },
   { label: "About", value: "about", command: ":about" },
