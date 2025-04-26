@@ -23,6 +23,15 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
       {activeSection === "about" ? (
         <div className="bg-transparent p-3 rounded mb-3">
           <h2 className="text-terminal-accent text-xl mb-2">About Me</h2>
+          <p className="mt-2">
+            Outside of tech, I lean into the creative side too.
+            I’m an ENFJ (yep, "The Protagonist"even after two personality tests attempts ), and I’ve always been someone who blends logic with a touch of storytelling.
+            Tamil is my mother tongue — an ancient language I hold close — and in it, I write poems, some of which I share on Sundalpaper, my personal Substack.
+            More recently, I started Eggpuff Engineer — a newsletter where I explore ideas, share real-world experiences, and experiment with content creation.
+            In many ways, it’s helping me live a small piece of the entrepreneur dream.
+            
+            Fun fact : I’m a huge fan of egg puffs 🥟. They were my go-to breakfast for nearly four years. Not anymore, but the love remains.
+          </p>
           <p className="text-terminal-muted text-base">
             👋 Hi, I'm Kannan Kalidasan — you can call me KK.
                 My journey with code began back in 2005, and it’s been quite the ride since then. Over the years, I’ve grown into a Software Engineer and tech leader with a deep passion for building meaningful products — especially where Data and AI come into play.
