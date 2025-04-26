@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Code, Database, Palette, File, X } from 'lucide-react';
 import SkillCard from './SkillCard';
-import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop } from './TechIcons';
+import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop, RustIcon } from './TechIcons';
 
 interface Skill {
   name: string;
@@ -42,7 +42,7 @@ const getIconComponent = (iconName: string) => {
     Google: <Code className="h-4 w-4 text-blue-500" />,
     Hadoop: <Database className="h-4 w-4 text-yellow-500" />,
     Java: <Code className="h-4 w-4 text-red-500" />,
-    Rust: <Code className="h-4 w-4 text-orange-600" />,
+    Rust: <RustIcon />,
     Next: <Code className="h-4 w-4 text-black" />
   };
   return icons[iconName] || <Code className="h-4 w-4 text-gray-400" />;
@@ -272,7 +272,7 @@ const VimTerminalSkills: React.FC = () => {
       <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
         {skillCategories[activeTab]?.comment && (
           <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
-            // {skillCategories[activeTab].comment}
+            // <span className="text-green-700">{skillCategories[activeTab].comment}</span>
           </div>
         )}
         {skillCategories[activeTab]?.skills.map((skill, index) => (
