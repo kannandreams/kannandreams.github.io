@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Code, Database, Palette, File, X } from 'lucide-react';
 import SkillCard from './SkillCard';
+import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop } from './TechIcons';
 
 interface Skill {
   name: string;
@@ -16,6 +18,35 @@ interface SkillCategory {
   skills: Skill[];
   comment?: string | null;
 }
+
+const getIconComponent = (iconName: string) => {
+  const icons: { [key: string]: React.ReactNode } = {
+    JavaScript: <JavaScriptIcon />,
+    TypeScript: <TypeScriptIcon />,
+    React: <ReactIcon />,
+    Node: <NodeIcon />,
+    Python: <PythonIcon />,
+    Postgres: <PostgresIcon />,
+    Figma: <FigmaIcon />,
+    Laptop: <Laptop className="h-4 w-4 text-blue-400" />,
+    Snowflake: <Database className="h-4 w-4 text-blue-400" />,
+    DBT: <Database className="h-4 w-4 text-blue-400" />,
+    Spark: <Database className="h-4 w-4 text-orange-400" />,
+    Oracle: <Database className="h-4 w-4 text-red-400" />,
+    FastAPI: <Code className="h-4 w-4 text-green-400" />,
+    AWS: <Code className="h-4 w-4 text-yellow-400" />,
+    Docker: <Code className="h-4 w-4 text-blue-400" />,
+    Github: <Code className="h-4 w-4 text-purple-400" />,
+    Terraform: <Code className="h-4 w-4 text-indigo-400" />,
+    Jenkins: <Code className="h-4 w-4 text-red-400" />,
+    Google: <Code className="h-4 w-4 text-blue-500" />,
+    Hadoop: <Database className="h-4 w-4 text-yellow-500" />,
+    Java: <Code className="h-4 w-4 text-red-500" />,
+    Rust: <Code className="h-4 w-4 text-orange-600" />,
+    Next: <Code className="h-4 w-4 text-black" />
+  };
+  return icons[iconName] || <Code className="h-4 w-4 text-gray-400" />;
+};
 
 const getCategoryIcon = (category: string) => {
   switch (category) {
