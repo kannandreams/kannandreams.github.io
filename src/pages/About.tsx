@@ -15,7 +15,6 @@ const About = () => {
           👋 Hi, I'm Kannan Kalidasan — you can call me KK.
 My journey with code began back in 2005, and it’s been quite the ride since then. Over the years, I’ve grown into a Software Engineer and tech leader with a deep passion for building meaningful products — especially where Data and AI come into play.
 What I enjoy most is operating at the intersection of Technology, Leadership, and Strategy. I’ve always had a thing for visual thinking and turning complex ideas into clear, actionable paths. Whether it's architecting a data system or shaping product direction, I love bringing ideas to life with purpose and clarity.
-
 Outside of tech, I lean into the creative side too.
 I’m an ENFJ (yep, "The Protagonist" if you’re into personality tests), and I’ve always been someone who blends logic with a touch of storytelling.
 Tamil is my mother tongue — an ancient language I hold close — and in it, I write poems, some of which I share on Sundalpaper, my personal Substack.
