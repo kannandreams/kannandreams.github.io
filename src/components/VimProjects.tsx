@@ -15,7 +15,8 @@ interface Project {
 
 async function fetchProjects(): Promise<Project[]> {
   try {
-    const response = await fetch('/src/data/projects.md');
+    // Updated path to correctly access the file in production
+    const response = await fetch('/data/projects.md');
     const text = await response.text();
     
     const projects: Project[] = [];
