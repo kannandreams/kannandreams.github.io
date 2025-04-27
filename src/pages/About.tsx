@@ -12,10 +12,10 @@ const About = () => {
       <div className="max-w-xl w-full bg-terminal paper rounded-lg shadow-lg p-8 border border-terminal-border">
         <h1 className="text-3xl font-bold mb-2 text-terminal-accent">About Me</h1>
         <p className="text-base text-white mb-6">
-          👋 Hi, I'm KaK — a deeply curious and collaborative software engineer passionate about making meaningful products, especially in web, developer tools, and AI. I thrive building elegant products, shipping iteratively, and bringing energy to every team.
+          👋 Hi, I'm KK
         </p>
         <p className="text-terminal-muted mb-4">
-          I enjoy architecting scalable, robust web applications, collaborating with cross-functional teams, and building tools that empower others. My toolkit spans frontend frameworks, full-stack solutions, and modern infrastructure. Let's connect or check out some of my work!
+          I do ...
         </p>
         <div className="flex items-center space-x-4 mt-6">
           <a href={GITHUB_URL} aria-label="GitHub" target="_blank" rel="noopener noreferrer">
