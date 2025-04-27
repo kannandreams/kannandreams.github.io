@@ -11,13 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read  # Needed for scanning PRs
+      pull-requests: read
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
         with:
           args: --verbose --redact
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # This line is the key
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
