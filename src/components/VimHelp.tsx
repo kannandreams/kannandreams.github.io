@@ -26,7 +26,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           <p className="text-white text-base">
             👋 Hi, I'm Kannan Kalidasan — you can call me <i>KK</i>. <br></br>
             
-            I’m a Software Engineer and Tech Leader, coding since 2005, with expertise in Data, Analytics, ML, and Backend systems, based in the UK.
+            I’m a Software Engineer and Tech Leader, coding since 2005, with expertise in Data, Analytics, ML, and Backend systems, and I’m based in the UK.
             What I enjoy most is operating at the intersection of <span className='text-terminal-bright-green select-none'>Technology, Leadership, and Strategy. </span>
             visual thinking and teaching are the best add-on gift stays with me.
           </p>
