@@ -9,7 +9,7 @@ declare global {
 }
 
 // Replace this with your actual Google Analytics ID when ready
-const GA_TRACKING_ID = 'G-XXXXXXXXXX';
+const GA_TRACKING_ID = 'G-FPC2HLGQZZ';
 
 const GoogleAnalytics = () => {
   return (
