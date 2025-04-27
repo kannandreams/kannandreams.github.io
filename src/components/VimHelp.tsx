@@ -26,26 +26,26 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           <p className="text-white text-base">
             👋 Hi, I'm Kannan Kalidasan — you can call me <i>KK</i>. <br></br>
             
-            I am Software engineer and Tech leader coding since 2005, based in UK. My core expertise lies in Data, Analytics, ML and Backend systems.
+            I’m a Software Engineer and Tech Leader, coding since 2005, with expertise in Data, Analytics, ML, and Backend systems, based in the UK.
             What I enjoy most is operating at the intersection of <span className='text-terminal-bright-green select-none'>Technology, Leadership, and Strategy. </span>
-            Visual thinking and teaching are the best add-on gift stays with me.
+            visual thinking and teaching are the best add-on gift stays with me.
           </p>
           <br></br>
           <p className="mt-2">
           <u>Quick Blurb:</u> <br></br>
-          🧢 Worked across the business domains, build products & teams for startups to 10,000+ people tech companies. <br></br>
+          🧢 Worked across various business domains, building products & teams for startups to large tech companies. <br></br>
           💎 Strong mix of Data and AI/ML expertise is a perfect combo.<br></br>
           👨🏻 I’m an <span className='text-terminal-accent'>ENFJ</span> (yep, "The Protagonist" per personality test).<br></br>
           😎 Fun fact : <span className='text-terminal-accent'>I’m a huge fan of egg puffs 🥟</span>. They were my go-to breakfast for many years. Not anymore, but the love remains.<br></br><br></br>
           </p>  
           <p className="mt-2">
           <u>Outside of Work:</u> More recently, I started <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Eggpuff Engineer</a> — a substack newsletter 
-            where I primarily write about Engineering insights, AI , experiences, and experiments. In many ways, it’s helping me live a small piece of my entrepreneur dream.<br></br><br></br>
+            where I primarily write about Engineering insights, AI, experiences, and experiments. In many ways, it’s helping me live a small piece of my entrepreneurial dream.<br></br><br></br>
           </p>
           <p className="mt-2">
             <u>Outside of Tech:</u> I lean into the <i>creative side</i> too.<br></br>
-            I speak & think in <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="" ><u>Tamizh</u></a>, 
-            so I write poems, random mobile clicks ( as if I think as photographer ) some of which I share via <a href="https://sundalpaper.substack.com/about" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Sundalpaper</a>, my personal Substack space.
+            I speak & think in <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="" ><u>Tamizh ( தமிழ் )</u></a>, 
+            so I write poems and take random mobile clicks (as if I think like a photographer) some of which I share via <a href="https://sundalpaper.substack.com/about" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Sundalpaper</a>, my personal Substack space.
             <br></br>
           </p>
           <p className="text-terminal-muted mt-2 italic">
@@ -58,7 +58,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
           <div className="bg-transparent p-3 rounded mb-3">
             {/* <h3 className="text-terminal-primary mb-2">About Me</h3> */}
             <p className="text-teal-400">
-              Hello! I'm a data-savvy software engineer who loves building products, teams, and the culture that powers them. <br />
+              Hello! I'm a data-driven Software Engineer passionate about building products, teams, and the culture that fuels them. <br />
               Type a command below to explore my portfolio !
             </p>
           </div>
