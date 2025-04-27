@@ -1,0 +1,6 @@
+[[rules]]
+id = "ignore-env-local"   # Unique identifier for the rule
+description = "Ignore env.local"
+regex = '''(?i).*'''
+path = ".*.env.local"
+allow = true
