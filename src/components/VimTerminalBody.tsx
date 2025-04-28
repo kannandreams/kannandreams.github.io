@@ -19,7 +19,6 @@ interface VimTerminalBodyProps {
   lastCommand: string;
   terminalBodyRef: React.RefObject<HTMLDivElement>;
   onSectionSelect?: (section: string) => void;
-  lightTheme?: boolean;
 }
 
 const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
@@ -33,7 +32,6 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   lastCommand,
   terminalBodyRef,
   onSectionSelect,
-  lightTheme = true,
 }) => {
   // In Lite Mode, render the appropriate section based on activeSection
   if (!devMode) {
@@ -45,8 +43,8 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
       >
         {activeSection === "skills" && <VimSkills />}
         {activeSection === "projects" && <VimProjects />}
-        {activeSection === "help" && <VimHelp activeSection="help" devMode={devMode} onSectionSelect={onSectionSelect} lightTheme={lightTheme} />}
-        {activeSection === "about" && <VimHelp activeSection="about" devMode={devMode} onSectionSelect={onSectionSelect} lightTheme={lightTheme} />}
+        {activeSection === "help" && <VimHelp activeSection="help" devMode={devMode} onSectionSelect={onSectionSelect} />}
+        {activeSection === "about" && <VimHelp activeSection="about" devMode={devMode} onSectionSelect={onSectionSelect} />}
         {activeSection === "blog" && <VimBlog />}
         {activeSection === "email" && (
           <div className="overflow-hidden">
@@ -55,7 +53,6 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
               emailContent={emailContent}
               onEmailChange={onEmailChange}
               onSendEmail={onSendEmail}
-              lightTheme={lightTheme}
             />
           </div>
         )}
