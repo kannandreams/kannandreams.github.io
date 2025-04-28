@@ -1,8 +1,8 @@
-
 import React from 'react';
 import { Mail, Book, Wrench, Star, List, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const navCommands = [
   { label: ":about", desc: "See my short intro", emoji: "👨‍💻", action: "about" },
@@ -23,17 +23,21 @@ const VimHelp: React.FC<{
   activeSection?: string; 
   devMode?: boolean;
   onSectionSelect?: (section: string) => void;
-}> = ({ activeSection, devMode = true, onSectionSelect }) => {
+  lightTheme?: boolean;
+}> = ({ activeSection, devMode = true, onSectionSelect, lightTheme = false }) => {
   return (
-    <div className="vim-help animate-fade-in text-white">
+    <div className={cn("vim-help animate-fade-in", lightTheme ? "text-slate-800" : "text-white")}>
       {activeSection === "about" ? (
         <div className="bg-transparent p-3 rounded mb-3">
-          <h2 className="text-terminal-accent text-xl mb-2">About Me</h2>
-          <p className="text-white text-base">
+          <h2 className={cn("text-xl mb-2", lightTheme ? "text-blue-600" : "text-terminal-accent")}>About Me</h2>
+          <p className={cn(lightTheme ? "text-slate-800" : "text-white", "text-base")}>
             👋 Hi, I'm Kannan Kalidasan — you can call me <i>KK</i>. <br></br>
             
             I'm a Software Engineer and Tech Leader based in the UK, with expertise in Data, Analytics, ML, and Backend systems. I've been coding since 2005.
-            What I enjoy most is operating at the intersection of <span className='text-terminal-bright-green select-none'>Technology, Leadership, and Strategy. </span>
+            What I enjoy most is operating at the intersection of <span className={cn(
+              'select-none',
+              lightTheme ? 'text-green-600' : 'text-terminal-bright-green'
+            )}>Technology, Leadership, and Strategy. </span>
             visual thinking and teaching are the best add-on gift stays with me.
           </p>
           <br></br>
@@ -41,32 +45,32 @@ const VimHelp: React.FC<{
           <u>Quick Blurb:</u> <br></br>
           🧢 Worked across various business domains, building products & teams for startups to large tech companies. <br></br>
           💎 Strong mix of Data and AI/ML expertise is a perfect combo.<br></br>
-          👨🏻 I'm an <span className='text-terminal-accent'>ENFJ</span> (yep, "The Protagonist" per personality test).<br></br>
-          😎 Fun fact : <span className='text-terminal-accent'>I'm a huge fan of egg puffs 🥟</span>. They were my go-to breakfast for many years. Not anymore, but the love remains.<br></br><br></br>
+          👨🏻 I'm an <span className={lightTheme ? 'text-blue-600' : 'text-terminal-accent'}>ENFJ</span> (yep, "The Protagonist" per personality test).<br></br>
+          😎 Fun fact : <span className={lightTheme ? 'text-blue-600' : 'text-terminal-accent'}>I'm a huge fan of egg puffs 🥟</span>. They were my go-to breakfast for many years. Not anymore, but the love remains.<br></br><br></br>
           </p>  
           <p className="mt-2">
-          <u>Outside of Work:</u> More recently, I started <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Eggpuff Engineer</a> — a substack newsletter 
+          <u>Outside of Work:</u> More recently, I started <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className={lightTheme ? "text-green-600" : "text-terminal-bright-green"} >Eggpuff Engineer</a> — a substack newsletter 
             where I primarily write about Engineering insights, AI, experiences, and experiments. In many ways, it's helping me live a small piece of my entrepreneurial dream.<br></br><br></br>
           </p>
           <p className="mt-2">
             <u>Outside of Tech:</u> I lean into the <i>creative side</i> too.<br></br>
             I speak & think in <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="" ><u>Tamizh ( தமிழ் )</u></a>, 
-            so I write poems and take random mobile clicks (as if I think like a photographer) some of which I share via <a href="https://sundalpaper.substack.com/about" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Sundalpaper</a>, my personal Substack space.
+            so I write poems and take random mobile clicks (as if I think like a photographer) some of which I share via <a href="https://sundalpaper.substack.com/about" target="_blank" rel="noopener noreferrer" aria-label="lovable" className={lightTheme ? "text-green-600" : "text-terminal-bright-green"} >Sundalpaper</a>, my personal Substack space.
             <br></br>
           </p>
-          <p className="text-terminal-muted mt-2 italic">
-            For collaboration, type a command <span className='text-terminal-accent'>:contact</span>
+          <p className={cn("mt-2 italic", lightTheme ? "text-slate-500" : "text-terminal-muted")}>
+            For collaboration, type a command <span className={lightTheme ? 'text-blue-600' : 'text-terminal-accent'}>:contact</span>
           </p>
         </div>
       ) : (
         <>
-          <h2 className="text-terminal-accent text-xl mb-2">Kannan Kalidasan</h2>
+          <h2 className={cn("text-xl mb-2", lightTheme ? "text-blue-600" : "text-terminal-accent")}>Kannan Kalidasan</h2>
           <div className="bg-transparent p-3 rounded mb-3">
-            <p className="text-teal-400">
+            <p className={lightTheme ? "text-teal-700" : "text-teal-400"}>
               Hello! I'm a data-driven Software Engineer passionate about building products, teams, and the culture that fuels them.
             </p>
             {!devMode && (
-              <p className="text-white/80 mt-2">
+              <p className={cn("mt-2", lightTheme ? "text-slate-700" : "text-white/80")}>
                 Select an option below to explore my portfolio.
               </p>
             )}
@@ -127,8 +131,10 @@ const VimHelp: React.FC<{
                 <Button 
                   key={item.action}
                   onClick={() => onSectionSelect && onSectionSelect(item.action)}
-                  variant="outline"
-                  className="bg-white/5 hover:bg-white/10 border-white/10 text-white hover:text-white/90 hover:border-white/20 transition-all"
+                  variant={lightTheme ? "light-outline" : "outline"}
+                  className={lightTheme 
+                    ? "shadow-sm hover:shadow" 
+                    : "bg-white/5 hover:bg-white/10 border-white/10 text-white hover:text-white/90 hover:border-white/20 transition-all"}
                 >
                   <span className="mr-2" role="img" aria-label="icon">{item.emoji}</span>
                   {item.desc}

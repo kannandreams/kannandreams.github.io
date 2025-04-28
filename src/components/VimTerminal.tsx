@@ -151,7 +151,8 @@ const VimTerminal: React.FC = () => {
 
   const containerClasses = cn(
     "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
-    !devMode && "glass-morphism recruiter-mode"
+    !devMode && "glass-morphism recruiter-mode",
+    !devMode && "light-theme" // Add light-theme class when in lite mode
   );
 
   return (
@@ -163,6 +164,7 @@ const VimTerminal: React.FC = () => {
         activeSection={activeSection}
         mode={mode}
         onSectionSelect={!devMode ? handleSectionSelect : undefined}
+        lightTheme={!devMode} // Pass lightTheme flag when in lite mode
       />
       <div className={cn(
         devMode ? "h-[calc(100vh-170px)]" : "recruiter-mode-container",
@@ -179,6 +181,7 @@ const VimTerminal: React.FC = () => {
           lastCommand={lastCommand}
           terminalBodyRef={terminalBodyRef}
           onSectionSelect={handleSectionSelect}
+          lightTheme={!devMode} // Pass lightTheme flag when in lite mode
         />
         {devMode && (
           <>

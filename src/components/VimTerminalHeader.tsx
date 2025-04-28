@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Terminal, FileText, Wrench, Download, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -14,7 +13,6 @@ const NAV_SECTIONS = [
   { label: "Home", value: "home", command: ":home" },
   { label: "Skills", value: "skills", command: ":skills" },
   { label: "Projects", value: "projects", command: ":projects" },
-  // { label: "GitHub", value: "github", command: ":github" },
   { label: "Blog", value: "blog", command: ":blog" },
   { label: "Contact", value: "email", command: ":contact" },
   { label: "About", value: "about", command: ":about" },
@@ -27,6 +25,7 @@ interface VimTerminalHeaderProps {
   activeSection: string;
   mode: "normal" | "insert";
   onSectionSelect?: (section: string) => void;
+  lightTheme?: boolean;
 }
 
 const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
@@ -67,31 +66,73 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
   activeSection,
   mode,
   onSectionSelect,
+  lightTheme = false,
 }) => (
-  <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
+  <div className={cn(
+    "flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border",
+    lightTheme ? "bg-white border-slate-200" : "bg-terminal-background"
+  )}>
     <div className="flex items-center gap-3">
       <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <Github size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
+        <Github 
+          size={22} 
+          className={cn(
+            "transition-all", 
+            lightTheme ? "text-slate-700 hover:text-slate-900" : "text-terminal-bright-green"
+          )} 
+        />
       </a>
       <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-        <Linkedin size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
+        <Linkedin 
+          size={22} 
+          className={cn(
+            "transition-all", 
+            lightTheme ? "text-slate-700 hover:text-slate-900" : "text-terminal-bright-green"
+          )}
+        />
       </a>
       <a href={SUBSTACK_URL} target="_blank" rel="noopener noreferrer" aria-label="Substack">
-        <Rss size={22} style={{ color: "var(--terminal-bright-green)" }} className="transition-all" />
+        <Rss 
+          size={22} 
+          className={cn(
+            "transition-all", 
+            lightTheme ? "text-slate-700 hover:text-slate-900" : "text-terminal-bright-green"
+          )}
+        />
       </a>
       <button
         onClick={showAppreciationToast}
-        className="ml-2 p-1 rounded hover:bg-terminal-border/70 transition focus-visible:outline-none focus:ring-2 focus:ring-terminal-accent"
+        className={cn(
+          "ml-2 p-1 rounded transition focus-visible:outline-none focus:ring-2",
+          lightTheme 
+            ? "hover:bg-slate-100 focus:ring-blue-400" 
+            : "hover:bg-terminal-border/70 focus:ring-terminal-accent"
+        )}
         title="Show appreciation"
         aria-label="Love this portfolio"
         type="button"
       >
-        <Heart size={21} className="text-terminal-bright-green hover:scale-105 transition-transform" />
+        <Heart 
+          size={21} 
+          className={cn(
+            "hover:scale-105 transition-transform",
+            lightTheme ? "text-rose-500" : "text-terminal-bright-green"
+          )} 
+        />
       </button>
     </div>
     <div className="flex items-center space-x-2">
-      <Terminal size={16} />
-      <span className="font-bold text-xl text-terminal-bright-green select-none" style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}>
+      <Terminal 
+        size={16} 
+        className={lightTheme ? "text-slate-700" : ""} 
+      />
+      <span 
+        className={cn(
+          "font-bold text-xl select-none",
+          lightTheme ? "text-slate-800" : "text-terminal-bright-green"
+        )}
+        style={{fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace"}}
+      >
         ~/.profile
       </span>
     </div>
@@ -99,8 +140,13 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       {!devMode ? (
         <>
           <div className="flex items-center">
-            <span className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
-              style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}>
+            <span 
+              className={cn(
+                "mr-0.5 select-none text-base tracking-wide",
+                lightTheme ? "text-slate-600" : "text-terminal-muted"
+              )}
+              style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}
+            >
               Lite Mode
             </span>
             <CustomToggle checked={devMode} onClick={onDevModeToggle} />
@@ -108,7 +154,12 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
-                className="ml-3 flex items-center px-3 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"
+                className={cn(
+                  "ml-3 flex items-center px-3 py-1 rounded-md border transition",
+                  lightTheme 
+                    ? "border-slate-300 hover:bg-slate-100 text-slate-700 hover:text-slate-900"
+                    : "border-terminal-muted hover:bg-terminal-muted/20 text-terminal-muted hover:text-terminal-bright-green"
+                )}
                 aria-label="Navigate Sections"
                 type="button"
               >
@@ -125,7 +176,9 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
                   }}
                   className={cn(
                     "cursor-pointer",
-                    activeSection === section.value && "bg-terminal-accent/15"
+                    lightTheme
+                      ? activeSection === section.value && "bg-blue-50 text-blue-700"
+                      : activeSection === section.value && "bg-terminal-accent/15"
                   )}
                   aria-label={section.label}
                 >
@@ -136,7 +189,12 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
           </DropdownMenu>
           <button
             onClick={onDownloadResume}
-            className="ml-3 flex items-center px-2 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"
+            className={cn(
+              "ml-3 flex items-center px-2 py-1 rounded-md border transition",
+              lightTheme
+                ? "border-slate-300 hover:bg-slate-100 text-slate-700 hover:text-slate-900"
+                : "border-terminal-muted hover:bg-terminal-muted/20 text-terminal-muted hover:text-terminal-bright-green"
+            )}
             aria-label="Download Resume"
             type="button"
             disabled

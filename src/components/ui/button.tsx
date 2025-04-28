@@ -20,6 +20,13 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         lovable: "bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-white/30",
+        // Light theme variants
+        "light-outline": 
+          "border border-slate-200 bg-white text-slate-800 hover:bg-slate-50 hover:border-slate-300",
+        "light-lovable": 
+          "bg-slate-50 hover:bg-slate-100 text-slate-800 border border-slate-200 hover:border-slate-300 shadow-sm",
+        "light-default":
+          "bg-blue-500 text-white hover:bg-blue-600",
       },
       size: {
         default: "h-10 px-4 py-2",
