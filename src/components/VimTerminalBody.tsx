@@ -18,6 +18,7 @@ interface VimTerminalBodyProps {
   lastOutput: string;
   lastCommand: string;
   terminalBodyRef: React.RefObject<HTMLDivElement>;
+  onSectionSelect?: (section: string) => void;
 }
 
 const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
@@ -30,6 +31,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   lastOutput,
   lastCommand,
   terminalBodyRef,
+  onSectionSelect,
 }) => {
   // In Lite Mode, render the appropriate section based on activeSection
   if (!devMode) {
@@ -41,8 +43,8 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
       >
         {activeSection === "skills" && <VimSkills />}
         {activeSection === "projects" && <VimProjects />}
-        {activeSection === "help" && <VimHelp activeSection="help" />}
-        {activeSection === "about" && <VimHelp activeSection="about" />}
+        {activeSection === "help" && <VimHelp activeSection="help" devMode={devMode} onSectionSelect={onSectionSelect} />}
+        {activeSection === "about" && <VimHelp activeSection="about" devMode={devMode} onSectionSelect={onSectionSelect} />}
         {activeSection === "blog" && <VimBlog />}
         {activeSection === "email" && (
           <div className="overflow-hidden">
@@ -65,8 +67,8 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
         <div className="mb-4">
           {activeSection === "skills" && <VimSkills />}
           {activeSection === "projects" && <VimProjects />}
-          {activeSection === "help" && <VimHelp activeSection="help" />}
-          {activeSection === "about" && <VimHelp activeSection="about" />}
+          {activeSection === "help" && <VimHelp activeSection="help" devMode={devMode} onSectionSelect={onSectionSelect} />}
+          {activeSection === "about" && <VimHelp activeSection="about" devMode={devMode} onSectionSelect={onSectionSelect} />}
           {activeSection === "blog" && <VimBlog />}
           {activeSection === "email" && (
             <div className="overflow-hidden">

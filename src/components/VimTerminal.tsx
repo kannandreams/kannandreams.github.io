@@ -132,6 +132,18 @@ const VimTerminal: React.FC = () => {
       setLastCommand(""); // Clear last command in this case
       return;
     }
+    
+    if (section === "quit") {
+      setLastOutput("Use browser navigation to exit. This is a web app!");
+      return;
+    }
+    
+    if (section === "clear") {
+      setLastCommand("");
+      setLastOutput("");
+      return;
+    }
+    
     setActiveSection(section as Section);
     setLastOutput(`Opening ${section.charAt(0).toUpperCase() + section.slice(1)} panel...`);
     setLastCommand(""); // Clear last command in this case
@@ -166,6 +178,7 @@ const VimTerminal: React.FC = () => {
           lastOutput={lastOutput}
           lastCommand={lastCommand}
           terminalBodyRef={terminalBodyRef}
+          onSectionSelect={handleSectionSelect}
         />
         {devMode && (
           <>

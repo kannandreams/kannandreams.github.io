@@ -36,6 +36,14 @@
     --sidebar-ring: 217 90% 60%;
 
     --terminal-bright-green: #4AFF61;  /* Bright green for CLI prompt and caret */
+    
+    /* Lovable theme colors for lite mode */
+    --lovable-soft-green: #F2FCE2;
+    --lovable-soft-purple: #E5DEFF;
+    --lovable-soft-blue: #D3E4FD;
+    --lovable-soft-pink: #FFDEE2;
+    --lovable-soft-peach: #FDE1D3;
+    --lovable-soft-gray: #F1F0FB;
   }
 }
 
@@ -85,6 +93,11 @@
 
   .recruiter-mode-container {
     overflow: hidden !important;
+  }
+
+  /* Lite mode styling */
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-black/40 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
   }
 
   .terminal-prompt {
@@ -219,5 +232,17 @@
 
   .animate-cursor-blink {
     animation: cursor-blink 1s steps(1) infinite;
+  }
+  
+  /* Lovable-inspired button styles for lite mode */
+  .recruiter-mode .btn-lovable {
+    @apply bg-white/10 hover:bg-white/15 text-white border border-white/20 
+    hover:border-white/30 rounded-md px-4 py-2 transition-all duration-200;
+  }
+  
+  .recruiter-mode .btn-lovable-primary {
+    background: linear-gradient(to bottom right, rgba(229,222,255,0.15), rgba(211,228,253,0.15));
+    @apply hover:bg-white/15 text-white border border-white/20 
+    hover:border-white/30 rounded-md px-4 py-2 transition-all duration-200;
   }
 }
