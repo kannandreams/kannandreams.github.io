@@ -61,7 +61,7 @@
   }
 
   .recruiter-mode .terminal-container {
-    font-size: 1.12rem !important; /* Bump for recruiter mode (for legibility) */
+    font-size: 1.12rem !important; /* Bump for Lite Mode (for legibility) */
     line-height: 1.7 !important;
     letter-spacing: 0.01em;
   }
