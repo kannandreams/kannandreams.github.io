@@ -103,7 +103,7 @@ const VimHelp: React.FC<{ activeSection?: string }> = ({ activeSection }) => {
                 <li>
                   Type <span className="text-terminal-accent">i</span> to enter Insert Mode [ contact page ]; <span className="text-terminal-accent">&lt;ESC&gt;</span> returns to Normal.
                 </li>
-                <li>Use Recruiter Mode toggle on top-right <span className='text-green-700'> // disabled resume download option atm </span></li>
+                <li>Use toggle option for Lite Mode <span className='text-green-700'> // disabled resume download option atm </span></li>
                 <li>
                   Ready to explore? Try <span className="text-terminal-accent">:skills</span> or <span className="text-terminal-accent">:projects</span>!
                 </li>

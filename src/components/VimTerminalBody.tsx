@@ -31,7 +31,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
   lastCommand,
   terminalBodyRef,
 }) => {
-  // In recruiter mode, render the appropriate section based on activeSection
+  // In Lite Mode, render the appropriate section based on activeSection
   if (!devMode) {
     return (
       <div 

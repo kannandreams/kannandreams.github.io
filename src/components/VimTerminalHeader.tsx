@@ -32,7 +32,7 @@ interface VimTerminalHeaderProps {
 const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
   <button
     onClick={onClick}
-    aria-label={checked ? "Switch to Recruiter Mode" : "Switch to Dev Mode"}
+    aria-label={checked ? "Switch to Lite Mode" : "Switch to Dev Mode"}
     className={cn(
       "inline-flex items-center w-10 h-5 rounded-full relative transition-colors duration-300",
       checked 
@@ -101,7 +101,7 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
           <div className="flex items-center">
             <span className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
               style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}>
-              Recruiter Mode
+              Lite Mode
             </span>
             <CustomToggle checked={devMode} onClick={onDevModeToggle} />
           </div>
