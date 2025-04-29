@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Mail, Book, Wrench, Star, List, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,19 @@ const VimHelp: React.FC<{
   devMode?: boolean;
   onSectionSelect?: (section: string) => void;
 }> = ({ activeSection, devMode = true, onSectionSelect }) => {
+  
+  // Track page views for about and help sections
+  useEffect(() => {
+    if (activeSection === "about" && window.gtag) {
+      window.gtag('event', 'view_item', {
+        event_category: 'Content',
+        event_label: 'About Me Section',
+        content_type: 'about'
+      });
+      console.log('About Me section view tracked in GA');
+    }
+  }, [activeSection]);
+
   return (
     <div className="vim-help animate-fade-in text-stone-300">
       {activeSection === "about" ? (
@@ -126,7 +139,18 @@ const VimHelp: React.FC<{
               {navCommands.filter(cmd => !["clear", "q"].includes(cmd.action)).map((item) => (
                 <Button 
                   key={item.action}
-                  onClick={() => onSectionSelect && onSectionSelect(item.action)}
+                  onClick={() => {
+                    // Track button clicks in lite mode
+                    if (window.gtag) {
+                      window.gtag('event', 'select_content', {
+                        event_category: 'Navigation',
+                        event_label: `${item.desc} Button`,
+                        content_type: item.action
+                      });
+                      console.log(`Navigation to ${item.action} tracked in GA`);
+                    }
+                    if (onSectionSelect) onSectionSelect(item.action);
+                  }}
                   variant="outline"
                   className="bg-white/5 hover:bg-white/10 border-white/10 text-stone-300 hover:text-white/90 hover:border-white/20 transition-all"
                 >
