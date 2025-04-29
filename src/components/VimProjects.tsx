@@ -74,7 +74,7 @@ const VimProjects: React.FC = () => {
     <div className="vim-projects animate-fade-in">
       <div className="flex items-center space-x-2 mb-6">
         <Briefcase className="text-terminal-secondary" />
-        <h2 className="text-terminal-accent text-xl font-semibold">Recent Experiments</h2>
+        <h2 className="text-stone-300 text-xl font-semibold">Recent Experiments</h2>
       </div>
 
       <ResizablePanelGroup direction="horizontal">
@@ -88,7 +88,7 @@ const VimProjects: React.FC = () => {
                   onClick={() => setSelectedProject(project)}
                   className={`px-3 py-2 cursor-pointer transition-colors border-l-2 ${
                     selectedProject?.id === project.id
-                      ? 'bg-terminal-primary/10 border-terminal-primary text-terminal-primary'
+                      ? 'bg-terminal-primary/10 border-terminal-primary text-terminal-primary text-opacity-70'
                       : 'border-transparent hover:bg-terminal-border/10'
                   }`}
                 >
@@ -109,10 +109,10 @@ const VimProjects: React.FC = () => {
               {selectedProject ? (
                 <div className="space-y-6">
                   <div>
-                    <h2 className="text-2xl font-semibold text-terminal-primary mb-2">
+                    <h2 className="text-2xl font-semibold text-teal-400 mb-2">
                       {selectedProject.title}
                     </h2>
-                    <p className="text-terminal-foreground">
+                    <p className="text-stone-300">
                       {selectedProject.description}
                     </p>
                   </div>
@@ -124,7 +124,7 @@ const VimProjects: React.FC = () => {
                         {selectedProject.technologies.map((tech, index) => (
                           <span
                             key={index}
-                            className="px-3 py-1 bg-terminal-border/30 text-terminal-primary rounded-md text-sm"
+                            className="px-3 py-1 bg-terminal-border/30 text-stone-400 rounded-md text-sm"
                           >
                             {tech}
                           </span>
