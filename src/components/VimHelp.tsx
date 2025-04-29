@@ -45,7 +45,7 @@ const VimHelp: React.FC<{
           😎 Fun fact : <span className='text-terminal-accent'>I'm a huge fan of egg puffs 🥟</span>. They were my go-to breakfast for many years. Not anymore, but the love remains.<br></br><br></br>
           </p>  
           <p className="mt-2">
-          <u>Outside of Work:</u> More recently, I started <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Eggpuff Engineer</a> — a substack newsletter 
+          <u>Outside of Work:</u> More recently, I started <a href="https://eggpuffengineer.substack.com/" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-bright-green" >Eggpuff Engineer</a> — a substack newsletter 
             where I primarily write about Engineering insights, AI, experiences, and experiments. In many ways, it's helping me live a small piece of my entrepreneurial dream.<br></br><br></br>
           </p>
           <p className="mt-2">
