@@ -50,7 +50,7 @@ const VimHelp: React.FC<{
           </p>
           <p className="mt-2">
             <u>Outside of Tech:</u> I lean into the <i>creative side</i> too.<br></br>
-            I speak & think in <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-accent">Tamizh (தமிழ்)</a>, 
+            I speak & think in <a href="https://en.wikipedia.org/wiki/Tamil_language" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-accent">Tamizh (தமிழ்)</a> natively, 
             so I write poems and take random mobile clicks (as if I think like a photographer) some of which I share via <a href="https://sundalpaper.substack.com/about" target="_blank" rel="noopener noreferrer" aria-label="lovable" className="text-terminal-accent" >Sundalpaper</a>, my personal Substack space.
             <br></br>
           </p>
