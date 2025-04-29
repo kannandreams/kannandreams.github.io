@@ -2,7 +2,7 @@
 import React from "react";
 
 // Brief introduction with updated content
-const intro = `👋 Hi`
+const intro = `👋 Hi, I'm Kannan Kalidasan — you can call me KK.`
 const VimAbout: React.FC = () => {
   return (
     <div

@@ -15,7 +15,8 @@ const About = () => {
           👋 Hi, I'm KK
         </p>
         <p className="text-terminal-muted mb-4">
-          I do ...
+          I'm a Software Engineer and Tech Leader based in the UK, with expertise in Data, Analytics, ML, and Backend systems. 
+          I've been coding since 2005. What I enjoy most is operating at the intersection of Technology, Leadership, and Strategy.
         </p>
         <div className="flex items-center space-x-4 mt-6">
           <a href={GITHUB_URL} aria-label="GitHub" target="_blank" rel="noopener noreferrer">
