@@ -112,6 +112,18 @@ const VimBlog: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Track Blogs section view
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'view_item', {
+        event_category: 'Content',
+        event_label: 'Blog Section',
+        content_type: 'blog'
+      });
+      console.log('Skills section view tracked in GA');
+    }
+  }, []);
+
   useEffect(() => {
     setLoading(true);
     fetchBlogPosts()

@@ -67,6 +67,104 @@ const getCategoryIcon = (category: string) => {
   }
 };
 
+const hardcodedSkills: SkillCategory[] = [
+  {
+    category: "Data & Machine Learning",
+    icon: <Database size={18} className="text-terminal-primary" />,
+    skills: [
+      {
+        name: "Snowflake",
+        level: "Advanced",
+        years: 5,
+        icon: "Snowflake"
+      },
+      {
+        name: "DBT",
+        level: "Expert",
+        years: 5,
+        icon: "DBT"
+      },
+      {
+        name: "Spark",
+        level: "Advanced",
+        years: 10,
+        icon: "Spark"
+      },
+      {
+        name: "Kafka",
+        level: "Advanced",
+        years: 10,
+        icon: "Spark"
+      }
+    ]
+  },
+  {
+    category: "Software Engineering",
+    icon: <Code size={18} className="text-terminal-primary" />,
+    skills: [
+      {
+        name: "Python",
+        level: "Expert",
+        years: 15,
+        icon: "Python"
+      },
+      {
+        name: "SQL",
+        level: "Expert",
+        years: 15,
+        icon: "Oracle"
+      },
+      {
+        name: "React",
+        level: "Intermediate",
+        years: 2,
+        icon: "React"
+      },
+      {
+        name: "FastAPI",
+        level: "Expert",
+        years: 4,
+        icon: "FastAPI"
+      }
+    ]
+  },
+  {
+    category: "Platform Engineering",
+    icon: <Code size={18} className="text-terminal-primary" />,
+    skills: [
+      {
+        name: "AWS",
+        level: "Advanced",
+        years: 10,
+        icon: "AWS"
+      },
+      {
+        name: "Containerization",
+        level: "Advanced",
+        years: 10,
+        icon: "Docker"
+      },
+      {
+        name: "GitOps",
+        level: "Advanced",
+        years: 10,
+        icon: "Github"
+      },
+      {
+        name: "Terraform",
+        level: "Advanced",
+        years: 5,
+        icon: "Terraform"
+      },
+      {
+        name: "CI/CD",
+        level: "Advanced",
+        years: 10,
+        icon: "Jenkins"
+      }
+    ]
+  }
+];
 
 async function fetchSkills(): Promise<SkillCategory[]> {
   try {
@@ -125,6 +223,18 @@ const VimTerminalSkills: React.FC = () => {
   const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
   const [loading, setLoading] = useState(true);
   const isMobile = useIsMobile();
+
+  // Track Skills section view
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'view_item', {
+        event_category: 'Content',
+        event_label: 'Skills Section',
+        content_type: 'skills'
+      });
+      console.log('Skills section view tracked in GA');
+    }
+  }, []);
 
   useEffect(() => {
     setLoading(true);

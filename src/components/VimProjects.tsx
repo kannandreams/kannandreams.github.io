@@ -53,6 +53,18 @@ const VimProjects: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
+  // Track Projects section view
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('event', 'view_item', {
+        event_category: 'Content',
+        event_label: 'Projects Section',
+        content_type: 'projects'
+      });
+      console.log('Skills section view tracked in GA');
+    }
+  }, []);
+
   useEffect(() => {
     setLoading(true);
     fetchProjects()
