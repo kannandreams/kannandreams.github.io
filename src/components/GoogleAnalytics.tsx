@@ -29,6 +29,7 @@ const GoogleAnalytics = () => {
       gtag('js', new Date());
       gtag('config', GA_TRACKING_ID, {
         page_path: window.location.pathname,
+        send_page_view: true
       });
       
       console.log('Google Analytics initialized with ID:', GA_TRACKING_ID);
@@ -64,6 +65,25 @@ const GoogleAnalytics = () => {
   }, []);
 
   return null; // This component doesn't render anything
+};
+
+// Helper function to allow easy event tracking throughout the app
+export const trackEvent = (
+  eventName: string, 
+  category: string, 
+  label: string, 
+  value?: number,
+  additionalParams?: Record<string, any>
+) => {
+  if (window.gtag) {
+    window.gtag('event', eventName, {
+      event_category: category,
+      event_label: label,
+      value: value,
+      ...additionalParams
+    });
+    console.log(`GA event tracked: ${eventName} - ${category} - ${label}`);
+  }
 };
 
 export default GoogleAnalytics;
