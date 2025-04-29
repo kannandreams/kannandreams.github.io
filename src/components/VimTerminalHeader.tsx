@@ -53,16 +53,6 @@ const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => v
 );
 
 const showAppreciationToast = () => {
-  // Track heart button click in Google Analytics
-  if (window.gtag) {
-    window.gtag('event', 'click', {
-      event_category: 'Engagement',
-      event_label: 'Heart Button',
-      value: 1
-    });
-    console.log('Heart button click tracked in GA');
-  }
-
   toast({
     title: "❤️ Thank you!",
     description: "Glad you enjoyed my portfolio and design! Your appreciation means a lot.",

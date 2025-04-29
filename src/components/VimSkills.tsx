@@ -126,32 +126,6 @@ const VimTerminalSkills: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const isMobile = useIsMobile();
 
-  // Track Skills section view
-  useEffect(() => {
-    if (window.gtag) {
-      window.gtag('event', 'view_item', {
-        event_category: 'Content',
-        event_label: 'Skills Section',
-        content_type: 'skills'
-      });
-      console.log('Skills section view tracked in GA');
-    }
-  }, []);
-
-  // Track skill category tab clicks
-  const handleTabClick = (index: number) => {
-    setActiveTab(index);
-    
-    if (window.gtag && skillCategories[index]) {
-      window.gtag('event', 'select_content', {
-        event_category: 'Skills',
-        event_label: `Skills Tab - ${skillCategories[index].category}`,
-        content_type: 'skill_category'
-      });
-      console.log(`Skills tab click for ${skillCategories[index].category} tracked in GA`);
-    }
-  };
-
   useEffect(() => {
     setLoading(true);
     fetchSkills()
@@ -176,7 +150,7 @@ const VimTerminalSkills: React.FC = () => {
         {skillCategories.map((category, index) => (
           <button
             key={index}
-            onClick={() => handleTabClick(index)}
+            onClick={() => setActiveTab(index)}
             className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative group ${
               activeTab === index 
                 ? 'bg-terminal-border text-terminal-foreground border-x border-t border-terminal-border/40 rounded-t-md z-10' 
