@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Code, Database, Palette, File, X } from 'lucide-react';
 import SkillCard from './SkillCard';
 import { JavaScriptIcon, TypeScriptIcon, ReactIcon, NodeIcon, PythonIcon, PostgresIcon, FigmaIcon, Laptop, RustIcon } from './TechIcons';
+import { trackEvent } from './GoogleAnalytics';
 
 interface Skill {
   name: string;
@@ -18,6 +18,30 @@ interface SkillCategory {
   skills: Skill[];
   comment?: string | null;
 }
+
+// Define the hardcodedSkills variable that was missing and causing the error
+const hardcodedSkills: SkillCategory[] = [
+  {
+    category: "Frontend Development",
+    icon: <Code size={18} className="text-terminal-primary" />,
+    skills: [
+      { name: "JavaScript", level: "Expert", years: 5, icon: "JavaScript" },
+      { name: "TypeScript", level: "Advanced", years: 3, icon: "TypeScript" },
+      { name: "React", level: "Advanced", years: 4, icon: "React" }
+    ],
+    comment: "Frontend technologies I use regularly"
+  },
+  {
+    category: "Backend Development",
+    icon: <Database size={18} className="text-terminal-primary" />,
+    skills: [
+      { name: "Node.js", level: "Advanced", years: 4, icon: "Node" },
+      { name: "Python", level: "Expert", years: 5, icon: "Python" },
+      { name: "PostgreSQL", level: "Advanced", years: 3, icon: "Postgres" }
+    ],
+    comment: "Backend technologies I'm proficient with"
+  }
+];
 
 const getIconComponent = (iconName: string) => {
   const icons: { [key: string]: React.ReactNode } = {
