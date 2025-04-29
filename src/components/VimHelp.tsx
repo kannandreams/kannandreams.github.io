@@ -76,7 +76,7 @@ const VimHelp: React.FC<{
             <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
               <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
                 <div className="flex items-center pl-1">
-                  <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
+                  <span className="px-2 py-0.5 font-semibold text-white text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
                     Navigation Commands
                   </span>
                   <div className="flex-1 h-px bg-[#555] ml-3" />
@@ -85,7 +85,7 @@ const VimHelp: React.FC<{
                   {firstCol.map(({ label, desc, emoji }) => (
                     <div key={label} className="flex items-baseline space-x-2">
                       <span className="text-terminal-accent min-w-[62px]">{label}</span>
-                      <span className="text-xs text-white">
+                      <span className="text-xs text-stone-300">
                         <span className="mr-1" role="img" aria-label="icon">{emoji}</span>
                         {desc}
                       </span>
@@ -104,7 +104,7 @@ const VimHelp: React.FC<{
               </div>
               <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
                 <div className="flex items-center pl-1">
-                  <span className="px-2 py-0.5 font-semibold text-terminal-bright-green text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
+                  <span className="px-2 py-0.5 font-semibold text-white text-sm ml-2" style={{ fontWeight: 600, letterSpacing: 0.5 }}>
                     Command Tips
                   </span>
                   <div className="flex-1 h-px bg-[#555] ml-3" />
