@@ -10,7 +10,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-terminal-background text-terminal-foreground py-10 px-4 flex justify-center items-start">
       <div className="max-w-xl w-full bg-terminal paper rounded-lg shadow-lg p-8 border border-terminal-border">
-        <h1 className="text-3xl font-bold mb-2 text-terminal-accent">About Me</h1>
+        <h1 className="text-3xl font-bold mb-2 text-terminal-accent inline-block">About Me</h1>
         <p className="text-base text-white mb-6">
           👋 Hi, I'm KK
         </p>

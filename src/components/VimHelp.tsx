@@ -41,7 +41,7 @@ const VimHelp: React.FC<{
     <div className="vim-help animate-fade-in text-stone-300">
       {activeSection === "about" ? (
         <div className="bg-transparent p-3 rounded mb-3">
-          <h2 className="text-terminal-accent text-xl mb-2 block">About Me</h2>
+          <h2 className="text-terminal-accent text-xl mb-2 font-bold inline-block">About Me</h2>
           <p className="text-stone-300 text-base">
             👋 Hi, I'm Kannan Kalidasan — you can call me <i>KK</i>. <br></br>
             
