@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Mail, Book, Wrench, Star, List, Smile } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,19 @@ const VimHelp: React.FC<{
   devMode?: boolean;
   onSectionSelect?: (section: string) => void;
 }> = ({ activeSection, devMode = true, onSectionSelect }) => {
+
+  // Track page views for about and help sections
+  useEffect(() => {
+    if (activeSection === "about" && window.gtag) {
+      window.gtag('event', 'view_item', {
+        event_category: 'Content',
+        event_label: 'About Me Section',
+        content_type: 'about'
+      });
+      console.log('About Me section view tracked in GA');
+    }
+  }, [activeSection]);
+
   return (
     <div className="vim-help animate-fade-in text-stone-300">
       {activeSection === "about" ? (
