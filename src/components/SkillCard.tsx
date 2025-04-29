@@ -19,7 +19,7 @@ const SkillCard: React.FC<SkillCardProps> = ({ name, icon, lineNumber }) => {
         <span className="w-5 h-5 flex items-center justify-center">
           {icon}
         </span>
-        <span className="text-terminal-foreground">{name}</span>
+        <span className="text-stone-300">{name}</span>
       </div>
     </div>
   );
