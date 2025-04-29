@@ -10,13 +10,12 @@ const About = () => {
   return (
     <div className="min-h-screen bg-terminal-background text-terminal-foreground py-10 px-4 flex justify-center items-start">
       <div className="max-w-xl w-full bg-terminal paper rounded-lg shadow-lg p-8 border border-terminal-border">
-        <h1 className="text-3xl font-bold mb-2 text-terminal-accent inline-block">About Me</h1>
+        <h1 className="text-3xl font-bold mb-2 text-terminal-accent">About Me</h1>
         <p className="text-base text-white mb-6">
           👋 Hi, I'm KK
         </p>
         <p className="text-terminal-muted mb-4">
-          I'm a Software Engineer and Tech Leader based in the UK, with expertise in Data, Analytics, ML, and Backend systems. 
-          I've been coding since 2005. What I enjoy most is operating at the intersection of Technology, Leadership, and Strategy.
+          I do ...
         </p>
         <div className="flex items-center space-x-4 mt-6">
           <a href={GITHUB_URL} aria-label="GitHub" target="_blank" rel="noopener noreferrer">
