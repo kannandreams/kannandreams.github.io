@@ -10,3 +10,10 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+
+### Build pages and deploy 
+
+```
+npm run build
+npm run deploy
+```
