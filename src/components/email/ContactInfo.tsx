@@ -17,7 +17,7 @@ const ContactInfo = () => {
           </div>
           <div className="flex items-center gap-2">
             <Globe size={16} className="text-terminal-accent" />
-            <span className="text-white">eggpuffengineer.substack.com</span>
+            <span className="text-white">engineersmeetai.substack.com</span>
           </div>
           <div className="flex items-center gap-2">
             <LinkIcon size={16} className="text-terminal-accent" />

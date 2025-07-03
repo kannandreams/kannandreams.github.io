@@ -12,7 +12,7 @@ const SubscribeButton = () => {
       asChild
     >
       <a
-        href="https://eggpuffengineer.substack.com/subscribe"
+        href="https://engineersmeetai.substack.com/subscribe"
         target="_blank"
         rel="noopener noreferrer"
         className="hover:text-white"
