@@ -14,61 +14,61 @@ const hardcodedBlogs: BlogPost[] = [
   {
     id: "1",
     title: "The AI Parddadox",
-    url: "https://eggpuffengineer.substack.com/p/the-ai-paradox",
+    url: "https://engineersmeetai.substack.com/p/the-ai-paradox",
     created: "2025-04"
   },
   {
     id: "2",
     title: "How the Priming Effect Shapes Engineers: The Hidden Biases in Our Decisions",
-    url: "https://eggpuffengineer.substack.com/p/how-the-priming-effect-shapes-engineers",
+    url: "https://engineersmeetai.substack.com/p/how-the-priming-effect-shapes-engineers",
     created: "2025-03"
   },
   {
     id: "3",
     title: "How WebAssembly is reshaping Data & AI",
-    url: "https://eggpuffengineer.substack.com/p/the-wasm-edge-how-webassembly-is",
+    url: "https://engineersmeetai.substack.com/p/the-wasm-edge-how-webassembly-is",
     created: "2025-03"
   },
   {
     id: "4",
     title: "LLMAnalytics: Beyond Clicks and Views",
-    url: "https://eggpuffengineer.substack.com/p/llmanalytics-beyond-clicks-and-views",
+    url: "https://engineersmeetai.substack.com/p/llmanalytics-beyond-clicks-and-views",
     created: "2025-03"
   },
   {
     id: "5",
     title: "Engineering Challenges in Building NLP-Driven UI/UX [ Podcast Enabled ]",
-    url: "https://eggpuffengineer.substack.com/p/engineering-challenges-in-building",
+    url: "https://engineersmeetai.substack.com/p/engineering-challenges-in-building",
     created: "2025-03"
   },
   {
     id: "6",
     title: "Why Pi-Shaped Engineering Teams Matter in This AI Era",
-    url: "https://eggpuffengineer.substack.com/p/are-you-building-pi-shaped-teams",
+    url: "https://engineersmeetai.substack.com/p/are-you-building-pi-shaped-teams",
     created: "2025-03"
   },
   {
     id: "7",
     title: "Think in Shapes: A Quick Visual Guide for Engineers",
-    url: "https://eggpuffengineer.substack.com/p/think-in-shapes-a-visual-guide-for",
+    url: "https://engineersmeetai.substack.com/p/think-in-shapes-a-visual-guide-for",
     created: "2025-02"
   },
   {
     id: "8",
     title: "How to Pick the Right Tech for Your Startup",
-    url: "https://eggpuffengineer.substack.com/p/how-to-pick-the-right-tech-for-your",
+    url: "https://engineersmeetai.substack.com/p/how-to-pick-the-right-tech-for-your",
     created: "2025-02"
   },
   {
     id: "9",
     title: "Service, Handlers and Controllers - Explained",
-    url: "https://eggpuffengineer.substack.com/p/service-handlers-controllers-in-go",
+    url: "https://engineersmeetai.substack.com/p/service-handlers-controllers-in-go",
     created: "2023-02"
   },
   {
     id: "10",
     title: "Decades of Data Roles: My Journey to ML Engineer",
-    url: "https://eggpuffengineer.substack.com/p/decades-of-data-my-journey-from-data",
+    url: "https://engineersmeetai.substack.com/p/decades-of-data-my-journey-from-data",
     created: "2019-12"
   }
 ];

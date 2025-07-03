@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const GITHUB_URL = "https://github.com/kannandreams";
 const LINKEDIN_URL = "https://www.linkedin.com/in/kannandreams/";
-const SUBSTACK_URL = "https://eggpuffengineer.substack.com/";
+const SUBSTACK_URL = "https://engineersmeetai.substack.com/";
 
 const NAV_SECTIONS = [
   { label: "Home", value: "home", command: ":home" },
