@@ -1,7 +1,10 @@
-
-import React, { useState, useEffect } from 'react';
-import { Briefcase, Github } from 'lucide-react';
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@/components/ui/resizable";
+import React, { useState, useEffect } from "react";
+import { Briefcase, Github } from "lucide-react";
+import {
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle,
+} from "@/components/ui/resizable";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Project {
@@ -16,20 +19,20 @@ interface Project {
 async function fetchProjects(): Promise<Project[]> {
   try {
     // Updated path to correctly access the file in production
-    const response = await fetch('/data/projects.md');
+    const response = await fetch("/data/projects.md");
     const text = await response.text();
-    
+
     const projects: Project[] = [];
-    const sections = text.split('## ').slice(1); // Skip the header
-    
+    const sections = text.split("## ").slice(1); // Skip the header
+
     sections.forEach((section, index) => {
-      const lines = section.trim().split('\n');
+      const lines = section.trim().split("\n");
       const title = lines[0];
       const description = lines[1];
       const repo = lines[2];
       const liveDemo = lines[3];
-      const technologies = lines[4].split(', ');
-      
+      const technologies = lines[4].split(", ");
+
       projects.push({
         id: String(index),
         title,
@@ -39,10 +42,10 @@ async function fetchProjects(): Promise<Project[]> {
         technologies,
       });
     });
-    
+
     return projects;
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error("Error fetching projects:", error);
     return [];
   }
 }
@@ -56,12 +59,12 @@ const VimProjects: React.FC = () => {
   // Track Projects section view
   useEffect(() => {
     if (window.gtag) {
-      window.gtag('event', 'view_item', {
-        event_category: 'Content',
-        event_label: 'Projects Section',
-        content_type: 'projects'
+      window.gtag("event", "view_item", {
+        event_category: "Content",
+        event_label: "Projects Section",
+        content_type: "projects",
       });
-      console.log('Skills section view tracked in GA');
+      console.log("Skills section view tracked in GA");
     }
   }, []);
 
@@ -86,7 +89,9 @@ const VimProjects: React.FC = () => {
     <div className="vim-projects animate-fade-in">
       <div className="flex items-center space-x-2 mb-6">
         <Briefcase className="text-terminal-secondary" />
-        <h2 className="text-stone-300 text-xl font-semibold">Recent Experiments</h2>
+        <h2 className="text-stone-300 text-xl font-semibold">
+          Recent Experiments
+        </h2>
       </div>
 
       <ResizablePanelGroup direction="horizontal">
@@ -100,8 +105,8 @@ const VimProjects: React.FC = () => {
                   onClick={() => setSelectedProject(project)}
                   className={`px-3 py-2 cursor-pointer transition-colors border-l-2 ${
                     selectedProject?.id === project.id
-                      ? 'bg-terminal-primary/10 border-terminal-primary text-terminal-primary text-opacity-70'
-                      : 'border-transparent hover:bg-terminal-border/10'
+                      ? "bg-terminal-primary/10 border-terminal-primary text-terminal-primary text-opacity-70"
+                      : "border-transparent hover:bg-terminal-border/10"
                   }`}
                 >
                   <h3 className="text-sm font-medium">{project.title}</h3>

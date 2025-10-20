@@ -4,7 +4,7 @@
 
 A terminal-based portfolio website with Vim-inspired navigation and commands.
 https://github.com/yourusername/vim-portfolio
-https://vim-portfolio-demo.vercel.app
+https://kannandreams.github.io
 React, TypeScript, Tailwind CSS, Radix UI
 
 ## DBT MCP Server
