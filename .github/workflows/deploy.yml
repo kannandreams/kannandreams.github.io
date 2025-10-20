@@ -3,35 +3,35 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger deploy on push to main branch
+      - main # Trigger deploy on push to main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout code
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Set up Node.js
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-    # Install dependencies
-    - name: Install dependencies
-      run: npm install
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
 
-    # Build the app
-    - name: Build the app
-      run: npm run build
+      # Build the app
+      - name: Build the app
+        run: npm run build
 
-    # Deploy to GitHub Pages
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages  # The branch to deploy to
-        folder: dist      # The folder to deploy
-        token: ${{ secrets.GITHUB_TOKEN }}
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages # The branch to deploy to
+          folder: dist # The folder to deploy
+          token: ${{ secrets.GITHUB_TOKEN }}
