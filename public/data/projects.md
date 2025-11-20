@@ -3,7 +3,7 @@
 ## Vim Style Portfolio
 
 A terminal-based portfolio website with Vim-inspired navigation and commands.
-https://github.com/yourusername/vim-portfolio
+https://github.com/kannandreams/kannandreams.github.io
 https://kannandreams.github.io
 React, TypeScript, Tailwind CSS, Radix UI
 
