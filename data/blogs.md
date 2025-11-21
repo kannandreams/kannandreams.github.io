@@ -1,6 +1,31 @@
 
 # Blog Posts
 
+## What is Knowledge Distillation?
+2025-07
+What is Knowledge Distillation?
+https://engineersmeetai.substack.com/p/what-is-knowledge-distillation
+
+## Hands-On LLM Quantization: transformers & bitsandbytes
+2025-07
+Hands-On LLM Quantization: transformers & bitsandbytes
+https://engineersmeetai.substack.com/p/hands-on-llm-quantization-transformers
+
+## A Beginner's Guide to LLM Quantization
+2025-07
+A Beginner's Guide to LLM Quantization
+https://engineersmeetai.substack.com/p/a-beginners-guide-to-llm-quantization
+
+## Software Agents - The 3P Architecture
+2025-07
+Software Agents - The 3P Architecture
+https://engineersmeetai.substack.com/p/software-agents-the-3p-architecture
+
+## Understanding Reasoning Models
+2025-06
+Understanding Reasoning Models
+https://engineersmeetai.substack.com/p/understanding-reasoning-models
+
 ## How LLMs Are Trained: A Conceptual Overview
 2025-06
 How LLMs Are Trained: A Conceptual Overview
