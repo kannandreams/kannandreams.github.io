@@ -1,6 +1,32 @@
 
 # Blog Posts
 
+## The Product Owner’s Playbook for Working With Engineers
+2025-08
+The Product Owner’s Playbook for Working With Engineers
+https://engineersmeetai.substack.com/p/the-product-owners-playbook-for-working
+
+## Synthetic Data Generation for AI
+2025-08
+Synthetic Data Generation for AI
+https://engineersmeetai.substack.com/p/synthetic-data-generation-for-ai
+
+## Fail-Safe Patterns for AI Agent Workflows
+2025-08
+Fail-Safe Patterns for AI Agent Workflows
+https://engineersmeetai.substack.com/p/fail-safe-patterns-for-ai-agent-workflows
+
+## Data-Oriented Programming: Databases to AI Systems
+2025-08
+Data-Oriented Programming: Databases to AI Systems
+https://engineersmeetai.substack.com/p/data-oriented-programming-databases
+
+## Mojo🔥: AI Programming Language
+2025-08
+Mojo🔥: AI Programming Language
+https://engineersmeetai.substack.com/p/mojo-ai-programming-language
+
+
 ## What is Knowledge Distillation?
 2025-07
 What is Knowledge Distillation?
