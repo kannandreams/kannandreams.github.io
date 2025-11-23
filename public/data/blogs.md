@@ -1,23 +1,38 @@
 
 # Blog Posts
 
+## A Practical Guide to AI Dotfiles
+2025-10
+A Practical Guide to AI Dotfiles
+https://engineersmeetai.substack.com/p/a-practical-guide-to-ai-dotfiles
+
+## Dynamic Dispatch: From Classic OOP to Modern AI
+2025-10
+Dynamic Dispatch: From Classic OOP to Modern AI
+https://engineersmeetai.substack.com/p/dynamic-dispatch-from-classic-oop
+
+## Python 3.14’s No-GIL Explained and Performance Analysis
+2025-10
+Python 3.14’s No-GIL Explained and Performance Analysis
+https://engineersmeetai.substack.com/p/python-314s-no-gil-explained-and
+
 ## The Product Owner’s Playbook for Working With Engineers
-2025-08
+2025-09
 The Product Owner’s Playbook for Working With Engineers
 https://engineersmeetai.substack.com/p/the-product-owners-playbook-for-working
 
 ## Synthetic Data Generation for AI
-2025-08
+2025-09
 Synthetic Data Generation for AI
 https://engineersmeetai.substack.com/p/synthetic-data-generation-for-ai
 
 ## Fail-Safe Patterns for AI Agent Workflows
-2025-08
+2025-09
 Fail-Safe Patterns for AI Agent Workflows
 https://engineersmeetai.substack.com/p/fail-safe-patterns-for-ai-agent-workflows
 
 ## Data-Oriented Programming: Databases to AI Systems
-2025-08
+2025-09
 Data-Oriented Programming: Databases to AI Systems
 https://engineersmeetai.substack.com/p/data-oriented-programming-databases
 
