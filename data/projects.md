@@ -1,5 +1,19 @@
 # Projects
 
+## Learning Guide to Become a Rustacean 🦀
+
+Knoweldge Base :  Learning Guide to Become a Rustacean 🦀
+https://github.com/kannandreams/learning-rust
+https://github.com/kannandreams/learning-rust
+Rust
+
+## ROSE - Robotics for Software Engineers
+
+Knoweldge Base : ROSE - Robotics for Software Engineers. Hands-on learning lab built for software engineers who want to explore the world of robotics.
+https://github.com/kannandreams/robotics-for-sofware-engineers
+https://github.com/kannandreams/robotics-for-sofware-engineers
+Markdown
+
 ## Vim Style Portfolio
 
 A terminal-based portfolio website with Vim-inspired navigation and commands.
