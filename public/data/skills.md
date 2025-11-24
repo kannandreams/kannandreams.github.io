@@ -13,7 +13,6 @@ Data Architecture | Data Goverance | Data Security,Advanced,10+,Data
 Containerization,Advanced,10+,Docker
 Terraform,Advanced,5+,Terraform
 Code based or YAML Orchestrators | CI/CD,Advanced,10+,Jenkins
-Rust,Begineer,1+,Rust
 
 ## Trial
 ### Some of the Skills I've used meaningfully and will continue to apply when the situation calls for it.
@@ -32,6 +31,7 @@ HuggingFace,Intermediate,1+,HuggingFace
 ### Skills I'm currently exploring or focused to deep dive.
 Agentic Framework,Intermediate,1+,Google
 Generative AI,Begineer,1+,AI
+Rust,Begineer,1+,Rust
 Robotics, Begineer,0,Robotics
 
 
