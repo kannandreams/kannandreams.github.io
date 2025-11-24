@@ -13,6 +13,7 @@ Data Architecture | Data Goverance | Data Security,Advanced,10+,Data
 Containerization,Advanced,10+,Docker
 Terraform,Advanced,5+,Terraform
 Code based or YAML Orchestrators | CI/CD,Advanced,10+,Jenkins
+Rust,Begineer,1+,Rust
 
 ## Trial
 ### Some of the Skills I've used meaningfully and will continue to apply when the situation calls for it.
@@ -22,7 +23,6 @@ React,Intermediate,1+,Google
 Typescript,Intermediate,1+,Typescript
 Next.js,Intermediate,1+,Next
 MLOps,Advanced,3+,Google
-Java,Intermediate,3+,Java
 Databricks,Advanced,3+,Databricks
 scikit-learn | mlflow ,Intermediate,1+,scikit-learn
 mlflow,Intermediate,1+,mlflow
@@ -32,11 +32,12 @@ HuggingFace,Intermediate,1+,HuggingFace
 ### Skills I'm currently exploring or focused to deep dive.
 Agentic Framework,Intermediate,1+,Google
 Generative AI,Begineer,1+,AI
-Rust,Begineer,1+,Rust
+Robotics, Begineer,0,Robotics
 
 
 ## Hold
-### Skills I've used in the past, but are either outdated, no longer central to my current role, or being phased out.
+### Skills I've used in the past, but are either outdated in industry, no longer central to my current role, or being phased out.
+Java,Intermediate,3+,Java
 Hadoop,Advanced,10+,Hadoop
 Spring boot,Advanced,10+,Java
 Oracle,Advanced,10+,Oracle
