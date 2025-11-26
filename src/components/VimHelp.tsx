@@ -63,6 +63,7 @@ const VimHelp: React.FC<{
           </p>
           <br></br>
           <p className="mt-2">
+            <br></br>
             <u>Quick Blurb:</u> <br></br>
             🧢 Worked across various business domains, building products & teams
             for startups to large tech companies. <br></br>
@@ -88,36 +89,6 @@ const VimHelp: React.FC<{
               className="text-terminal-accent"
             >
               When Engineers meet AI
-            </a>{" "}
-            — a substack newsletter where I primarily write about Engineering
-            insights, AI, experiences, and experiments. In many ways, it's
-            helping me live a small piece of my entrepreneurial dream.<br></br>
-            <br></br>
-            <u>Quick Blurb:</u> <br></br>
-            🧢 Worked across various business domains, building products & teams
-            for startups to large tech companies. <br></br>
-            💎 Strong mix of Data and AI/ML expertise is a perfect combo.
-            <br></br>
-            👨🏻 I'm an <span className="text-terminal-accent">ENFJ</span> (yep,
-            "The Protagonist" per personality test).<br></br>
-            😎 Fun fact :{" "}
-            <span className="text-terminal-accent">
-              I'm a huge fan of egg puffs 🥟
-            </span>
-            . They were my go-to breakfast for many years. Not anymore, but the
-            love remains.<br></br>
-            <br></br>
-          </p>
-          <p className="mt-2">
-            <u>Outside of Work:</u> More recently, I started{" "}
-            <a
-              href="https://engineersmeetai.substack.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="lovable"
-              className="text-terminal-accent"
-            >
-              Eggpuff Engineer
             </a>{" "}
             — a substack newsletter where I primarily write about Engineering
             insights, AI, experiences, and experiments. In many ways, it's
