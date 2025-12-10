@@ -1,6 +1,11 @@
 
 # Blog Posts
 
+## Rust Libraries Every Data Engineer Should Know
+2025-12
+Rust Libraries Every Data Engineer Should Know
+https://engineersmeetai.substack.com/p/rust-libraries-every-data-engineer
+
 ## 🦀 Why Rust ? and Why now?
 2025-11
 Why Rust ? and Why now?
