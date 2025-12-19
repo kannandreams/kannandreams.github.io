@@ -1,6 +1,11 @@
 
 # Blog Posts
 
+## How Different Databases Store and Retrieve Data
+2025-12
+How Different Databases Store and Retrieve Data
+https://engineersmeetai.substack.com/p/how-different-databases-store-and
+
 ## Rust Libraries Every Data Engineer Should Know
 2025-12
 Rust Libraries Every Data Engineer Should Know
