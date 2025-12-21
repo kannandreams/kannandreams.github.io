@@ -1,5 +1,12 @@
 # Projects
 
+## Latent Lens 🔍
+
+Latent Lens is a powerful visual debugger for exploring vector embeddings. 
+https://github.com/kannandreams/latentlens
+https://latentlens.streamlit.app/
+Python, Chroma DB, Streamlit
+
 ## Learning Guide to Become a Rustacean 🦀
 
 Knoweldge Base :  Learning Guide to Become a Rustacean 🦀

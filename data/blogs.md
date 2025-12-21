@@ -1,6 +1,37 @@
 
 # Blog Posts
 
+## How Different Databases Store and Retrieve Data
+2025-12
+How Different Databases Store and Retrieve Data
+https://engineersmeetai.substack.com/p/how-different-databases-store-and
+
+## Rust Libraries Every Data Engineer Should Know
+2025-12
+Rust Libraries Every Data Engineer Should Know
+https://engineersmeetai.substack.com/p/rust-libraries-every-data-engineer
+
+## 🦀 Why Rust ? and Why now?
+2025-11
+Why Rust ? and Why now?
+https://engineersmeetai.substack.com/p/why-rust-and-why-now
+
+## The One Reliability Feature Every Agent Pipeline Needs
+2025-11
+The One Reliability Feature Every Agent Pipeline Needs
+https://engineersmeetai.substack.com/p/the-one-reliability-feature-every
+
+## Safely Turn First-Party Data Into Shared Value
+2025-11
+Safely Turn First-Party Data Into Shared Value
+https://engineersmeetai.substack.com/p/safely-turn-first-party-data-into
+
+
+## The Changing Face of Open Source
+2025-11
+The Changing Face of Open Source
+https://engineersmeetai.substack.com/p/the-changing-face-of-open-source
+
 ## A Practical Guide to AI Dotfiles
 2025-10
 A Practical Guide to AI Dotfiles
