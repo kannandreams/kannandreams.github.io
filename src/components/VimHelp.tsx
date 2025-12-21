@@ -80,7 +80,7 @@ const VimHelp: React.FC<{
             <br></br>
           </p>
           <p className="mt-2">
-            <u>Outside of Work:</u> More recently, I started{" "}
+            <u>Outside of Work:</u> I write{" "}
             <a
               href="https://engineersmeetai.substack.com/"
               target="_blank"
@@ -90,9 +90,8 @@ const VimHelp: React.FC<{
             >
               When Engineers meet AI
             </a>{" "}
-            — a substack newsletter where I primarily write about Engineering
-            insights, AI, experiences, and experiments. In many ways, it's
-            helping me live a small piece of my entrepreneurial dream.<br></br>
+            — a Substack newsletter where I explore how scalable, intelligent systems are built across Data, AI tooling, Software Engineering, and engineering philosophy.
+            Through hands-on experiments, real-world experiences, and personal reflections, in many ways, it's helping me live a small piece of my entrepreneurial dream.<br></br>
             <br></br>
           </p>
           <p className="mt-2">
