@@ -1,6 +1,11 @@
 
 # Blog Posts
 
+## Why AI Models Keep Saying "Wait…"
+2025-12
+Why AI Models Keep Saying "Wait…"
+https://engineersmeetai.substack.com/p/why-ai-models-keep-saying-wait
+
 ## How Different Databases Store and Retrieve Data
 2025-12
 How Different Databases Store and Retrieve Data
