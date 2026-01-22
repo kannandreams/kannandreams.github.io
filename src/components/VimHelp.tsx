@@ -69,6 +69,25 @@ const VimHelp: React.FC<{
             for startups to large tech companies. <br></br>
             💎 Strong mix of Data and AI/ML expertise is a perfect combo.
             <br></br>
+            Served as Technical Reviewer for {" "}
+            <a
+              href="https://www.amazon.co.uk/Data-Visualization-Cookbook-Atmajitsinh-Gohil/dp/1783989505"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="lovable"
+              className="text-terminal-accent"
+            >
+              When Engineers meet AI
+            </a>{" "}
+            and Contributing Author for {" "}
+            <a
+              href="https://www.everand.com/book/365185281/Introduction-to-R-for-Business-Intelligence"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="lovable"
+              className="text-terminal-accent"
+            ></a>{" "}
+            <br></br>
             👨🏻 I'm an <span className="text-terminal-accent">ENFJ</span> (yep,
             "The Protagonist" per personality test).<br></br>
             😎 Fun fact :{" "}
@@ -80,7 +99,8 @@ const VimHelp: React.FC<{
             <br></br>
           </p>
           <p className="mt-2">
-            <u>Outside of Work:</u> I write{" "}
+            <u>Outside of Work:</u><br></br>
+            - I write{" "}
             <a
               href="https://engineersmeetai.substack.com/"
               target="_blank"
@@ -93,9 +113,20 @@ const VimHelp: React.FC<{
             — a Substack newsletter where I explore how scalable, intelligent systems are built across Data, AI tooling, Software Engineering, and engineering philosophy.
             Through hands-on experiments, real-world experiences, and personal reflections, in many ways, it's helping me live a small piece of my entrepreneurial dream.<br></br>
             <br></br>
+            - Mentor people worldwide through {" "}
+            <a
+              href="https://adplist.org/mentors/kannan-kalidasan"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="lovable"
+              className="text-terminal-accent"
+            >
+              ADPList.org
+            </a>{" "}
           </p>
           <p className="mt-2">
-            <u>Outside of Tech:</u> I lean into the <i>creative side</i> too.
+            <u>Outside of Tech:</u><br></br>
+            I lean into the <i>creative side</i> too.
             <br></br>I speak & think in{" "}
             <a
               href="https://en.wikipedia.org/wiki/Tamil_language"
