@@ -61,7 +61,6 @@ const VimHelp: React.FC<{
             </span>
             visual thinking and teaching are the best add-on gift stays with me.
           </p>
-          <br></br>
           <p className="mt-2">
             <br></br>
             <u>Quick Blurb:</u> <br></br>
@@ -69,7 +68,7 @@ const VimHelp: React.FC<{
             for startups to large tech companies. <br></br>
             💎 Strong mix of Data and AI/ML expertise is a perfect combo.
             <br></br>
-            Served as Technical Reviewer for {" "}
+            📚 Served as Technical Reviewer for {" "}
             <a
               href="https://www.amazon.co.uk/Data-Visualization-Cookbook-Atmajitsinh-Gohil/dp/1783989505"
               target="_blank"
@@ -77,7 +76,7 @@ const VimHelp: React.FC<{
               aria-label="lovable"
               className="text-terminal-accent"
             >
-              When Engineers meet AI
+              R Data Visualization Cookbook
             </a>{" "}
             and Contributing Author for {" "}
             <a
@@ -86,7 +85,9 @@ const VimHelp: React.FC<{
               rel="noopener noreferrer"
               aria-label="lovable"
               className="text-terminal-accent"
-            ></a>{" "}
+            >
+              R for Business Intelligence
+            </a>{" "}
             <br></br>
             👨🏻 I'm an <span className="text-terminal-accent">ENFJ</span> (yep,
             "The Protagonist" per personality test).<br></br>
@@ -112,7 +113,6 @@ const VimHelp: React.FC<{
             </a>{" "}
             — a Substack newsletter where I explore how scalable, intelligent systems are built across Data, AI tooling, Software Engineering, and engineering philosophy.
             Through hands-on experiments, real-world experiences, and personal reflections, in many ways, it's helping me live a small piece of my entrepreneurial dream.<br></br>
-            <br></br>
             - Mentor people worldwide through {" "}
             <a
               href="https://adplist.org/mentors/kannan-kalidasan"
@@ -126,8 +126,7 @@ const VimHelp: React.FC<{
           </p>
           <p className="mt-2">
             <u>Outside of Tech:</u><br></br>
-            I lean into the <i>creative side</i> too.
-            <br></br>I speak & think in{" "}
+            I lean into the <i>creative side</i> too.I speak & think in{" "}
             <a
               href="https://en.wikipedia.org/wiki/Tamil_language"
               target="_blank"

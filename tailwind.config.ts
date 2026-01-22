@@ -67,7 +67,7 @@ export default {
 					foreground: '#F1F1F1',
 					primary: '#1EAEDB',
 					secondary: '#8B5CF6',
-					accent: '#33C3F0',
+					accent: '#5FB8D8',
 					muted: '#8E9196',
 					border: '#333333',
 					success: '#4CAF50',
