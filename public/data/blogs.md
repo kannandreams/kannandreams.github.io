@@ -1,6 +1,61 @@
 
 # Blog Posts
 
+## JDBC to ADBC: A Technical Deep Dive
+2026-06
+JDBC to ADBC: A Technical Deep Dive
+https://engineersmeetai.substack.com/p/jdbc-to-adbc-a-technical-deep-dive
+
+## How Distributed Inference Actually Works
+2026-06
+How Distributed Inference Actually Works
+https://engineersmeetai.substack.com/p/how-distributed-inference-actually
+
+## Dense vs MoE Models Explained
+2026-05
+Dense vs MoE Models Explained
+https://engineersmeetai.substack.com/p/dense-vs-moe-models-explained?r=1v233
+
+## Measuring Local LLM Performance Across Two Macs
+2026-05
+Measuring Local LLM Performance Across Two Macs
+https://engineersmeetai.substack.com/p/measuring-local-llm-performance-across?r=1v233
+
+## The Next Layer of SRE: AI Reliability Engineering
+2026-03
+The Next Layer of SRE: AI Reliability Engineering
+https://engineersmeetai.substack.com/p/the-next-layer-of-sre-ai-reliability?r=1v233
+
+## Semantic Cache in an LLM Gateway
+2026-03
+Semantic Cache in an LLM Gateway
+https://engineersmeetai.substack.com/p/semantic-cache-in-an-llm-gateway
+
+## LLM Gateway: Control Plane for AI Applications
+2026-02
+LLM Gateway: Control Plane for AI Applications
+https://engineersmeetai.substack.com/p/llm-gateway-control-plane-for-ai?r=1v233
+
+## Part 2 - A Deep Dive into Agent Communication
+2026-02
+Part 2 - A Deep Dive into Agent Communication
+https://engineersmeetai.substack.com/p/a-deep-dive-into-agent-communication-c8a?r=1v233
+
+## Part 1 - A Deep Dive into Agent Communication
+2026-01
+Part 1 - A Deep Dive into Agent Communication
+https://engineersmeetai.substack.com/p/a-deep-dive-into-agent-communication?r=1v233
+
+## Why Distributed Systems Prefer Leases Over Locks
+2026-01
+Why Distributed Systems Prefer Leases Over Locks
+https://engineersmeetai.substack.com/p/why-distributed-systems-prefer-leases?r=1v233
+
+## How to Completely Remove a .env File from Git
+2026-01
+How to Completely Remove a .env File from Git
+https://engineersmeetai.substack.com/p/how-to-completely-remove-a-env-file?r=1v233
+
 ## Why AI Models Keep Saying "Wait…"
 2025-12
 Why AI Models Keep Saying "Wait…"
