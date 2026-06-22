@@ -146,16 +146,7 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <button
-            onClick={onDownloadResume}
-            className="ml-3 flex items-center px-2 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"
-            aria-label="Download Resume"
-            type="button"
-            disabled
-          >
-            <Download size={19} className="mr-1" />
-            Resume
-          </button>
+          {/* Resume button hidden */}
         </>
       ) : (
         <>
