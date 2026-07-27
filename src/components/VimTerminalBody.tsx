@@ -62,8 +62,8 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
 
   // Original dev mode rendering
   return (
-    <div className="terminal-body flex-1 overflow-hidden" ref={terminalBodyRef}>
-      <div className="min-h-full pb-4 overflow-hidden">
+    <div className="terminal-body flex-1 overflow-y-auto" ref={terminalBodyRef}>
+      <div className="min-h-full pb-4">
         <div className="mb-4">
           {activeSection === "skills" && <VimSkills />}
           {activeSection === "projects" && <VimProjects />}

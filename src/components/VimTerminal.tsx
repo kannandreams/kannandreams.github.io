@@ -104,6 +104,12 @@ const VimTerminal: React.FC = () => {
   }, [lastOutput]);
 
   useEffect(() => {
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = 0;
+    }
+  }, [activeSection]);
+
+  useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("terminal-theme", theme);
   }, [theme]);
