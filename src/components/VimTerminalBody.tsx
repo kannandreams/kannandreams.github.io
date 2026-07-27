@@ -62,7 +62,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
 
   // Original dev mode rendering
   return (
-    <div className="terminal-body flex-1 overflow-y-auto" ref={terminalBodyRef}>
+    <ScrollArea className="terminal-body flex-1" ref={terminalBodyRef}>
       <div className="min-h-full pb-4">
         <div className="mb-4">
           {activeSection === "skills" && <VimSkills />}
@@ -82,7 +82,7 @@ const VimTerminalBody: React.FC<VimTerminalBodyProps> = ({
           )}
         </div>
       </div>
-    </div>
+    </ScrollArea>
   );
 };
 

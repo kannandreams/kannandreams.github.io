@@ -89,7 +89,7 @@ const VimProjects: React.FC = () => {
     <div className="vim-projects animate-fade-in">
       <div className="flex items-center space-x-2 mb-6">
         <Briefcase className="text-terminal-secondary" />
-        <h2 className="text-stone-300 text-xl font-semibold">
+        <h2 className="text-terminal-foreground text-xl font-semibold">
           Recent Experiments
         </h2>
       </div>
@@ -126,10 +126,10 @@ const VimProjects: React.FC = () => {
               {selectedProject ? (
                 <div className="space-y-6">
                   <div>
-                    <h2 className="text-2xl font-semibold text-teal-400 mb-2">
+                    <h2 className="text-2xl font-semibold text-terminal-accent mb-2">
                       {selectedProject.title}
                     </h2>
-                    <p className="text-stone-300">
+                    <p className="text-terminal-muted">
                       {selectedProject.description}
                     </p>
                   </div>
@@ -141,7 +141,7 @@ const VimProjects: React.FC = () => {
                         {selectedProject.technologies.map((tech, index) => (
                           <span
                             key={index}
-                            className="px-3 py-1 bg-terminal-border/30 text-stone-400 rounded-md text-sm"
+                            className="px-3 py-1 bg-terminal-border/30 text-terminal-muted rounded-md text-sm"
                           >
                             {tech}
                           </span>

@@ -45,7 +45,7 @@ const getIconComponent = (iconName: string) => {
     Rust: <RustIcon />,
     Next: <Code className="h-4 w-4 text-black" />
   };
-  return icons[iconName] || <Code className="h-4 w-4 text-gray-400" />;
+  return icons[iconName] || <Code className="h-4 w-4 text-terminal-muted" />;
 };
 
 const getCategoryIcon = (category: string) => {
@@ -283,7 +283,7 @@ const VimTerminalSkills: React.FC = () => {
 
       <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
         {skillCategories[activeTab]?.comment && (
-          <div className="text-[#8E9196] text-sm italic pl-12 py-2 border-b border-terminal-border/20">
+          <div className="text-terminal-muted text-sm italic pl-12 py-2 border-b border-terminal-border/20">
             // <span className="text-green-700">{skillCategories[activeTab].comment}</span>
           </div>
         )}

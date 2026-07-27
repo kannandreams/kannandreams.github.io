@@ -91,21 +91,24 @@ const VimTerminal: React.FC = () => {
     }
 
     setTimeout(() => {
-      if (terminalBodyRef.current) {
-        terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+      const viewport = terminalBodyRef.current?.querySelector('[data-radix-scroll-area-viewport]');
+      if (viewport) {
+        viewport.scrollTop = viewport.scrollHeight;
       }
     }, 0);
   };
 
   useEffect(() => {
-    if (terminalBodyRef.current) {
-      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    const viewport = terminalBodyRef.current?.querySelector('[data-radix-scroll-area-viewport]');
+    if (viewport) {
+      viewport.scrollTop = viewport.scrollHeight;
     }
   }, [lastOutput]);
 
   useEffect(() => {
-    if (terminalBodyRef.current) {
-      terminalBodyRef.current.scrollTop = 0;
+    const viewport = terminalBodyRef.current?.querySelector('[data-radix-scroll-area-viewport]');
+    if (viewport) {
+      viewport.scrollTop = 0;
     }
   }, [activeSection]);
 
