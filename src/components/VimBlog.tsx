@@ -1,6 +1,7 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { format } from "date-fns";
+import { Calendar1 } from "lucide-react";
 
 interface BlogPost {
   id: string;
@@ -9,7 +10,11 @@ interface BlogPost {
   created: string;
 }
 
-// Hardcoded blog data as fallback
+interface BlogYear {
+  year: string;
+  posts: BlogPost[];
+}
+
 const hardcodedBlogs: BlogPost[] = [
   {
     id: "1",
@@ -76,43 +81,47 @@ const hardcodedBlogs: BlogPost[] = [
 async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
     const response = await fetch('/data/blogs.md');
-    if (!response.ok) {
-      console.log('Using hardcoded blog data');
-      return hardcodedBlogs;
-    }
-    
+    if (!response.ok) return hardcodedBlogs;
     const text = await response.text();
-    
     const posts: BlogPost[] = [];
-    const sections = text.split('## ').slice(1); // Skip the header
-    
+    const sections = text.split('## ').slice(1);
     sections.forEach((section, index) => {
       const lines = section.trim().split('\n');
       const title = lines[0];
       const date = lines[1];
       const url = lines.find(line => line.startsWith('http')) || '';
-      
-      posts.push({
-        id: String(index),
-        title,
-        url,
-        created: date
-      });
+      posts.push({ id: String(index), title, url, created: date });
     });
-    
     return posts;
-  } catch (error) {
-    console.error('Error fetching blog posts:', error);
+  } catch {
     return hardcodedBlogs;
   }
+}
+
+function groupPostsByYear(posts: BlogPost[]): BlogYear[] {
+  const yearMap: Record<string, BlogPost[]> = {};
+  posts.forEach(post => {
+    const year = post.created.split('-')[0];
+    if (!yearMap[year]) yearMap[year] = [];
+    yearMap[year].push(post);
+  });
+  return Object.entries(yearMap)
+    .sort(([a], [b]) => b.localeCompare(a))
+    .map(([year, yearPosts]) => ({
+      year,
+      posts: yearPosts.sort((a, b) => b.created.localeCompare(a.created))
+    }));
 }
 
 const VimBlog: React.FC = () => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
 
-  // Track Blogs section view
+  const years = useMemo(() => groupPostsByYear(posts), [posts]);
+  const selectedYearPosts = years[activeTab]?.posts || [];
+
   useEffect(() => {
     if (window.gtag) {
       window.gtag('event', 'view_item', {
@@ -120,52 +129,68 @@ const VimBlog: React.FC = () => {
         event_label: 'Blog Section',
         content_type: 'blog'
       });
-      console.log('Skills section view tracked in GA');
     }
   }, []);
 
   useEffect(() => {
     setLoading(true);
     fetchBlogPosts()
-      .then(data => {
-        setPosts(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load blogs:', err);
-        setPosts(hardcodedBlogs);
-        setError("Failed to load blog posts");
-        setLoading(false);
-      });
+      .then(data => { setPosts(data); setLoading(false); })
+      .catch(() => { setPosts(hardcodedBlogs); setError("Failed to load blog posts"); setLoading(false); });
   }, []);
+
+  if (loading) {
+    return <div className="text-terminal-info">Loading...</div>;
+  }
 
   return (
     <div className="animate-fade-in">
       <h2 className="text-lg font-bold text-terminal-accent mb-4">Latest Blog Posts</h2>
 
-      {loading ? (
-        <div className="text-terminal-info">Loading...</div>
-      ) : error ? (
-        <div className="text-terminal-error">{error}</div>
-      ) : (
-        <ul className="space-y-3">
-          {posts.map(post => (
-            <li key={post.id} className="flex items-baseline gap-2">
-              <span className="text-terminal-muted">
+      {error && <div className="text-terminal-error mb-4">{error}</div>}
+
+      <div className="flex flex-wrap gap-0 mb-6">
+        {years.map((yearGroup, index) => (
+          <button
+            key={yearGroup.year}
+            onClick={() => setActiveTab(index)}
+            className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative group ${
+              activeTab === index
+                ? 'bg-terminal-border text-terminal-foreground border-x border-t border-terminal-border/40 rounded-t-md z-10'
+                : 'bg-terminal-background text-terminal-muted border-b border-terminal-border/40 hover:text-terminal-foreground'
+            }`}
+          >
+            <Calendar1 size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
+            <span>{yearGroup.year}</span>
+            <span className="text-xs opacity-50">({yearGroup.posts.length})</span>
+          </button>
+        ))}
+        <div className="flex-grow border-b border-terminal-border/40" />
+      </div>
+
+      <div className="bg-terminal-border/10 rounded-md border border-terminal-border/20 overflow-hidden">
+        <ul className="space-y-0">
+          {selectedYearPosts.map(post => (
+            <li key={post.id} className="flex items-center gap-2 px-4 py-2 border-b border-terminal-border/10 last:border-b-0 hover:bg-terminal-border/5 transition-colors whitespace-nowrap">
+              <span className="text-terminal-muted flex-shrink-0">
                 {format(new Date(post.created), "MMM yyyy")}:
               </span>
               <a
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-terminal-accent transition-colors"
+                className="text-white hover:text-terminal-accent transition-colors truncate"
               >
                 {post.title}
               </a>
             </li>
           ))}
         </ul>
-      )}
+      </div>
+
+      <div className="text-terminal-muted text-sm italic mt-4">
+        <p>* Blog posts from EngineersMeetAI Substack</p>
+      </div>
     </div>
   );
 };
