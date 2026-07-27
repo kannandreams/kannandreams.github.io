@@ -1,72 +1,30 @@
 
 import React from "react";
-import { Terminal, FileText, Wrench, Download, Github, Linkedin, Rss, Heart, ChevronDown, Palette } from "lucide-react";
+import { Terminal, Github, Linkedin, Rss, Heart, ChevronDown, Palette } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu";
-import { Link } from "react-router-dom";
 
 const GITHUB_URL = "https://github.com/kannandreams";
 const LINKEDIN_URL = "https://www.linkedin.com/in/kannandreams/";
 const SUBSTACK_URL = "https://engineersmeetai.substack.com/";
 
-const NAV_SECTIONS = [
-  { label: "Home", value: "home", command: ":home" },
-  { label: "Skills", value: "skills", command: ":skills" },
-  { label: "Projects", value: "projects", command: ":projects" },
-  // { label: "GitHub", value: "github", command: ":github" },
-  { label: "Blog", value: "blog", command: ":blog" },
-  { label: "Contact", value: "email", command: ":contact" },
-  { label: "About", value: "about", command: ":about" },
-];
-
 interface VimTerminalHeaderProps {
-  devMode: boolean;
-  onDevModeToggle: () => void;
-  onDownloadResume: () => void;
   activeSection: string;
   mode: "normal" | "insert";
-  onSectionSelect?: (section: string) => void;
   theme: "duskshell" | "dawnshell";
   onThemeChange: (theme: "duskshell" | "dawnshell") => void;
 }
 
-const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
-  <button
-    onClick={onClick}
-    aria-label={checked ? "Switch to Lite Mode" : "Switch to Dev Mode"}
-    className={cn(
-      "inline-flex items-center w-10 h-5 rounded-full relative transition-colors duration-300",
-      checked 
-        ? "bg-[--terminal-bright-green]" 
-        : "bg-terminal-muted"
-    )}
-    type="button"
-  >
-    <span
-      className={cn(
-        "absolute w-4 h-4 bg-white rounded-full transition-transform duration-300",
-        checked 
-          ? "translate-x-[22px]" 
-          : "translate-x-0.5"
-      )}
-    />
-  </button>
-);
-
 const showAppreciationToast = () => {
-
-  // Track heart button click in Google Analytics
   if (window.gtag) {
     window.gtag('event', 'click', {
       event_category: 'Engagement',
       event_label: 'Heart Button',
       value: 1
     });
-    console.log('Heart button click tracked in GA');
   }
   
-  // Show appreciation toast
   toast({
     title: "❤️ Thank you!",
     description: "Glad you enjoyed my portfolio and design! Your appreciation means a lot.",
@@ -75,12 +33,8 @@ const showAppreciationToast = () => {
 };
 
 const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
-  devMode,
-  onDevModeToggle,
-  onDownloadResume,
   activeSection,
   mode,
-  onSectionSelect,
   theme,
   onThemeChange,
 }) => (
@@ -139,63 +93,6 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      {!devMode ? (
-        <>
-          <div className="flex items-center">
-            <span className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
-              style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}>
-              Lite Mode
-            </span>
-            <CustomToggle checked={devMode} onClick={onDevModeToggle} />
-          </div>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                className="ml-3 flex items-center px-3 py-1 rounded-md border border-terminal-muted transition hover:bg-terminal-muted/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-terminal-accent text-terminal-muted hover:text-terminal-bright-green"
-                aria-label="Navigate Sections"
-                type="button"
-              >
-                Navigate
-                <ChevronDown size={16} className="ml-1" />
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="z-[999] min-w-[155px]">
-              {NAV_SECTIONS.map((section) => (
-                <DropdownMenuItem
-                  key={section.value}
-                  onClick={() => {
-                    if (onSectionSelect) onSectionSelect(section.value);
-                  }}
-                  className={cn(
-                    "cursor-pointer",
-                    activeSection === section.value && "bg-terminal-accent/15"
-                  )}
-                  aria-label={section.label}
-                >
-                  {section.label}
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
-          {/* Resume button hidden */}
-        </>
-      ) : (
-        <>
-          <div className="flex items-center">
-            <span className="mr-0.5 text-terminal-muted select-none text-base tracking-wide"
-              style={{ fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace" }}>
-              Dev Mode
-            </span>
-            <CustomToggle checked={devMode} onClick={onDevModeToggle} />
-          </div>
-          {activeSection === 'blog' && (
-            <FileText size={18} className="text-terminal-accent ml-1" />
-          )}
-          {activeSection === 'tools' && (
-            <Wrench size={18} className="text-terminal-accent ml-1" />
-          )}
-        </>
-      )}
     </div>
   </div>
 );

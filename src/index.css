@@ -105,6 +105,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
+svg.lucide {
+  stroke-width: 1.5 !important;
+}
+
 @layer base {
   * {
     @apply border-border;

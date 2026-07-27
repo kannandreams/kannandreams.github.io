@@ -1,27 +1,15 @@
 import React, { useEffect } from "react";
-// import { Mail, Book, Wrench, Star, List, Smile } from "lucide-react";
-// import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { User, Wrench, FolderOpen, FileText, Mail, HelpCircle, Trash2, LogOut } from "lucide-react";
 
 const navCommands = [
-  { label: ":about", desc: "See my short intro", emoji: "👨‍💻", action: "about" },
-  { label: ":skills", desc: "View my skills", emoji: "💼", action: "skills" },
-  {
-    label: ":projects",
-    desc: "View my projects",
-    emoji: "📁",
-    action: "projects",
-  },
-  { label: ":blog", desc: "Latest blog posts", emoji: "📝", action: "blog" },
-  {
-    label: ":contact",
-    desc: "Get in touch with me",
-    emoji: "📧",
-    action: "email",
-  },
-  { label: ":help", desc: "Show this page", emoji: "❔", action: "help" },
-  { label: ":clear", desc: "Clear terminal", emoji: "🧹", action: "clear" },
-  { label: ":q", desc: "Attempt to quit", emoji: "🚪", action: "quit" },
+  { label: ":about", desc: "See my short intro", icon: <User size={14} />, action: "about" },
+  { label: ":skills", desc: "View my skills", icon: <Wrench size={14} />, action: "skills" },
+  { label: ":projects", desc: "View my projects", icon: <FolderOpen size={14} />, action: "projects" },
+  { label: ":blog", desc: "Latest blog posts", icon: <FileText size={14} />, action: "blog" },
+  { label: ":contact", desc: "Get in touch with me", icon: <Mail size={14} />, action: "email" },
+  { label: ":help", desc: "Show this page", icon: <HelpCircle size={14} />, action: "help" },
+  { label: ":clear", desc: "Clear terminal", icon: <Trash2 size={14} />, action: "clear" },
+  { label: ":q", desc: "Attempt to quit", icon: <LogOut size={14} />, action: "quit" },
 ];
 
 const midpoint = Math.ceil(navCommands.length / 2);
@@ -30,9 +18,7 @@ const secondCol = navCommands.slice(midpoint);
 
 const VimHelp: React.FC<{
   activeSection?: string;
-  devMode?: boolean;
-  onSectionSelect?: (section: string) => void;
-}> = ({ activeSection, devMode = true, onSectionSelect }) => {
+}> = ({ activeSection }) => {
   // Track page views for about and help sections
   useEffect(() => {
     if (activeSection === "about" && window.gtag) {
@@ -165,117 +151,80 @@ const VimHelp: React.FC<{
               Hello! I'm a data-driven Software Engineer passionate about
               building products, teams, and the culture that fuels them.
             </p>
-            {!devMode && (
-              <p className="text-white/80 mt-2">
-                Select an option below to explore my portfolio.
-              </p>
-            )}
           </div>
 
-          {devMode ? (
-            <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-              <div className="border border-terminal-border rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
-                <div className="flex items-center pl-1">
-                  <span
-                    className="px-2 py-0.5 font-semibold text-terminal-foreground text-sm ml-2"
-                    style={{ fontWeight: 600, letterSpacing: 0.5 }}
-                  >
-                    Navigation Commands
-                  </span>
-                  <div className="flex-1 h-px bg-terminal-border ml-3" />
-                </div>
-                <div className="grid grid-cols-2 gap-y-1 gap-x-2 mt-2 pl-4 pr-2">
-                  {firstCol.map(({ label, desc, emoji }) => (
-                    <div key={label} className="flex items-baseline space-x-2">
-                      <span className="text-terminal-accent min-w-[62px]">
-                        {label}
-                      </span>
-                      <span className="text-xs text-terminal-muted">
-                        <span className="mr-1" role="img" aria-label="icon">
-                          {emoji}
-                        </span>
-                        {desc}
-                      </span>
-                    </div>
-                  ))}
-                  {secondCol.map(({ label, desc, emoji }) => (
-                    <div key={label} className="flex items-baseline space-x-2">
-                      <span className="text-terminal-accent min-w-[62px]">
-                        {label}
-                      </span>
-                      <span className="text-xs text-terminal-muted">
-                        <span className="mr-1" role="img" aria-label="icon">
-                          {emoji}
-                        </span>
-                        {desc}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+          <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            <div className="border border-terminal-border rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
+              <div className="flex items-center pl-1">
+                <span
+                  className="px-2 py-0.5 font-semibold text-terminal-foreground text-sm ml-2"
+                  style={{ fontWeight: 600, letterSpacing: 0.5 }}
+                >
+                  Navigation Commands
+                </span>
+                <div className="flex-1 h-px bg-terminal-border ml-3" />
               </div>
-              <div className="border border-terminal-border rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
-                <div className="flex items-center pl-1">
-                  <span
-                    className="px-2 py-0.5 font-semibold text-terminal-foreground text-sm ml-2"
-                    style={{ fontWeight: 600, letterSpacing: 0.5 }}
-                  >
-                    Command Tips
-                  </span>
-                  <div className="flex-1 h-px bg-terminal-border ml-3" />
-                </div>
-                <ul className="space-y-1 mt-2 text-xs text-terminal-muted pl-4">
-                  <li>Commands are case-insensitive.</li>
-                  <li>
-                    Type <span className="text-terminal-accent">i</span> to
-                    enter Insert Mode [ contact page ];{" "}
-                    <span className="text-terminal-accent">&lt;ESC&gt;</span>{" "}
-                    returns to Normal.
-                  </li>
-                  <li>
-                    Use toggle option for Lite Mode{" "}
-                    <span className="text-green-700">
-                      {" "}
-                      // disabled resume download option atm{" "}
+              <div className="grid grid-cols-2 gap-y-1 gap-x-2 mt-2 pl-4 pr-2">
+                {firstCol.map(({ label, desc, icon }) => (
+                  <div key={label} className="flex items-baseline space-x-2">
+                    <span className="text-terminal-accent min-w-[62px]">
+                      {label}
                     </span>
-                  </li>
-                  <li>
-                    Ready to explore? Try{" "}
-                    <span className="text-terminal-accent">:skills</span> or{" "}
-                    <span className="text-terminal-accent">:projects</span>!
-                  </li>
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {navCommands
-                .filter((cmd) => !["clear", "q"].includes(cmd.action))
-                .map((item) => (
-                  <Button
-                    key={item.action}
-                    onClick={() =>
-                      onSectionSelect && onSectionSelect(item.action)
-                    }
-                    variant="outline"
-                    className="bg-white/5 hover:bg-white/10 border-white/10 text-stone-300 hover:text-white/90 hover:border-white/20 transition-all"
-                  >
-                    <span className="mr-2" role="img" aria-label="icon">
-                      {item.emoji}
+                    <span className="text-xs text-terminal-muted flex items-center gap-1">
+                      <span className="text-terminal-muted">{icon}</span>
+                      {desc}
                     </span>
-                    {item.desc}
-                  </Button>
+                  </div>
                 ))}
+                {secondCol.map(({ label, desc, icon }) => (
+                  <div key={label} className="flex items-baseline space-x-2">
+                    <span className="text-terminal-accent min-w-[62px]">
+                      {label}
+                    </span>
+                    <span className="text-xs text-terminal-muted flex items-center gap-1">
+                      <span className="text-terminal-muted">{icon}</span>
+                      {desc}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
-          )}
+            <div className="border border-terminal-border rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
+              <div className="flex items-center pl-1">
+                <span
+                  className="px-2 py-0.5 font-semibold text-terminal-foreground text-sm ml-2"
+                  style={{ fontWeight: 600, letterSpacing: 0.5 }}
+                >
+                  Command Tips
+                </span>
+                <div className="flex-1 h-px bg-terminal-border ml-3" />
+              </div>
+              <ul className="space-y-1 mt-2 text-xs text-terminal-muted pl-4">
+                <li>Commands are case-insensitive.</li>
+                <li>
+                  Type <span className="text-terminal-accent">i</span> to
+                  enter Insert Mode [ contact page ];{" "}
+                  <span className="text-terminal-accent">&lt;ESC&gt;</span>{" "}
+                  returns to Normal.
+                </li>
+                <li>
+                  Use top tabs or type commands to navigate sections.
+                </li>
+                <li>
+                  Ready to explore? Try{" "}
+                  <span className="text-terminal-accent">:skills</span> or{" "}
+                  <span className="text-terminal-accent">:projects</span>!
+                </li>
+              </ul>
+            </div>
+          </div>
 
-          {devMode && (
-            <div className="text-terminal-muted border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
-              <p>
-                This page is inspired by the Vim interface. 💻🎧⚡
-                <br />
-              </p>
-            </div>
-          )}
+          <div className="text-terminal-muted border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
+            <p>
+              This page is inspired by the Vim interface. 💻🎧⚡
+              <br />
+            </p>
+          </div>
         </>
       )}
     </div>

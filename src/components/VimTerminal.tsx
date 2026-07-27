@@ -6,16 +6,13 @@ import VimTerminalBody from "./VimTerminalBody";
 import VimStatusLine from "./VimStatusLine";
 import { cn } from "@/lib/utils";
 
-// URLs for tools, resume, and email
 const TOOLS_URL = "https://your-tools-list-url.com";
-const RESUME_TEX_STATIC = "/resume.tex";
-const EMAIL_ADDRESS = "your-email@example.com"; // Replace with your actual email
+const EMAIL_ADDRESS = "your-email@example.com";
 
 type Section = "skills" | "projects" | "help" | "blog" | "tools" | "email" | "about";
 type Theme = "duskshell" | "dawnshell";
 
 const VimTerminal: React.FC = () => {
-  const [devMode, setDevMode] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<Section>("help");
   const [mode, setMode] = useState<"normal" | "insert">("normal");
   const [lastCommand, setLastCommand] = useState<string>("");
@@ -77,7 +74,6 @@ const VimTerminal: React.FC = () => {
       setMode("insert");
       setLastOutput("-- INSERT MODE --");
       
-      // Focus on the textarea if in email section
       if (activeSection === "email") {
         setTimeout(() => {
           const emailTextarea = document.querySelector('.email-composer textarea');
@@ -121,20 +117,6 @@ const VimTerminal: React.FC = () => {
     setTheme(newTheme);
   };
 
-  const onDevModeToggle = () => {
-    setDevMode((prev) => !prev);
-    console.log("Dev mode toggled:", !devMode);
-  };
-
-  const onDownloadResume = () => {
-    const link = document.createElement("a");
-    link.href = RESUME_TEX_STATIC;
-    link.download = "resume.tex";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   const handleEmailChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setEmailContent(e.target.value);
   };
@@ -150,14 +132,6 @@ const VimTerminal: React.FC = () => {
   };
 
   const handleSectionSelect = (section: string) => {
-    if (section === "home") {
-      setDevMode(true);
-      setActiveSection("help");
-      setLastOutput("Returned to Home — Dev Mode Help Page.");
-      setLastCommand(""); // Clear last command in this case
-      return;
-    }
-    
     if (section === "quit") {
       setLastOutput("Use browser navigation to exit. This is a web app!");
       return;
@@ -171,13 +145,8 @@ const VimTerminal: React.FC = () => {
     
     setActiveSection(section as Section);
     setLastOutput(`Opening ${section.charAt(0).toUpperCase() + section.slice(1)} panel...`);
-    setLastCommand(""); // Clear last command in this case
+    setLastCommand("");
   };
-
-  const containerClasses = cn(
-    "terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]",
-    !devMode && "glass-morphism recruiter-mode"
-  );
 
   const sectionTabs: { label: string; value: Section }[] = [
     { label: "home", value: "help" },
@@ -189,72 +158,55 @@ const VimTerminal: React.FC = () => {
   ];
 
   return (
-    <div className={containerClasses}>
+    <div className="terminal-container min-h-screen max-w-7xl mx-auto overflow-hidden font-mono text-[0.95rem]">
       <VimTerminalHeader
-        devMode={devMode}
-        onDevModeToggle={onDevModeToggle}
-        onDownloadResume={onDownloadResume}
         activeSection={activeSection}
         mode={mode}
-        onSectionSelect={!devMode ? handleSectionSelect : undefined}
         theme={theme}
         onThemeChange={handleThemeChange}
       />
-      {devMode && (
-        <div className="flex flex-wrap gap-0 border-b border-terminal-border/40 bg-terminal-background px-4 pt-2">
-          {sectionTabs.map((tab) => (
-            <button
-              key={tab.value}
-              onClick={() => handleSectionSelect(tab.value)}
-              className={`px-4 py-1.5 flex items-center gap-2 text-sm transition-colors relative ${
-                activeSection === tab.value
-                  ? 'bg-terminal-tab-active-bg text-terminal-tab-active-text border-x border-t border-terminal-border/40 rounded-t-md z-10'
-                  : 'bg-terminal-background text-terminal-tab-inactive-text border-b border-terminal-border/40 hover:text-terminal-foreground'
-              }`}
-            >
-              <span>{tab.label}</span>
-            </button>
-          ))}
-          <div className="flex-grow border-b border-terminal-border/40" />
-        </div>
-      )}
-      <div className={cn(
-        devMode ? "h-[calc(100vh-210px)]" : "recruiter-mode-container",
-        "overflow-hidden relative flex flex-col"
-      )}>
+      <div className="flex flex-wrap gap-0 border-b border-terminal-border/40 bg-terminal-background px-4 pt-2">
+        {sectionTabs.map((tab) => (
+          <button
+            key={tab.value}
+            onClick={() => handleSectionSelect(tab.value)}
+            className={`px-4 py-1.5 flex items-center gap-2 text-sm transition-colors relative ${
+              activeSection === tab.value
+                ? 'bg-terminal-tab-active-bg text-terminal-tab-active-text border-x border-t border-terminal-border/40 rounded-t-md z-10'
+                : 'bg-terminal-background text-terminal-tab-inactive-text border-b border-terminal-border/40 hover:text-terminal-foreground'
+            }`}
+          >
+            <span>{tab.label}</span>
+          </button>
+        ))}
+        <div className="flex-grow border-b border-terminal-border/40" />
+      </div>
+      <div className="h-[calc(100vh-210px)] overflow-hidden relative flex flex-col">
         <VimTerminalBody
-          devMode={devMode}
           activeSection={activeSection}
           mode={mode}
           emailContent={emailContent}
           onEmailChange={handleEmailChange}
           onSendEmail={handleSendEmail}
-          lastOutput={lastOutput}
-          lastCommand={lastCommand}
           terminalBodyRef={terminalBodyRef}
-          onSectionSelect={handleSectionSelect}
         />
-        {devMode && (
-          <>
-            <div className="px-4 pb-2 pt-3 space-y-1">
-              {lastOutput && <div className="text-terminal-foreground">{lastOutput}</div>}
-              {lastCommand && (
-                <div className="text-terminal-bright-green font-semibold">{lastCommand}</div>
-              )}
-            </div>
-            <VimCommandLine
-              onExecuteCommand={executeCommand}
-              mode={mode}
-              setMode={setMode}
-              activeSection={activeSection}
-            />
-            <VimStatusLine 
-              mode={mode}
-              activeSection={activeSection}
-              className="mt-auto"
-            />
-          </>
-        )}
+        <div className="px-4 pb-2 pt-3 space-y-1">
+          {lastOutput && <div className="text-terminal-foreground">{lastOutput}</div>}
+          {lastCommand && (
+            <div className="text-terminal-bright-green font-semibold">{lastCommand}</div>
+          )}
+        </div>
+        <VimCommandLine
+          onExecuteCommand={executeCommand}
+          mode={mode}
+          setMode={setMode}
+          activeSection={activeSection}
+        />
+        <VimStatusLine 
+          mode={mode}
+          activeSection={activeSection}
+          className="mt-auto"
+        />
       </div>
     </div>
   );
