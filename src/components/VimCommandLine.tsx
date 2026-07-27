@@ -108,7 +108,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
         autoComplete="off"
       >
         <span
-          className="terminal-prompt mr-1 text-white font-bold select-none text-lg"
+          className="terminal-prompt mr-1 font-bold select-none text-lg"
           style={{
             fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
             position: "relative",
@@ -129,7 +129,7 @@ const VimCommandLine: React.FC<VimCommandLineProps> = ({
           }}
         >
           <span
-            className="whitespace-pre text-white text-base md:text-base min-w-0"
+            className="whitespace-pre text-terminal-foreground text-base md:text-base min-w-0"
             style={{
               fontFamily: "'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace",
               minWidth: 0,

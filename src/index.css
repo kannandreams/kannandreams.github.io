@@ -34,9 +34,6 @@
     --sidebar-border: 240 10% 25%;
     --sidebar-ring: 217 90% 60%;
 
-    --terminal-bright-green: #4ADE5B;
-    /* Bright green for CLI prompt and caret */
-
     /* Lovable theme colors for lite mode */
     --lovable-soft-green: #F2FCE2;
     --lovable-soft-purple: #E5DEFF;
@@ -44,6 +41,65 @@
     --lovable-soft-pink: #FFDEE2;
     --lovable-soft-peach: #FDE1D3;
     --lovable-soft-gray: #F1F0FB;
+  }
+
+  /* ── Semantic theme tokens ── */
+  :root,
+  [data-theme="duskshell"] {
+    --bg-base: #1A1F2C;
+    --text-primary: #F1F1F1;
+    --text-secondary: #A0A4AE;
+    --text-muted: #8E9196;
+    --accent: #5FB8D8;
+    --highlight: #8B5CF6;
+    --border-color: #333333;
+    --tab-active-bg: #333333;
+    --tab-active-text: #F1F1F1;
+    --tab-inactive-text: #8E9196;
+    --success: #4CAF50;
+    --warning: #FFC107;
+    --error: #ea384c;
+    --info: #2196F3;
+    --prompt: #5FB8D8;
+  }
+
+  [data-theme="dawnshell"] {
+    --bg-base: #eff1f5;
+    --text-primary: #4c4f69;
+    --text-secondary: #6c6f85;
+    --text-muted: #9ca0b0;
+    --accent: #1e66f5;
+    --highlight: #179299;
+    --border-color: #ccd0da;
+    --tab-active-bg: #ccd0da;
+    --tab-active-text: #1e66f5;
+    --tab-inactive-text: #8c8fa1;
+    --success: #40a02b;
+    --warning: #df8e1d;
+    --error: #d20f39;
+    --info: #1e66f5;
+    --prompt: #1e66f5;
+  }
+
+  /* ── Terminal vars (referenced by Tailwind) ── */
+  :root,
+  [data-theme="duskshell"],
+  [data-theme="dawnshell"] {
+    --terminal-background: var(--bg-base);
+    --terminal-foreground: var(--text-primary);
+    --terminal-primary: var(--accent);
+    --terminal-secondary: var(--highlight);
+    --terminal-accent: var(--accent);
+    --terminal-muted: var(--text-muted);
+    --terminal-border: var(--border-color);
+    --terminal-success: var(--success);
+    --terminal-warning: var(--warning);
+    --terminal-error: var(--error);
+    --terminal-info: var(--info);
+    --terminal-bright-green: var(--accent);
+    --terminal-tab-active-bg: var(--tab-active-bg);
+    --terminal-tab-active-text: var(--tab-active-text);
+    --terminal-tab-inactive-text: var(--tab-inactive-text);
   }
 }
 
@@ -57,7 +113,6 @@
   body {
     @apply bg-terminal-background text-terminal-foreground font-mono;
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
-    color: #fff;
   }
 
   .terminal-container {
@@ -125,7 +180,7 @@
   }
 
   .terminal-command {
-    color: #fff;
+    color: var(--terminal-foreground);
     font-family: 'JetBrains Mono', Menlo, Monaco, 'Courier New', monospace;
   }
 
@@ -177,7 +232,7 @@
     animation: block-caret-breath 1s ease-in-out infinite;
     font-size: 1.27em;
     font-weight: bold;
-    color: #fff;
+    color: var(--terminal-foreground);
     opacity: 0.9;
     transition: font-size 0.2s;
     will-change: transform, opacity;
@@ -207,7 +262,7 @@
 
   /* Email Composer white bg/text, border tweaks */
   .email-composer {
-    color: #fff;
+    color: var(--terminal-foreground);
     font-size: 0.95rem;
     background: transparent !important;
     border-right: 1px solid #555 !important;
@@ -220,8 +275,8 @@
 
   .email-composer input,
   .email-composer textarea {
-    color: #fff !important;
-    background: #1A1F2C !important;
+    color: var(--terminal-foreground) !important;
+    background: var(--terminal-background) !important;
   }
 
   /* Shared GUI box styles for VimHelp as well */

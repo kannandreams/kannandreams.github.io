@@ -154,13 +154,13 @@ const VimBlog: React.FC = () => {
           <button
             key={yearGroup.year}
             onClick={() => setActiveTab(index)}
-            className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative group ${
-              activeTab === index
-                ? 'bg-terminal-border text-terminal-foreground border-x border-t border-terminal-border/40 rounded-t-md z-10'
-                : 'bg-terminal-background text-terminal-muted border-b border-terminal-border/40 hover:text-terminal-foreground'
-            }`}
+              className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative group ${
+                activeTab === index
+                  ? 'bg-terminal-tab-active-bg text-terminal-tab-active-text border-x border-t border-terminal-border/40 rounded-t-md z-10'
+                  : 'bg-terminal-background text-terminal-tab-inactive-text border-b border-terminal-border/40 hover:text-terminal-foreground'
+              }`}
           >
-            <Calendar1 size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
+            <Calendar1 size={14} className={activeTab === index ? 'text-terminal-tab-active-text' : 'text-terminal-tab-inactive-text'} />
             <span>{yearGroup.year}</span>
             <span className="text-xs opacity-50">({yearGroup.posts.length})</span>
           </button>
@@ -179,7 +179,7 @@ const VimBlog: React.FC = () => {
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-terminal-accent transition-colors truncate"
+                className="text-terminal-foreground hover:text-terminal-accent transition-colors truncate"
               >
                 {post.title}
               </a>

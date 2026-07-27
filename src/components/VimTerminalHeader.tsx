@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Terminal, FileText, Wrench, Download, Github, Linkedin, Rss, Heart, ChevronDown } from "lucide-react";
+import { Terminal, FileText, Wrench, Download, Github, Linkedin, Rss, Heart, ChevronDown, Palette } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu";
@@ -27,6 +27,8 @@ interface VimTerminalHeaderProps {
   activeSection: string;
   mode: "normal" | "insert";
   onSectionSelect?: (section: string) => void;
+  theme: "duskshell" | "dawnshell";
+  onThemeChange: (theme: "duskshell" | "dawnshell") => void;
 }
 
 const CustomToggle = ({ checked, onClick }: { checked: boolean; onClick: () => void }) => (
@@ -79,6 +81,8 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
   activeSection,
   mode,
   onSectionSelect,
+  theme,
+  onThemeChange,
 }) => (
   <div className="flex items-center justify-between px-4 pt-3 pb-1 border-b border-terminal-border bg-terminal-background">
     <div className="flex items-center gap-3">
@@ -108,6 +112,33 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       </span>
     </div>
     <div className="flex items-center gap-3">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
+            className="flex items-center gap-1.5 px-2 py-1 rounded border border-terminal-border/40 text-terminal-muted hover:text-terminal-foreground hover:border-terminal-muted/60 transition-colors"
+            aria-label="Select theme"
+            type="button"
+          >
+            <Palette size={14} />
+            <span className="text-xs">{theme === "duskshell" ? "dusk" : "dawn"}</span>
+            <ChevronDown size={12} />
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="z-[999] min-w-[140px]">
+          <DropdownMenuItem
+            onClick={() => onThemeChange("duskshell")}
+            className={cn("cursor-pointer", theme === "duskshell" && "bg-terminal-accent/15")}
+          >
+            dusk
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={() => onThemeChange("dawnshell")}
+            className={cn("cursor-pointer", theme === "dawnshell" && "bg-terminal-accent/15")}
+          >
+            dawn
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
       {!devMode ? (
         <>
           <div className="flex items-center">

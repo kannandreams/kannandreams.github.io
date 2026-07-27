@@ -13,26 +13,26 @@ const ContactInfo = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Mail size={16} className="text-terminal-accent" />
-            <span className="text-white">kannanpoem1984@gmail.com</span>
+            <span className="text-terminal-foreground">kannanpoem1984@gmail.com</span>
           </div>
           <div className="flex items-center gap-2">
             <Globe size={16} className="text-terminal-accent" />
-            <span className="text-white">engineersmeetai.substack.com</span>
+            <span className="text-terminal-foreground">engineersmeetai.substack.com</span>
           </div>
           <div className="flex items-center gap-2">
             <LinkIcon size={16} className="text-terminal-accent" />
-            <span className="text-white">adplist.org/mentors/kannan-kalidasan</span>
+            <span className="text-terminal-foreground">adplist.org/mentors/kannan-kalidasan</span>
           </div>
         </div>
         
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <Linkedin size={16} className="text-terminal-accent" />
-            <span className="text-white">linkedin.com/in/kannandreams/</span>
+            <span className="text-terminal-foreground">linkedin.com/in/kannandreams/</span>
           </div>
           <div className="flex items-center gap-2">
             <Github size={16} className="text-terminal-accent" />
-            <span className="text-white">github.com/kannandreams</span>
+            <span className="text-terminal-foreground">github.com/kannandreams</span>
           </div>
         </div>
       </div>

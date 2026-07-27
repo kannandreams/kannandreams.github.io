@@ -263,11 +263,11 @@ const VimTerminalSkills: React.FC = () => {
             onClick={() => setActiveTab(index)}
             className={`px-4 py-2 flex items-center gap-2 text-sm transition-colors relative group ${
               activeTab === index 
-                ? 'bg-terminal-border text-terminal-foreground border-x border-t border-terminal-border/40 rounded-t-md z-10' 
-                : 'bg-terminal-background text-terminal-muted border-b border-terminal-border/40 hover:text-terminal-foreground'
+                ? 'bg-terminal-tab-active-bg text-terminal-tab-active-text border-x border-t border-terminal-border/40 rounded-t-md z-10' 
+                : 'bg-terminal-background text-terminal-tab-inactive-text border-b border-terminal-border/40 hover:text-terminal-foreground'
             }`}
           >
-            <File size={14} className={activeTab === index ? 'text-terminal-accent' : 'text-terminal-muted'} />
+            <File size={14} className={activeTab === index ? 'text-terminal-tab-active-text' : 'text-terminal-tab-inactive-text'} />
             <span>{isMobile ? category.category.split(' ')[0] : category.category}</span>
             <X 
               size={12} 

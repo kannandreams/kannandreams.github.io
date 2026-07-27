@@ -46,11 +46,11 @@ const VimHelp: React.FC<{
   }, [activeSection]);
 
   return (
-    <div className="vim-help animate-fade-in text-stone-300">
+    <div className="vim-help animate-fade-in text-terminal-foreground">
       {activeSection === "about" ? (
         <div className="bg-transparent p-3 rounded mb-3">
           <h2 className="text-terminal-accent text-xl mb-2">About Me</h2>
-          <p className="text-stone-300 text-base">
+          <p className="text-terminal-foreground text-base">
             👋 Hi, I'm Kannan Kalidasan — you can call me <i>KK</i>. <br></br>
             I'm a Software Engineer and Tech Leader based in the UK, with
             expertise in Data, Analytics, ML, and Backend systems. I've been
@@ -161,7 +161,7 @@ const VimHelp: React.FC<{
             Kannan Kalidasan
           </h2>
           <div className="bg-transparent p-3 rounded mb-3">
-            <p className="text-teal-400">
+            <p className="text-terminal-foreground">
               Hello! I'm a data-driven Software Engineer passionate about
               building products, teams, and the culture that fuels them.
             </p>
@@ -174,15 +174,15 @@ const VimHelp: React.FC<{
 
           {devMode ? (
             <div className="mb-4 grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
-              <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
+              <div className="border border-terminal-border rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
                 <div className="flex items-center pl-1">
                   <span
-                    className="px-2 py-0.5 font-semibold text-white text-sm ml-2"
+                    className="px-2 py-0.5 font-semibold text-terminal-foreground text-sm ml-2"
                     style={{ fontWeight: 600, letterSpacing: 0.5 }}
                   >
                     Navigation Commands
                   </span>
-                  <div className="flex-1 h-px bg-[#555] ml-3" />
+                  <div className="flex-1 h-px bg-terminal-border ml-3" />
                 </div>
                 <div className="grid grid-cols-2 gap-y-1 gap-x-2 mt-2 pl-4 pr-2">
                   {firstCol.map(({ label, desc, emoji }) => (
@@ -190,7 +190,7 @@ const VimHelp: React.FC<{
                       <span className="text-terminal-accent min-w-[62px]">
                         {label}
                       </span>
-                      <span className="text-xs text-stone-300">
+                      <span className="text-xs text-terminal-muted">
                         <span className="mr-1" role="img" aria-label="icon">
                           {emoji}
                         </span>
@@ -203,7 +203,7 @@ const VimHelp: React.FC<{
                       <span className="text-terminal-accent min-w-[62px]">
                         {label}
                       </span>
-                      <span className="text-xs text-stone-300">
+                      <span className="text-xs text-terminal-muted">
                         <span className="mr-1" role="img" aria-label="icon">
                           {emoji}
                         </span>
@@ -213,17 +213,17 @@ const VimHelp: React.FC<{
                   ))}
                 </div>
               </div>
-              <div className="border border-[#555] rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
+              <div className="border border-terminal-border rounded-sm bg-transparent col-span-1 px-0 pb-1 relative">
                 <div className="flex items-center pl-1">
                   <span
-                    className="px-2 py-0.5 font-semibold text-white text-sm ml-2"
+                    className="px-2 py-0.5 font-semibold text-terminal-foreground text-sm ml-2"
                     style={{ fontWeight: 600, letterSpacing: 0.5 }}
                   >
                     Command Tips
                   </span>
-                  <div className="flex-1 h-px bg-[#555] ml-3" />
+                  <div className="flex-1 h-px bg-terminal-border ml-3" />
                 </div>
-                <ul className="space-y-1 mt-2 text-xs text-stone-300 pl-4">
+                <ul className="space-y-1 mt-2 text-xs text-terminal-muted pl-4">
                   <li>Commands are case-insensitive.</li>
                   <li>
                     Type <span className="text-terminal-accent">i</span> to
@@ -269,7 +269,7 @@ const VimHelp: React.FC<{
           )}
 
           {devMode && (
-            <div className="text-stone-300 border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
+            <div className="text-terminal-muted border-l-2 border-terminal-accent pl-3 mt-2 text-sm">
               <p>
                 This page is inspired by the Vim interface. 💻🎧⚡
                 <br />

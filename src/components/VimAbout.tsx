@@ -11,7 +11,7 @@ const VimAbout: React.FC = () => {
         minHeight: 28,
       }}
     >
-      <span className="text-white text-[1rem] font-semibold">{intro}</span>
+      <span className="text-terminal-foreground text-[1rem] font-semibold">{intro}</span>
     </div>
   );
 };
