@@ -1,5 +1,12 @@
 # Projects
 
+## Secchi 📦
+
+Open-source Package Intelligence CLI tool. Beautiful TUI dashboard to monitor packages across PyPI, crates.io, and npm.
+https://github.com/kannandreams/secchi
+https://github.com/kannandreams/secchi
+Python, Textual
+
 ## Latent Lens 🔍
 
 Latent Lens is a powerful visual debugger for exploring vector embeddings. 

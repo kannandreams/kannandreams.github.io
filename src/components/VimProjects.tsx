@@ -28,7 +28,7 @@ async function fetchProjects(): Promise<Project[]> {
     sections.forEach((section, index) => {
       const lines = section.trim().split("\n");
       const title = lines[0];
-      const description = lines[1];
+      const description = lines[2];
       const repo = lines[3];
       const liveDemo = lines[4];
       const technologies = lines[5].split(", ");

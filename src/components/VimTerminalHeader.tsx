@@ -69,7 +69,7 @@ const VimTerminalHeader: React.FC<VimTerminalHeaderProps> = ({
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
-            className="flex items-center gap-1.5 px-2 py-1 rounded border border-terminal-border/40 text-terminal-muted hover:text-terminal-foreground hover:border-terminal-muted/60 transition-colors"
+            className="flex items-center gap-1.5 px-2 py-1 rounded border border-terminal-border/40 text-terminal-foreground hover:border-terminal-muted/60 transition-colors"
             aria-label="Select theme"
             type="button"
           >
