@@ -90,7 +90,7 @@ const VimProjects: React.FC = () => {
       <div className="flex items-center space-x-2 mb-6">
         <Briefcase className="text-terminal-secondary" />
         <h2 className="text-terminal-foreground text-xl font-semibold">
-          Recent Experiments
+          Open Source Projects
         </h2>
       </div>
 
